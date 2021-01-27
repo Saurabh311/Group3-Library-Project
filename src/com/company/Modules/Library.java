@@ -34,9 +34,27 @@ public class Library {
         Librarian librarian = new Librarian("Marcel", 7, 97);
 
         librarians.add(librarian);
-
-
     }
+    public boolean searchByTitle(String title){
+        for (Book book:bookList) {
+            if (book.title == title){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean searchByAuthor(String author){
+        for (Book book:bookList) {
+            if (book.author == author){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 }
 
 

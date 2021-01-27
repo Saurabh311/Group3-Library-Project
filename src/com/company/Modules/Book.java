@@ -1,8 +1,9 @@
 package com.company.Modules;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Book {
+public class Book implements Serializable {
     String title;
     String description;
     String author;

@@ -1,6 +1,8 @@
 package com.company.Modules;
 
-public class User extends Person {
+import java.io.Serializable;
+
+public class User extends Person implements Serializable {
   //  List<Object> borrowedBooks = ArrayList;
     String email;
 

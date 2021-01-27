@@ -5,14 +5,14 @@ import java.util.List;
 public class Book {
     String title;
     String description;
-    List <String> authors;
-    int date;
+    String author;
+    int year;
 
-    public Book(String title, String description, List<String> authors, int date) {
+    public Book(String title, String description, String author, int year) {
         this.title = title;
         this.description = description;
-        this.authors = authors;
-        this.date = date;
+        this.author = author;
+        this.year = year;
     }
 
     public String getTitle() {
@@ -23,12 +23,12 @@ public class Book {
         return description;
     }
 
-    public List<String> getAuthors() {
-        return authors;
+    public String getAuthor() {
+        return author;
     }
 
-    public int getDate() {
-        return date;
+    public int getYear() {
+        return year;
     }
 
     public void setTitle(String title) {
@@ -39,11 +39,11 @@ public class Book {
         this.description = description;
     }
 
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setYear(int year) {
+        this.year = year;
     }
 }

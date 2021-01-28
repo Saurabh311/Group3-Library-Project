@@ -34,12 +34,40 @@ public class Library {
         Librarian librarian = new Librarian("Marcel", 7, 97);
 
         librarians.add(librarian);
+    }
+    public boolean searchByTitle(String title){
+        for (Book book:bookList) {
+            if (book.title == title){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean searchByAuthor(String author){
+        for (Book book:bookList) {
+            if (book.author == author){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public void addBook(String title, String description, String author, int year){
+
+
+        bookList.add(new Book(title, description, author, year));
+        System.out.println("New Book added");
 
 
 
 
     }
+
 }
+
 
 
 

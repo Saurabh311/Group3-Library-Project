@@ -1,5 +1,7 @@
 package com.company.Modules;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Library {
@@ -40,7 +42,6 @@ public class Library {
             if (book.title == title){
                 return true;
             }
-
         }
         return false;
     }
@@ -50,22 +51,27 @@ public class Library {
             if (book.author == author){
                 return true;
             }
-
         }
         return false;
     }
 
     public void addBook(String title, String description, String author, int year){
 
-
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
-
-
-
-
     }
 
+    public void sortByTitle(){
+        Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
+        Collections.sort(bookList, compareByTitle);
+        System.out.println(bookList);
+    }
+
+    public void sortByAuthor(){
+        Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
+        Collections.sort(bookList, compareByAuthor);
+        System.out.println(bookList);
+    }
 }
 
 

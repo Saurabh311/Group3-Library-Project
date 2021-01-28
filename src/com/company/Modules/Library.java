@@ -55,6 +55,7 @@ public class Library {
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
             if (book.title == title) {
+                System.out.println(book);
                 return true;
             }
 
@@ -65,6 +66,7 @@ public class Library {
     public boolean searchByAuthor(String author) {
         for (Book book : bookList) {
             if (book.author == author) {
+                System.out.println(book);
                 return true;
             }
 
@@ -78,6 +80,18 @@ public class Library {
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
 
+
+    }
+
+    public List<Person> getAllPersonsToList(){
+        List<Person> persons = new ArrayList<>();
+        persons.addAll(users);
+        persons.addAll(librarians);
+
+        return persons;
+    }
+    public void addPerson(Object person){
+        System.out.println(person);
 
     }
 

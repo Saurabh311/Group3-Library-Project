@@ -16,27 +16,36 @@ public class Ui {
 
     //login will be called first and when login is registered it will call uicheck on user
 
-    public void loginOrRegisterUi() {
+    public void loginOrRegisterUi() { // had problem with an infinite loop in our try catch when inputing a character
+        
 
-        UiChoicesEnums.loginOrRegister sentinel = UiChoicesEnums.loginOrRegister.values()[0];
+        UiChoicesEnums.loginOrRegister choice = UiChoicesEnums.loginOrRegister.DEFAULT;
 
-        while (!sentinel.toString().equals("TERMINATE_PROGRAM")) {
+        while (!choice.toString().equals("TERMINATE_PROGRAM")) {
 
 
             for (UiChoicesEnums.loginOrRegister choices : UiChoicesEnums.loginOrRegister.values()) {
+                if (!choices.toString().equals("DEFAULT")){
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                }
 
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+
+            }
+            try{
+
+                choice = UiChoicesEnums.loginOrRegister.values()[input.nextInt()];
+            }catch (Exception e){
+
 
             }
 
-            sentinel = UiChoicesEnums.loginOrRegister.values()[input.nextInt()];
 
 
-            switch (sentinel) {
+            switch (choice) {
 
                 case LOGIN:
 
-                    Person account = program.login();
+                    Person account = program.loginOrRegister.login();
                     if (account != null) {
                         UiCheck(account);
                     }
@@ -44,10 +53,16 @@ public class Ui {
 
                 case REGISTER:
 
-                    program.register();
+                    program.loginOrRegister.register();
+                    break;
+
 
                 case TERMINATE_PROGRAM:
+
                     break;
+
+                default:
+                    System.out.println("wrong input");
             }
         }
     }
@@ -113,12 +128,18 @@ public class Ui {
 
             switch (sentinel) {
 
-                case SEE_ALL_BOOKS_AVAILIBLE:
-                    System.out.println("see all books");
+                case SEARCH_BY_TITLE:
+                    program.library.searchByTitle("Red Rising");
                     break;
 
-                case SEARCH_USER:
-                    System.out.println("remove book");
+                case SEARCH_BY_AUTHOR:
+                    program.library.searchByAuthor("Hamoodi");
+                    break;
+
+                case ADD_BOOK:
+                    program.library.addBook("test","a tester book","brown",1992);
+                    break;
+
 
                 case QUIT:
                     break;

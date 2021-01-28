@@ -1,5 +1,4 @@
 package com.company.Modules;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +7,7 @@ public class Library {
     List<Book> bookList = new ArrayList<>();
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
+
 
     public Library() { }
 
@@ -34,10 +34,37 @@ public class Library {
         Librarian librarian = new Librarian("Marcel", 7, 97);
 
         librarians.add(librarian);
-
-
     }
+    public boolean searchByTitle(String title){
+        for (Book book:bookList) {
+            if (book.title == title){
+                System.out.println("Book True");
+                return true;
+            }
+        }
+        System.out.println("Book False");
+        return false;
+    }
+
+    public boolean searchByAuthor(String author){
+        for (Book book:bookList) {
+            if (book.author == author){
+                System.out.println("Book True");
+                return true;
+            }
+        }
+        System.out.println("New Book false");
+        return false;
+    }
+
+    public void addBook(String title, String description, String author, int year){
+
+        bookList.add(new Book(title, description, author, year));
+        System.out.println("New Book added");
+    }
+
 }
+
 
 
 

@@ -38,29 +38,32 @@ public class Library {
     public boolean searchByTitle(String title){
         for (Book book:bookList) {
             if (book.title == title){
-                System.out.println("Book True");
                 return true;
             }
+
         }
-        System.out.println("Book False");
         return false;
     }
 
     public boolean searchByAuthor(String author){
         for (Book book:bookList) {
             if (book.author == author){
-                System.out.println("Book True");
                 return true;
             }
+
         }
-        System.out.println("New Book false");
         return false;
     }
 
     public void addBook(String title, String description, String author, int year){
 
+
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
+
+
+
+
     }
 
 }

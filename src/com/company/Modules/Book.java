@@ -1,8 +1,9 @@
 package com.company.Modules;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Book {
+public class Book implements Serializable {
     String title;
     String description;
     String author;
@@ -45,5 +46,15 @@ public class Book {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", year=" + year +
+                '}';
     }
 }

@@ -55,6 +55,12 @@ public class Library {
         return false;
     }
 
+    public void addBook(String title, String description, String author, int year){
+
+        bookList.add(new Book(title, description, author, year));
+        System.out.println("New Book added");
+    }
+
 }
 
 

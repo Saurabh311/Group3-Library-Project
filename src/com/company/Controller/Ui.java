@@ -1,5 +1,6 @@
 package com.company.Controller;
 
+import com.company.Modules.Person;
 import com.company.Modules.User;
 
 import java.util.Scanner;
@@ -14,19 +15,55 @@ public class Ui {
     }
 
     //login will be called first and when login is registered it will call uicheck on user
-    public void UiCheck(Object person){
 
-        if (person instanceof User){
+    public void loginOrRegisterUi() {
+
+        UiChoicesEnums.loginOrRegister sentinel = UiChoicesEnums.loginOrRegister.values()[0];
+
+        while (!sentinel.toString().equals("TERMINATE_PROGRAM")) {
+
+
+            for (UiChoicesEnums.loginOrRegister choices : UiChoicesEnums.loginOrRegister.values()) {
+
+                System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+
+            }
+
+            sentinel = UiChoicesEnums.loginOrRegister.values()[input.nextInt()];
+
+
+            switch (sentinel) {
+
+                case LOGIN:
+
+                    Person account = program.login();
+                    if (account != null) {
+                        UiCheck(account);
+                    }
+                    break;
+
+                case REGISTER:
+
+                    program.register();
+
+                case TERMINATE_PROGRAM:
+                    break;
+            }
+        }
+    }
+
+    public void UiCheck(Object person) {
+
+        if (person instanceof User) {
             userUi();
-        }else{
+        } else {
             librarianUi();
         }
 
     }
 
 
-
-    public void userUi(){
+    public void userUi() {
 
         UiChoicesEnums.userSwitchChoices sentinel = UiChoicesEnums.userSwitchChoices.values()[0];
 
@@ -55,13 +92,12 @@ public class Ui {
                     break;
             }
         }
-        }
+    }
 
 
+    public void librarianUi() {
 
-    public void librarianUi(){
-
-       UiChoicesEnums.librarianSwitchChoices sentinel = UiChoicesEnums.librarianSwitchChoices.values()[0];
+        UiChoicesEnums.librarianSwitchChoices sentinel = UiChoicesEnums.librarianSwitchChoices.values()[0];
 
         while (!sentinel.toString().equals("QUIT")) {
 
@@ -90,38 +126,7 @@ public class Ui {
         }
     }
 
-    public void loginOrRegisterUi(){
 
-        UiChoicesEnums.loginOrRegister sentinel = UiChoicesEnums.loginOrRegister.values()[0];
-
-        while (!sentinel.toString().equals("TERMINATE_PROGRAM")) {
-
-
-            for (UiChoicesEnums.loginOrRegister choices : UiChoicesEnums.loginOrRegister.values()) {
-
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
-
-            }
-
-            sentinel = UiChoicesEnums.loginOrRegister.values()[input.nextInt()];
-
-
-            switch (sentinel) {
-
-                case LOGIN:
-
-                    Program.login();
-                    break;
-
-                case REGISTER:
-
-                    Program.register();
-
-                case TERMINATE_PROGRAM:
-                    break;
-            }
-        }
-    }
 }
 
 

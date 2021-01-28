@@ -2,8 +2,8 @@ package com.company.Modules;
 
 public class Librarian extends Person {
 
-    public Librarian(String name, int age, int id) {
-        super(name, age, id);
+    public Librarian(String name, String username, String password, int age, int id) {
+        super(name, username, password, age, id);
     }
 
 

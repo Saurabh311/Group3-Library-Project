@@ -6,21 +6,37 @@ public class Person implements Serializable {
 
 
     String name;
+    String username;
+    String password;
     int age;
     int id;
 
-    public Person(String name, int age, int id) {
+
+    public Person(String name, String username, String password, int age, int id) {
         this.name = name;
+        this.username =username;
+        this.password = password;
         this.age = age;
         this.id = id;
+
     }
 
     public Person() {
     }
 
+
     public String getName() {
         return name;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
 
     public int getAge() {
         return age;

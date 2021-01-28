@@ -1,47 +1,82 @@
 package com.company.Controller;
+
 import com.company.Modules.Librarian;
 import com.company.Modules.Library;
+import com.company.Modules.Person;
 import com.company.Modules.User;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Program {
+    Library library = new Library();
 
-    public Program() { }
+    public Program() {
+    }
 
     public void run() {
 
-        Library library = new Library();
+
         library.addData();
-        User test  = new User("fg","g",12,4);
-        Librarian test2 = new Librarian("g",4,5);
-
-
-
 
 
     }
 
-    public static void login(){
+    public Person login() {
+        String username;
+        String password;
+        Person account = null;
+
         Scanner input = new Scanner(System.in);
 
-        String username;
         System.out.print("Username:");
-        username= input.nextLine();
-        //check username make try catch if true return true and continue to password
-        //after password check return the object that matches
-        //will go to uicheck and continue from there
+        username = input.nextLine();
+
+        System.out.print("Password:");
+        password = input.nextLine();
+
+        account = userValidator(username, password);
+
+        if (account != null) {
+            System.out.println("login succesful");
+
+        } else {
+            System.out.println("login failed");
+        }
+
+
+        return account;
     }
 
-    public static void register(){
-        System.out.println("in register");
+    public void register() {
+        System.out.print("plese");
+    }
+
+    public Person userValidator(String username, String password) {
+        Person account = null;
+
+
+        List<Person> persons = new ArrayList<>();
+        library.addData();//will remove this later jsut used to add data
+
+        persons.addAll(library.getLibrarians());
+        persons.addAll(library.getUsers());
+
+        for (Person user : persons) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+                account = user;
+            }
+        }
+
+
+        return account;
     }
     //call teh ui for register or login then call the chosen function
     //login making a list of both user and librarians to compare against
     //if stament that says if the found object is an librarian or user1
-
-
-
 
 
 }

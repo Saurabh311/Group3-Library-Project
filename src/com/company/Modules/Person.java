@@ -5,22 +5,37 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-    String name;
-    int age;
-    int id;
+    String name = null;
+    String username;
+    String password;
+    int age =0 ;
+    int id =0;
 
-    public Person(String name, int age, int id) {
-        this.name = name;
-        this.age = age;
-        this.id = id;
+
+    public Person( String username, String password) {
+
+        this.username =username;
+        this.password = password;
+
+
     }
 
     public Person() {
     }
 
+
     public String getName() {
         return name;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
 
     public int getAge() {
         return age;

@@ -1,15 +1,19 @@
 package com.company.Modules;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
+
+
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
 
 
-    public Library() { }
+    public Library() {
+    }
 
     public void addData() {
 
@@ -25,19 +29,33 @@ public class Library {
         bookList.add(book3);
         bookList.add(book4);
 
-        User user = new User("Fredrik", "asdasd@dasd", 7, 65);
-        User user1 = new User("Saurabh", "asdasd@dasd", 7, 58);
+        User user = new User(  "klosansa1", "test");
+        User user1 = new User( "saura1", "cake");
 
         users.add(user);
         users.add(user1);
 
-        Librarian librarian = new Librarian("Marcel", 7, 97);
+        Librarian librarian = new Librarian( "marcelly", "java1");
 
         librarians.add(librarian);
     }
-    public boolean searchByTitle(String title){
-        for (Book book:bookList) {
-            if (book.title == title){
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Librarian> getLibrarians() {
+        return librarians;
+    }
+
+    public boolean searchByTitle(String title) {
+        for (Book book : bookList) {
+            if (book.title == title) {
+                System.out.println(book);
                 return true;
             }
 
@@ -45,9 +63,10 @@ public class Library {
         return false;
     }
 
-    public boolean searchByAuthor(String author){
-        for (Book book:bookList) {
-            if (book.author == author){
+    public boolean searchByAuthor(String author) {
+        for (Book book : bookList) {
+            if (book.author == author) {
+                System.out.println(book);
                 return true;
             }
 
@@ -55,14 +74,30 @@ public class Library {
         return false;
     }
 
-    public void addBook(String title, String description, String author, int year){
+    public void addBook(String title, String description, String author, int year) {
 
 
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
 
 
+    }
 
+    public List<Person> getAllPersonsToList(){
+        List<Person> persons = new ArrayList<>();
+        persons.addAll(users);
+        persons.addAll(librarians);
+
+        return persons;
+    }
+    public void addPerson(Object person){
+        if (person instanceof User){
+            users.add((User) person);
+            System.out.println("added user");
+        }else{
+            librarians.add((Librarian) person);
+            System.out.println("added librarian");
+        }
 
     }
 

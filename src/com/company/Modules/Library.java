@@ -30,6 +30,7 @@ public class Library {
         bookList.add(book4);
 
         User user = new User(  "klosansa1", "test");
+
         User user1 = new User( "saura1", "cake");
 
         users.add(user);

@@ -166,6 +166,9 @@ public class Ui {
                 case ADD_BOOK:
                     program.library.addBook("test","a tester book","brown",1992);
                     break;
+                case SEE_ALL_BOOKS_OF_USER:
+                    System.out.println("Write username of user");
+                    program.pAllBooksOfUser(input.next());
 
 
                 case QUIT:

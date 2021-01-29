@@ -18,7 +18,7 @@ public class Ui {
 
     public void loginOrRegisterUi() { // had problem with an infinite loop in our try catch when inputing a character
         
-
+        String choiceInput;
         UiChoicesEnums.loginOrRegister choice = UiChoicesEnums.loginOrRegister.DEFAULT;
 
         while (!choice.toString().equals("TERMINATE_PROGRAM")) {
@@ -31,9 +31,10 @@ public class Ui {
 
 
             }
+            choiceInput = input.next();
             try{
 
-                choice = UiChoicesEnums.loginOrRegister.values()[input.nextInt()];
+                choice = UiChoicesEnums.loginOrRegister.values()[Integer.valueOf(choiceInput)];
             }catch (Exception e){
 
 
@@ -62,7 +63,7 @@ public class Ui {
                     break;
 
                 default:
-                    System.out.println("wrong input");
+                    System.out.println("Wrong input");
             }
         }
     }
@@ -79,22 +80,31 @@ public class Ui {
 
 
     public void userUi() {
+        String choiceInput;
 
-        UiChoicesEnums.userSwitchChoices sentinel = UiChoicesEnums.userSwitchChoices.values()[0];
+        UiChoicesEnums.userSwitchChoices choice = UiChoicesEnums.userSwitchChoices.DEFAULT;
 
-        while (!sentinel.toString().equals("QUIT")) {
+        while (!choice.toString().equals("QUIT")) {
 
 
             for (UiChoicesEnums.userSwitchChoices choices : UiChoicesEnums.userSwitchChoices.values()) {
 
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                if (!choices.toString().equals("DEFAULT")){
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                }
+
+            }
+            choiceInput = input.next();
+            try{
+
+                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.valueOf(choiceInput)];
+            }catch (Exception e){
+
 
             }
 
-            sentinel = UiChoicesEnums.userSwitchChoices.values()[input.nextInt()];
 
-
-            switch (sentinel) {
+            switch (choice) {
 
                 case ADD_BOOK:
                     System.out.println("add book");
@@ -102,9 +112,14 @@ public class Ui {
 
                 case REMOVE_BOOK:
                     System.out.println("remove book");
+                    break;
+
+
 
                 case QUIT:
                     break;
+                default:
+                    System.out.println("Wrong input");
             }
         }
     }
@@ -112,21 +127,33 @@ public class Ui {
 
     public void librarianUi() {
 
-        UiChoicesEnums.librarianSwitchChoices sentinel = UiChoicesEnums.librarianSwitchChoices.values()[0];
+        String choiceInput;
+        UiChoicesEnums.librarianSwitchChoices choice = UiChoicesEnums.librarianSwitchChoices.DEFAULT;
 
-        while (!sentinel.toString().equals("QUIT")) {
+        while (!choice.toString().equals("QUIT")) {
 
 
             for (UiChoicesEnums.librarianSwitchChoices choices : UiChoicesEnums.librarianSwitchChoices.values()) {
 
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                if (!choices.toString().equals("DEFAULT")){
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                }
 
             }
 
-            sentinel = UiChoicesEnums.librarianSwitchChoices.values()[input.nextInt()];
+            choiceInput = input.next();
+            try{
+
+                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
+            }catch (Exception e){
 
 
-            switch (sentinel) {
+            }
+
+
+
+
+            switch (choice) {
 
                 case SEARCH_BY_TITLE:
                     program.library.searchByTitle("Red Rising");
@@ -143,6 +170,8 @@ public class Ui {
 
                 case QUIT:
                     break;
+                default:
+                    System.out.println("Wrong input");
             }
         }
     }

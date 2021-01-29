@@ -5,19 +5,18 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-    String name;
+    String name = null;
     String username;
     String password;
-    int age;
-    int id;
+    int age =0 ;
+    int id =0;
 
 
-    public Person(String name, String username, String password, int age, int id) {
-        this.name = name;
+    public Person( String username, String password) {
+
         this.username =username;
         this.password = password;
-        this.age = age;
-        this.id = id;
+
 
     }
 

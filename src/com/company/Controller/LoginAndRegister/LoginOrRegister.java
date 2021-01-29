@@ -1,4 +1,4 @@
-package com.company.Controller;
+package com.company.Controller.LoginAndRegister;
 
 import com.company.Modules.Library;
 import com.company.Modules.Person;
@@ -24,10 +24,10 @@ public class LoginOrRegister {
 
 
         System.out.print("Username:");
-        username = input.nextLine();
+        username = input.next();
 
         System.out.print("Password:");
-        password = input.nextLine();
+        password = input.next();
 
         account = loginValidator(username, password);
 
@@ -45,14 +45,10 @@ public class LoginOrRegister {
         RegisterValidator registerValidator = new RegisterValidator(library);
         String newUsername;
         String newPassWord;
-        String name;
-        String email;
-        int age;
 
-        int typeOfUser;
         boolean sentinel = false;
 
-        while (sentinel == false){
+        while (!sentinel){
 
             System.out.print("Enter your new username:");
             newUsername = input.next();
@@ -60,10 +56,27 @@ public class LoginOrRegister {
                 System.out.print("Password:");
                 newPassWord = input.next();
                 if (registerValidator.passwordValidation(newPassWord)==true){
-                    int choice = 0;
+                    String choice;
+                    int choiceToInt = 0;
+
                     System.out.println("if you are a user write[1] librarian[2]");
-                     choice = input.nextInt();
-                     if (choice ==1){
+                    choice = input.next();
+                    if (choice.matches("1|2")){
+                       choiceToInt = Integer.valueOf(choice);
+                    }else {
+                        System.out.println("Wrong input");
+                    }
+
+                    if (choiceToInt ==1){
+                        User user = new User(newUsername,newPassWord);
+                        library.addPerson(user);
+                        sentinel = true;
+                    }
+                     if (choiceToInt ==2){
+                         User user = new User(newUsername,newPassWord);
+                         library.addPerson(user);
+                         sentinel = true;
+
 
                      }
                 }else {

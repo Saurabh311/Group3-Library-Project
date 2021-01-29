@@ -1,4 +1,4 @@
-package com.company.Controller;
+package com.company.Controller.LoginAndRegister;
 
 import com.company.Modules.Library;
 import com.company.Modules.Person;
@@ -36,15 +36,18 @@ public class RegisterValidator {
         }
         return usernameValidated;
     }
+
      public boolean passwordValidation(String password){
         boolean passwordValidated = true;
-         System.out.println("in pass");
+
 
         String validatePassForm = "";
-        if (!password.matches(validatePassForm)){
-            passwordValidated = false;
-        }
+        //if (!password.matches(validatePassForm)){
+          //  passwordValidated = false;
+       // }
         return passwordValidated;
     }
+
+
 
 }

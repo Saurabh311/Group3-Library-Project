@@ -29,13 +29,13 @@ public class Library {
         bookList.add(book3);
         bookList.add(book4);
 
-        User user = new User("Fredrik", "klosansa1@hot.se", "klosansa1", "test", 8, 65);
-        User user1 = new User("Saurabh", "asdasd@dasd", "saura1", "cake", 7, 58);
+        User user = new User(  "klosansa1", "test");
+        User user1 = new User( "saura1", "cake");
 
         users.add(user);
         users.add(user1);
 
-        Librarian librarian = new Librarian("Marcel", "marcelly", "java1", 7, 97);
+        Librarian librarian = new Librarian( "marcelly", "java1");
 
         librarians.add(librarian);
     }
@@ -91,7 +91,13 @@ public class Library {
         return persons;
     }
     public void addPerson(Object person){
-        System.out.println(person);
+        if (person instanceof User){
+            users.add((User) person);
+            System.out.println("added user");
+        }else{
+            librarians.add((Librarian) person);
+            System.out.println("added librarian");
+        }
 
     }
 

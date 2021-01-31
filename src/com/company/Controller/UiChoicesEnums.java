@@ -6,6 +6,7 @@ public class UiChoicesEnums {
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         ADD_BOOK,
+        SEE_ALL_BOOKS_OF_USER,
         QUIT,
         DEFAULT
 

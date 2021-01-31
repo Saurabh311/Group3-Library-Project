@@ -97,7 +97,7 @@ public class LoginOrRegister {
 
 
         List<Person> persons = library.getAllPersonsToList();
-        library.addData();//will remove this later jsut used to add data
+
 
         for (Person user : persons) {
             if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {

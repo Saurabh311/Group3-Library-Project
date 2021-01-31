@@ -2,6 +2,10 @@ package com.company.Controller;
 
 import com.company.Controller.LoginAndRegister.LoginOrRegister;
 import com.company.Modules.Library;
+import com.company.Modules.User;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Program {
     Library library = new Library();
@@ -15,6 +19,22 @@ public class Program {
 
         library.addData();
 
+
+
+    }
+    public void pAllBooksOfUser(String username){
+
+        List<User> userChek;
+           userChek = library.getUsers()
+                    .stream()
+                    .filter(user -> username.equals(user.getUsername()))
+                    .collect(Collectors.toList());
+        if ( userChek.size() > 0){
+            System.out.println(userChek.get(0).getMyBorrowedBooks());
+        }
+        else {
+            System.out.println("User dose not exist");
+        }
 
     }
 

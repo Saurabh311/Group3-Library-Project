@@ -1,6 +1,8 @@
 package com.company.Controller;
 
 import com.company.Controller.LoginAndRegister.LoginOrRegister;
+import com.company.Modules.Book;
+import com.company.Modules.Librarian;
 import com.company.Modules.Library;
 import com.company.Modules.User;
 
@@ -16,12 +18,26 @@ public class Program {
 
     public void run() {
 
-
-        library.addData();
-
-
+        getDataOnLoad();
 
     }
+
+    private void getDataOnLoad() {
+        System.out.println("data loaded");
+      library.setUsers((List<User>) HandleData.readObject("Users.ser"));
+      library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
+      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
+    }
+    public void saveData(){
+
+        HandleData.writeObject(library.getUsers(),"Users.ser");
+        HandleData.writeObject(library.getLibrarians(),"Librarians.ser");
+        HandleData.writeObject(library.getBookList(),"Books.ser");
+
+    }
+
+
+
     public void pAllBooksOfUser(String username){
 
         List<User> userChek;

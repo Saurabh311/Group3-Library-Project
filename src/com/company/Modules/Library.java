@@ -120,6 +120,12 @@ public class Library {
         System.out.println(bookList);
     }
 
+    public void showAllBook(){
+        for (Book book: bookList) {
+            System.out.println(book.toString());
+        }
+    }
+
 }
 
 

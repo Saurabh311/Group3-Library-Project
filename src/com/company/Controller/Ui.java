@@ -106,6 +106,9 @@ public class Ui {
 
 
             switch (choice) {
+                case SHOW_ALL_BOOKS:
+                    program.library.showAllBook();
+                    break;
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
@@ -155,6 +158,9 @@ public class Ui {
 
 
             switch (choice) {
+                case SHOW_ALL_BOOKS:
+                    program.library.showAllBook();
+                    break;
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");

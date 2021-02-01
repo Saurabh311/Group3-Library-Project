@@ -59,7 +59,8 @@ public class Ui {
 
 
                 case TERMINATE_PROGRAM:
-
+                    program.saveData();
+                    System.out.println("data saved");
                     break;
 
                 default:
@@ -170,8 +171,8 @@ public class Ui {
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");
                     program.pAllBooksOfUser(input.next());
-
-
+                case SHOW_ALL_USERS:
+                    program.library.printUsers();
                 case QUIT:
                     break;
                 default:

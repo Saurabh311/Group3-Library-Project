@@ -17,44 +17,33 @@ public class Library {
     public Library() {
     }
 
-    public void addData() {
-
-        Book book = new Book("Red Rising", "Adventure", "Peter Brown", 1998);
-        Book book1 = new Book("Blue Rising", "Action", "Fredrik Granath", 1998);
-        Book book2 = new Book("Green Rising", "Romance", "Saurabh Chauhan", 1998);
-        Book book3 = new Book("Pink Rising", "Comedy", "Dan Stevenson", 1998);
-        Book book4 = new Book("Yellow Rising", "Thriller", "Hamoodi", 1998);
-
-        bookList.add(book);
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
-        bookList.add(book4);
-
-        User user = new User(  "klosansa1", "test");
-
-        User user1 = new User( "saura1", "cake");
-
-        users.add(user);
-        users.add(user1);
-
-        Librarian librarian = new Librarian( "marcelly", "java1");
-
-        librarians.add(librarian);
-    }
-
-        public void printUsers() {
-            for (User user : users) {
-                System.out.println(user);
-            }
-        }
-
     public List<Book> getBookList() {
         return bookList;
     }
 
     public List<User> getUsers() {
         return users;
+    }
+
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+
+    public void printUsers() {
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    public void setLibrarians(List<Librarian> librarians) {
+        this.librarians = librarians;
+
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
     public List<Librarian> getLibrarians() {
@@ -92,30 +81,32 @@ public class Library {
 
     }
 
-    public List<Person> getAllPersonsToList(){
+    public List<Person> getAllPersonsToList() {
         List<Person> persons = new ArrayList<>();
         persons.addAll(users);
         persons.addAll(librarians);
 
         return persons;
     }
-    public void addPerson(Object person){
-        if (person instanceof User){
+
+    public void addPerson(Object person) {
+        if (person instanceof User) {
             users.add((User) person);
             System.out.println("added user");
-        }else{
+        } else {
             librarians.add((Librarian) person);
             System.out.println("added librarian");
         }
 
     }
-    public void sortByTitle(){
+
+    public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         Collections.sort(bookList, compareByTitle);
         System.out.println(bookList);
     }
 
-    public void sortByAuthor(){
+    public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
         Collections.sort(bookList, compareByAuthor);
         System.out.println(bookList);

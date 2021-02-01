@@ -59,7 +59,8 @@ public class Ui {
 
 
                 case TERMINATE_PROGRAM:
-
+                    program.saveData();
+                    System.out.println("data saved");
                     break;
 
                 default:

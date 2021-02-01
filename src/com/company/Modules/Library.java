@@ -1,18 +1,13 @@
 package com.company.Modules;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
-
-
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
-
+    Scanner input = new Scanner(System.in);
 
     public Library() {
 
@@ -54,28 +49,39 @@ public class Library {
 
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
-            if (book.title == title) {
-                System.out.println(book);
+            if (book.title.equals(title)) {
+                System.out.println(book.toString());
                 return true;
             }
 
         }
+        System.out.println("Book is not exist");
         return false;
     }
 
-    public boolean searchByAuthor(String author) {
+    public void searchByAuthor(String author) {
         for (Book book : bookList) {
-            if (book.author == author) {
-                System.out.println(book);
-                return true;
+            if (book.author.equals(author)) {
+                System.out.println(book.toString());
             }
 
         }
-        return false;
+        System.out.println("Book is not exist");
+
     }
 
-    public void addBook(String title, String description, String author, int year) {
+    public void addBook() {
+        System.out.println("Insert the title of book");
+        String title = input.nextLine();
 
+        System.out.println("Insert the description of book");
+        String description = input.nextLine();
+
+        System.out.println("Insert the author of book");
+        String author = input.nextLine();
+
+        System.out.println("Insert the year of book release");
+        int year = input.nextInt();
 
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");

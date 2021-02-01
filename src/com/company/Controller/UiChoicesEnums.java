@@ -6,6 +6,7 @@ public class UiChoicesEnums {
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         ADD_BOOK,
+        REMOVE_BOOK,
         SEE_ALL_BOOKS_OF_USER,
         SHOW_ALL_USERS,
         QUIT,
@@ -13,8 +14,8 @@ public class UiChoicesEnums {
 
     }
     public  static enum userSwitchChoices {
-        ADD_BOOK,
-        REMOVE_BOOK,
+        SEARCH_BY_TITLE,
+        SEARCH_BY_AUTHOR,
         QUIT,
         DEFAULT
 

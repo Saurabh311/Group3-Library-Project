@@ -107,16 +107,15 @@ public class Ui {
 
             switch (choice) {
 
-                case ADD_BOOK:
-
-                    System.out.println("add book");
+                case SEARCH_BY_TITLE:
+                    System.out.println("Write title of book");
+                    program.library.searchByTitle(input.next());
                     break;
 
-                case REMOVE_BOOK:
-                    System.out.println("remove book");
+                case SEARCH_BY_AUTHOR:
+                    System.out.println("Write the name of author ");
+                    program.library.searchByAuthor(input.next());
                     break;
-
-
 
                 case QUIT:
                     break;
@@ -158,21 +157,32 @@ public class Ui {
             switch (choice) {
 
                 case SEARCH_BY_TITLE:
-                    program.library.searchByTitle("Red Rising");
+                    System.out.println("Write title of book");
+                    program.library.searchByTitle(input.next());
                     break;
 
                 case SEARCH_BY_AUTHOR:
-                    program.library.searchByAuthor("Hamoodi");
+                    System.out.println("Write the name of author ");
+                    program.library.searchByAuthor(input.next());
                     break;
 
                 case ADD_BOOK:
-                    program.library.addBook("test","a tester book","brown",1992);
+                    program.library.addBook();
                     break;
+
+                case REMOVE_BOOK:
+                    //program.library.addBook("test","a tester book","brown",1992);
+                    break;
+
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");
                     program.pAllBooksOfUser(input.next());
+                    break;
+
                 case SHOW_ALL_USERS:
                     program.library.printUsers();
+                    break;
+
                 case QUIT:
                     break;
                 default:

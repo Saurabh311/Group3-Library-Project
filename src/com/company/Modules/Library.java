@@ -17,8 +17,6 @@ public class Library {
     public Library() {
     }
 
-
-
     public List<Book> getBookList() {
         return bookList;
     }
@@ -32,8 +30,16 @@ public class Library {
         this.users = users;
     }
 
+
+    public void printUsers() {
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
+
     }
 
     public void setBookList(List<Book> bookList) {
@@ -75,30 +81,32 @@ public class Library {
 
     }
 
-    public List<Person> getAllPersonsToList(){
+    public List<Person> getAllPersonsToList() {
         List<Person> persons = new ArrayList<>();
         persons.addAll(users);
         persons.addAll(librarians);
 
         return persons;
     }
-    public void addPerson(Object person){
-        if (person instanceof User){
+
+    public void addPerson(Object person) {
+        if (person instanceof User) {
             users.add((User) person);
             System.out.println("added user");
-        }else{
+        } else {
             librarians.add((Librarian) person);
             System.out.println("added librarian");
         }
 
     }
-    public void sortByTitle(){
+
+    public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         Collections.sort(bookList, compareByTitle);
         System.out.println(bookList);
     }
 
-    public void sortByAuthor(){
+    public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
         Collections.sort(bookList, compareByAuthor);
         System.out.println(bookList);

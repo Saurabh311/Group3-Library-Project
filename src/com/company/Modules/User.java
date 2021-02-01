@@ -23,9 +23,10 @@ public class User extends Person implements Serializable {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 ", id=" + id +
-                ", email=" + email +
                 '}';
     }
 }

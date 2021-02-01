@@ -1,6 +1,8 @@
 package com.company.Modules;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Library {
@@ -100,6 +102,17 @@ public class Library {
             System.out.println("added librarian");
         }
 
+    }
+    public void sortByTitle(){
+        Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
+        Collections.sort(bookList, compareByTitle);
+        System.out.println(bookList);
+    }
+
+    public void sortByAuthor(){
+        Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
+        Collections.sort(bookList, compareByAuthor);
+        System.out.println(bookList);
     }
 
 }

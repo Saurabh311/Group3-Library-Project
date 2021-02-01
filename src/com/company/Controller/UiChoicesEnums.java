@@ -23,6 +23,5 @@ public class UiChoicesEnums {
         REGISTER,
         TERMINATE_PROGRAM,
         DEFAULT
-
     }
 }

@@ -43,6 +43,12 @@ public class Library {
         librarians.add(librarian);
     }
 
+        public void printUsers() {
+            for (User user : users) {
+                System.out.println(user);
+            }
+        }
+
     public List<Book> getBookList() {
         return bookList;
     }

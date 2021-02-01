@@ -17,31 +17,7 @@ public class Library {
     public Library() {
     }
 
-    public void addData() {
 
-        Book book = new Book("Red Rising", "Adventure", "Peter Brown", 1998);
-        Book book1 = new Book("Blue Rising", "Action", "Fredrik Granath", 1998);
-        Book book2 = new Book("Green Rising", "Romance", "Saurabh Chauhan", 1998);
-        Book book3 = new Book("Pink Rising", "Comedy", "Dan Stevenson", 1998);
-        Book book4 = new Book("Yellow Rising", "Thriller", "Hamoodi", 1998);
-
-        bookList.add(book);
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
-        bookList.add(book4);
-
-        User user = new User(  "klosansa1", "test");
-
-        User user1 = new User( "saura1", "cake");
-
-        users.add(user);
-        users.add(user1);
-
-        Librarian librarian = new Librarian( "marcelly", "java1");
-
-        librarians.add(librarian);
-    }
 
     public List<Book> getBookList() {
         return bookList;
@@ -49,6 +25,19 @@ public class Library {
 
     public List<User> getUsers() {
         return users;
+    }
+
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void setLibrarians(List<Librarian> librarians) {
+        this.librarians = librarians;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
     public List<Librarian> getLibrarians() {

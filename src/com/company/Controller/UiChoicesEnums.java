@@ -10,6 +10,7 @@ public class UiChoicesEnums {
         REMOVE_BOOK,
         SEE_ALL_BOOKS_OF_USER,
         SHOW_ALL_USERS,
+        FIND_USER,
         QUIT,
         DEFAULT
 

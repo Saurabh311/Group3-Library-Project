@@ -190,6 +190,10 @@ public class Ui {
                     program.library.printUsers();
                     break;
 
+                case FIND_USER:
+                    program.library.findUser();
+                    break;
+
                 case QUIT:
                     break;
                 default:

@@ -5,11 +5,10 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-    String name = null;
-    String username;
-    String password;
-    int age =0 ;
-    int id =0;
+
+    protected String username;
+    protected String password;
+
 
 
     public Person( String username, String password) {
@@ -24,10 +23,6 @@ public class Person implements Serializable {
     }
 
 
-    public String getName() {
-        return name;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -37,24 +32,8 @@ public class Person implements Serializable {
     }
 
 
-    public int getAge() {
-        return age;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
 }

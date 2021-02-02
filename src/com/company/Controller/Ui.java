@@ -31,7 +31,7 @@ public class Ui {
 
 
             }
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
             try{
 
                 choice = UiChoicesEnums.loginOrRegister.values()[Integer.valueOf(choiceInput)];
@@ -95,7 +95,8 @@ public class Ui {
                 }
 
             }
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
+
             try{
 
                 choice = UiChoicesEnums.userSwitchChoices.values()[Integer.valueOf(choiceInput)];
@@ -112,12 +113,12 @@ public class Ui {
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
-                    program.library.searchByTitle(input.next());
+                    program.library.searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
                     System.out.println("Write the name of author ");
-                    program.library.searchByAuthor(input.next());
+                    program.library.searchByAuthor(input.nextLine());
                     break;
 
                 case QUIT:
@@ -145,7 +146,7 @@ public class Ui {
 
             }
 
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
             try{
 
                 choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
@@ -164,12 +165,12 @@ public class Ui {
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
-                    program.library.searchByTitle(input.next());
+                    program.library.searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
                     System.out.println("Write the name of author ");
-                    program.library.searchByAuthor(input.next());
+                    program.library.searchByAuthor(input.nextLine());
                     break;
 
                 case ADD_BOOK:
@@ -182,7 +183,7 @@ public class Ui {
 
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");
-                    program.pAllBooksOfUser(input.next());
+                    program.pAllBooksOfUser(input.nextLine());
                     break;
 
                 case SHOW_ALL_USERS:

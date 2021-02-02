@@ -27,12 +27,14 @@ public class Program {
       library.setUsers((List<User>) HandleData.readObject("Users.ser"));
       library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
       library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
+      library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
     }
     public void saveData(){
 
         HandleData.writeObject(library.getUsers(),"Users.ser");
         HandleData.writeObject(library.getLibrarians(),"Librarians.ser");
         HandleData.writeObject(library.getBookList(),"Books.ser");
+        HandleData.writeObject(library.getBorrowedBooks(),"BorrowedBooks.ser");
 
     }
 

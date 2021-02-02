@@ -1,17 +1,26 @@
 package com.company.Modules;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
+    List<Book> availibleBooks = new ArrayList<>();
+    List<Book> borrowedBooks = new ArrayList<>();
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
     public Library() {
 
+    }
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
 
+    public void setBorrowedBooks(List<Book> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
     }
 
     public List<Book> getBookList() {
@@ -45,6 +54,45 @@ public class Library {
 
     public List<Librarian> getLibrarians() {
         return librarians;
+    }
+
+    public void setAvailibleBooks (){
+        if(borrowedBooks.size()>0){
+            availibleBooks = bookList
+                    .stream()
+                    .filter(book -> {
+                        boolean check = true;
+                        for (int i = 0;i < borrowedBooks.size();i++){
+                            if (borrowedBooks.get(i).equals(book)){
+                                check = false;
+                                i = borrowedBooks.size();
+
+                            } }return check;
+                    })
+                    .collect(Collectors.toList());
+        }else availibleBooks = bookList;
+    }
+    public void borrowBook(User user){
+        System.out.println("please write the title of the book you want to borrow");
+        String title = input.nextLine();
+        List<Book> bookToBorrow = availibleBooks
+                .stream()
+                .filter(book -> title.equals(book.getTitle()))
+                .collect(Collectors.toList());
+        if ( bookToBorrow.size() > 0){
+            changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+        }else {
+            System.out.println("book is not availible");
+        }
+    }
+    public void changeFromAvailibleToBorrowed(Book book){
+        int index=0;
+        for (int i =0;i< availibleBooks.size();i++){
+            if (availibleBooks.equals(book)){
+                index = i;
+            }
+        }availibleBooks.remove(index);
+        borrowedBooks.add(book);
     }
 
     public boolean searchByTitle(String title) {

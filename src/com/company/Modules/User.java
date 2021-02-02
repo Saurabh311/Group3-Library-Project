@@ -17,6 +17,11 @@ public class User extends Person implements Serializable {
         return myBorrowedBooks;
     }
 
+
+    public void addToBorrowedBooks(Book book){
+        myBorrowedBooks.add(book);
+    }
+
     @Override
     public String toString() {
         return "User{" +

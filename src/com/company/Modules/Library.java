@@ -63,14 +63,14 @@ public class Library {
                     .filter(book -> {
                         boolean check = true;
                         for (int i = 0;i < borrowedBooks.size();i++){
-                            if (borrowedBooks.get(i).equals(book)){
+                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())){
                                 check = false;
                                 i = borrowedBooks.size();
 
                             } }return check;
                     })
                     .collect(Collectors.toList());
-        }else availibleBooks = bookList;
+        }else availibleBooks = new ArrayList<>(bookList);
     }
     public void borrowBook(User user){
         System.out.println("please write the title of the book you want to borrow");
@@ -81,6 +81,7 @@ public class Library {
                 .collect(Collectors.toList());
         if ( bookToBorrow.size() > 0){
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+            user.addToBorrowedBooks(bookToBorrow.get(0));
         }else {
             System.out.println("book is not availible");
         }
@@ -88,7 +89,7 @@ public class Library {
     public void changeFromAvailibleToBorrowed(Book book){
         int index=0;
         for (int i =0;i< availibleBooks.size();i++){
-            if (availibleBooks.equals(book)){
+            if (availibleBooks.get(i).getTitle().equals(book.getTitle())){
                 index = i;
             }
         }availibleBooks.remove(index);
@@ -133,6 +134,7 @@ public class Library {
 
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
+        input.nextLine();// needed to not get wrong inputs ?
 
 
     }

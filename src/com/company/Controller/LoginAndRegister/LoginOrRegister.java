@@ -1,5 +1,6 @@
 package com.company.Controller.LoginAndRegister;
 
+import com.company.Modules.Librarian;
 import com.company.Modules.Library;
 import com.company.Modules.Person;
 import com.company.Modules.User;
@@ -73,8 +74,8 @@ public class LoginOrRegister {
                         sentinel = true;
                     }
                      if (choiceToInt ==2){
-                         User user = new User(newUsername,newPassWord);
-                         library.addPerson(user);
+                         Librarian librarian = new Librarian(newUsername,newPassWord);
+                         library.addPerson(librarian);
                          sentinel = true;
 
 

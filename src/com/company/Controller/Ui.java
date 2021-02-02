@@ -178,7 +178,8 @@ public class Ui {
                     break;
 
                 case REMOVE_BOOK:
-                    //program.library.addBook("test","a tester book","brown",1992);
+                    System.out.println("Please insert the title of Book");
+                    program.library.removeBookByTitle(input.nextLine());
                     break;
 
                 case SEE_ALL_BOOKS_OF_USER:

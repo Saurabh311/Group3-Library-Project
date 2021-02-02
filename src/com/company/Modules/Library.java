@@ -49,11 +49,10 @@ public class Library {
 
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
-            if (book.title.equals(title)) {
+            if (book.title.toUpperCase().equals(title.toUpperCase())) {
                 System.out.println(book.toString());
                 return true;
             }
-
         }
         System.out.println("Book is not exist");
         return false;
@@ -61,13 +60,12 @@ public class Library {
 
     public void searchByAuthor(String author) {
         for (Book book : bookList) {
-            if (book.author.equals(author)) {
+            if (book.author.toUpperCase().equals(author.toUpperCase())) {
                 System.out.println(book.toString());
+                return;
             }
-
         }
         System.out.println("Book is not exist");
-
     }
 
     public void addBook() {
@@ -81,13 +79,21 @@ public class Library {
         String author = input.nextLine();
 
         System.out.println("Insert the year of book release");
-        int year = input.nextInt();
+        boolean intInput = true;
+        while(intInput) {
+            String userInputYear = input.nextLine();
 
-        bookList.add(new Book(title, description, author, year));
-        System.out.println("New Book added");
-
-
+            try {
+                int year = Integer.parseInt(userInputYear);
+                intInput = false;
+                bookList.add(new Book(title, description, author, year));
+                System.out.println("New Book added");
+            } catch (NumberFormatException e) {
+                System.out.println("Please insert year of book in numbers");
+            }
+        }
     }
+
 
     public List<Person> getAllPersonsToList() {
         List<Person> persons = new ArrayList<>();
@@ -126,6 +132,18 @@ public class Library {
         }
     }
 
+    public void removeBookByTitle(String title){
+
+        for (Book book : bookList) {
+            if(book.title.toUpperCase().equals(title.toUpperCase())){
+                bookList.remove(book);
+                System.out.println("Book is removed from the library database ");
+                return;
+            }
+        }
+        System.out.println("Book is not exist in library");
+        return;
+    }
 }
 
 

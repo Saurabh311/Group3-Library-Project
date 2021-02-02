@@ -1,17 +1,26 @@
 package com.company.Modules;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
+    List<Book> availibleBooks = new ArrayList<>();
+    List<Book> borrowedBooks = new ArrayList<>();
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
     public Library() {
 
+    }
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
 
+    public void setBorrowedBooks(List<Book> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
     }
 
     public List<Book> getBookList() {
@@ -27,13 +36,24 @@ public class Library {
         this.users = users;
     }
 
-
+    // Prints all user objects
     public void printUsers() {
         for (User user : users) {
             System.out.println(user);
         }
     }
 
+    // search User by name
+    public void findUser() {
+        System.out.println("Input username: ");
+        for (User user : users) {
+            if (user.getUsername().equals(input.nextLine())) {
+                System.out.println(user.getUsername());
+            } else {
+                System.out.println("Username not found.");
+            }
+        }
+    }
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
 
@@ -45,6 +65,46 @@ public class Library {
 
     public List<Librarian> getLibrarians() {
         return librarians;
+    }
+
+    public void setAvailibleBooks (){
+        if(borrowedBooks.size()>0){
+            availibleBooks = bookList
+                    .stream()
+                    .filter(book -> {
+                        boolean check = true;
+                        for (int i = 0;i < borrowedBooks.size();i++){
+                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())){
+                                check = false;
+                                i = borrowedBooks.size();
+
+                            } }return check;
+                    })
+                    .collect(Collectors.toList());
+        }else availibleBooks = new ArrayList<>(bookList);
+    }
+    public void borrowBook(User user){
+        System.out.println("please write the title of the book you want to borrow");
+        String title = input.nextLine();
+        List<Book> bookToBorrow = availibleBooks
+                .stream()
+                .filter(book -> title.equals(book.getTitle()))
+                .collect(Collectors.toList());
+        if ( bookToBorrow.size() > 0){
+            changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+            user.addToBorrowedBooks(bookToBorrow.get(0));
+        }else {
+            System.out.println("book is not availible");
+        }
+    }
+    public void changeFromAvailibleToBorrowed(Book book){
+        int index=0;
+        for (int i =0;i< availibleBooks.size();i++){
+            if (availibleBooks.get(i).getTitle().equals(book.getTitle())){
+                index = i;
+            }
+        }availibleBooks.remove(index);
+        borrowedBooks.add(book);
     }
 
     public boolean searchByTitle(String title) {
@@ -85,6 +145,7 @@ public class Library {
 
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
+        input.nextLine();// needed to not get wrong inputs ?
 
 
     }

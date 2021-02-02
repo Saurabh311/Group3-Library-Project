@@ -6,14 +6,13 @@ public class Librarian extends Person {
         super( username, password);
     }
 
-
     @Override
     public String toString() {
         return "Librarian{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", id=" + id +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
-
 }
+
+

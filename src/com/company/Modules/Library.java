@@ -36,13 +36,24 @@ public class Library {
         this.users = users;
     }
 
-
+    // Prints all user objects
     public void printUsers() {
         for (User user : users) {
             System.out.println(user);
         }
     }
 
+    // search User by name
+    public void findUser() {
+        System.out.println("Input username: ");
+        for (User user : users) {
+            if (user.getUsername().equals(input.nextLine())) {
+                System.out.println(user.getUsername());
+            } else {
+                System.out.println("Username not found.");
+            }
+        }
+    }
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
 

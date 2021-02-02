@@ -120,8 +120,10 @@ public class Ui {
                     System.out.println("Write the name of author ");
                     program.library.searchByAuthor(input.nextLine());
                     break;
+
                 case ADD_BOOK:
                     program.library.borrowBook(user);
+                    break;
 
                 case QUIT:
                     break;

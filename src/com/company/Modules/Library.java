@@ -88,7 +88,7 @@ public class Library {
         String title = input.nextLine();
         List<Book> bookToBorrow = availibleBooks
                 .stream()
-                .filter(book -> title.equals(book.getTitle()))
+                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
                 .collect(Collectors.toList());
         if ( bookToBorrow.size() > 0){
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));

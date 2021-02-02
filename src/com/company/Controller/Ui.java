@@ -121,7 +121,7 @@ public class Ui {
                     program.library.searchByAuthor(input.nextLine());
                     break;
 
-                case ADD_BOOK:
+                case BORROW_THE_BOOK:
                     program.library.borrowBook(user);
                     break;
 

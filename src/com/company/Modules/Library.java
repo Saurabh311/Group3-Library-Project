@@ -1,46 +1,17 @@
 package com.company.Modules;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
-
-
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
-
+    Scanner input = new Scanner(System.in);
 
     public Library() {
-    }
 
-    public void addData() {
 
-        Book book = new Book("Red Rising", "Adventure", "Peter Brown", 1998);
-        Book book1 = new Book("Blue Rising", "Action", "Fredrik Granath", 1998);
-        Book book2 = new Book("Green Rising", "Romance", "Saurabh Chauhan", 1998);
-        Book book3 = new Book("Pink Rising", "Comedy", "Dan Stevenson", 1998);
-        Book book4 = new Book("Yellow Rising", "Thriller", "Hamoodi", 1998);
-
-        bookList.add(book);
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
-        bookList.add(book4);
-
-        User user = new User(  "klosansa1", "test");
-
-        User user1 = new User( "saura1", "cake");
-
-        users.add(user);
-        users.add(user1);
-
-        Librarian librarian = new Librarian( "marcelly", "java1");
-
-        librarians.add(librarian);
     }
 
     public List<Book> getBookList() {
@@ -51,34 +22,66 @@ public class Library {
         return users;
     }
 
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+
+    public void printUsers() {
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    public void setLibrarians(List<Librarian> librarians) {
+        this.librarians = librarians;
+
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
     public List<Librarian> getLibrarians() {
         return librarians;
     }
 
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
-            if (book.title == title) {
-                System.out.println(book);
+            if (book.title.equals(title)) {
+                System.out.println(book.toString());
                 return true;
             }
 
         }
+        System.out.println("Book is not exist");
         return false;
     }
 
-    public boolean searchByAuthor(String author) {
+    public void searchByAuthor(String author) {
         for (Book book : bookList) {
-            if (book.author == author) {
-                System.out.println(book);
-                return true;
+            if (book.author.equals(author)) {
+                System.out.println(book.toString());
             }
 
         }
-        return false;
+        System.out.println("Book is not exist");
+
     }
 
-    public void addBook(String title, String description, String author, int year) {
+    public void addBook() {
+        System.out.println("Insert the title of book");
+        String title = input.nextLine();
 
+        System.out.println("Insert the description of book");
+        String description = input.nextLine();
+
+        System.out.println("Insert the author of book");
+        String author = input.nextLine();
+
+        System.out.println("Insert the year of book release");
+        int year = input.nextInt();
 
         bookList.add(new Book(title, description, author, year));
         System.out.println("New Book added");
@@ -86,33 +89,41 @@ public class Library {
 
     }
 
-    public List<Person> getAllPersonsToList(){
+    public List<Person> getAllPersonsToList() {
         List<Person> persons = new ArrayList<>();
         persons.addAll(users);
         persons.addAll(librarians);
 
         return persons;
     }
-    public void addPerson(Object person){
-        if (person instanceof User){
+
+    public void addPerson(Object person) {
+        if (person instanceof User) {
             users.add((User) person);
             System.out.println("added user");
-        }else{
+        } else {
             librarians.add((Librarian) person);
             System.out.println("added librarian");
         }
 
     }
-    public void sortByTitle(){
+
+    public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         Collections.sort(bookList, compareByTitle);
         System.out.println(bookList);
     }
 
-    public void sortByAuthor(){
+    public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
         Collections.sort(bookList, compareByAuthor);
         System.out.println(bookList);
+    }
+
+    public void showAllBook(){
+        for (Book book: bookList) {
+            System.out.println(book.toString());
+        }
     }
 
 }

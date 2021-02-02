@@ -11,8 +11,6 @@ public class User extends Person implements Serializable {
 
     public User( String username, String password) {
         super( username, password);
-
-
     }
 
     public List<Book> getMyBorrowedBooks() {
@@ -23,9 +21,10 @@ public class User extends Person implements Serializable {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 ", id=" + id +
-                ", email=" + email +
                 '}';
     }
 }

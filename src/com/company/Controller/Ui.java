@@ -31,7 +31,7 @@ public class Ui {
 
 
             }
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
             try{
 
                 choice = UiChoicesEnums.loginOrRegister.values()[Integer.valueOf(choiceInput)];
@@ -59,7 +59,8 @@ public class Ui {
 
 
                 case TERMINATE_PROGRAM:
-
+                    program.saveData();
+                    System.out.println("data saved");
                     break;
 
                 default:
@@ -94,7 +95,8 @@ public class Ui {
                 }
 
             }
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
+
             try{
 
                 choice = UiChoicesEnums.userSwitchChoices.values()[Integer.valueOf(choiceInput)];
@@ -105,16 +107,19 @@ public class Ui {
 
 
             switch (choice) {
-
-                case ADD_BOOK:
-                    System.out.println("add book");
+                case SHOW_ALL_BOOKS:
+                    program.library.showAllBook();
                     break;
 
-                case REMOVE_BOOK:
-                    System.out.println("remove book");
+                case SEARCH_BY_TITLE:
+                    System.out.println("Write title of book");
+                    program.library.searchByTitle(input.nextLine());
                     break;
 
-
+                case SEARCH_BY_AUTHOR:
+                    System.out.println("Write the name of author ");
+                    program.library.searchByAuthor(input.nextLine());
+                    break;
 
                 case QUIT:
                     break;
@@ -141,7 +146,7 @@ public class Ui {
 
             }
 
-            choiceInput = input.next();
+            choiceInput = input.nextLine();
             try{
 
                 choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
@@ -154,22 +159,36 @@ public class Ui {
 
 
             switch (choice) {
+                case SHOW_ALL_BOOKS:
+                    program.library.showAllBook();
+                    break;
 
                 case SEARCH_BY_TITLE:
-                    program.library.searchByTitle("Red Rising");
+                    System.out.println("Write title of book");
+                    program.library.searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
-                    program.library.searchByAuthor("Hamoodi");
+                    System.out.println("Write the name of author ");
+                    program.library.searchByAuthor(input.nextLine());
                     break;
 
                 case ADD_BOOK:
-                    program.library.addBook("test","a tester book","brown",1992);
+                    program.library.addBook();
                     break;
+
+                case REMOVE_BOOK:
+                    //program.library.addBook("test","a tester book","brown",1992);
+                    break;
+
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");
-                    program.pAllBooksOfUser(input.next());
+                    program.pAllBooksOfUser(input.nextLine());
+                    break;
 
+                case SHOW_ALL_USERS:
+                    program.library.printUsers();
+                    break;
 
                 case QUIT:
                     break;

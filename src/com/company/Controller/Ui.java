@@ -72,7 +72,7 @@ public class Ui {
     public void UiCheck(Object person) {
 
         if (person instanceof User) {
-            userUi();
+            userUi((User) person);
         } else {
             librarianUi();
         }
@@ -80,7 +80,7 @@ public class Ui {
     }
 
 
-    public void userUi() {
+    public void userUi(User user) {
         String choiceInput;
 
         UiChoicesEnums.userSwitchChoices choice = UiChoicesEnums.userSwitchChoices.DEFAULT;
@@ -119,6 +119,10 @@ public class Ui {
                 case SEARCH_BY_AUTHOR:
                     System.out.println("Write the name of author ");
                     program.library.searchByAuthor(input.nextLine());
+                    break;
+
+                case ADD_BOOK:
+                    program.library.borrowBook(user);
                     break;
 
                 case QUIT:
@@ -189,6 +193,10 @@ public class Ui {
 
                 case SHOW_ALL_USERS:
                     program.library.printUsers();
+                    break;
+
+                case FIND_USER:
+                    program.library.findUser();
                     break;
 
                 case QUIT:

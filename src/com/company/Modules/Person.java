@@ -8,7 +8,7 @@ public class Person implements Serializable {
 
     protected String username;
     protected String password;
-
+    private static final long serialVersionUID = -3065225084601467319L;//ställ fråga här
 
 
     public Person( String username, String password) {

@@ -7,6 +7,7 @@ import java.util.List;
 public class User extends Person implements Serializable {
     //  List<Object> borrowedBooks = ArrayList;
     String email = null;
+    private static final long serialVersionUID = 6897230677316227865L;//ställ fråga här
     List<Book> myBorrowedBooks = new ArrayList();
 
     public User( String username, String password) {
@@ -15,6 +16,12 @@ public class User extends Person implements Serializable {
 
     public List<Book> getMyBorrowedBooks() {
         return myBorrowedBooks;
+    }
+
+
+    public void addToBorrowedBooks(Book book){
+        myBorrowedBooks.add(book);
+        System.out.println(myBorrowedBooks);
     }
 
     @Override

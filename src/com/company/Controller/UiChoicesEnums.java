@@ -15,10 +15,11 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
-    public  static enum userSwitchChoices {
+    public static enum userSwitchChoices {
         SHOW_ALL_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
+        ADD_BOOK,
         QUIT,
         DEFAULT
 

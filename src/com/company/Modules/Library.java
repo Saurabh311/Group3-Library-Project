@@ -92,6 +92,7 @@ public class Library {
                 .collect(Collectors.toList());
         if ( bookToBorrow.size() > 0){
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+            bookToBorrow.get(0).setCurrentLender(user.getUsername());
             user.addToBorrowedBooks(bookToBorrow.get(0));
         }else {
             System.out.println("book is not availible");
@@ -204,7 +205,19 @@ public class Library {
         System.out.println("Book is not exist in library");
         return;
     }
-}
+    public void showAllLentBooks(){
+        if (borrowedBooks.size()>0){
+
+            borrowedBooks
+                        .stream()
+                        .forEach(book -> System.out.printf("%s is borrowed by user:%s%n",book.getTitle(),book.getCurrentLender()));
+            }else {
+                System.out.println("No books are lent out");
+
+            }
+        }
+    }
+
 
 
 

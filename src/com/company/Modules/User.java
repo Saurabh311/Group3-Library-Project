@@ -23,6 +23,16 @@ public class User extends Person implements Serializable {
         myBorrowedBooks.add(book);
         System.out.println(myBorrowedBooks);
     }
+    public void printBorrowedBooks(){
+        if (myBorrowedBooks.size()>0){
+            myBorrowedBooks
+                    .stream()
+                    .forEach(book -> System.out.printf("%s%n",book.getTitle()));
+        }else {
+            System.out.println("you haven't borrowed any books yet");
+
+        }
+    }
 
     @Override
     public String toString() {

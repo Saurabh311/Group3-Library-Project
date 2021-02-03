@@ -19,7 +19,8 @@ public class UiChoicesEnums {
         SHOW_ALL_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
-        ADD_BOOK,
+        BORROW_THE_BOOK,
+        SEE_MY_BORROWED_BOOKS,
         QUIT,
         DEFAULT
 

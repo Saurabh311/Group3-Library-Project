@@ -11,6 +11,7 @@ public class UiChoicesEnums {
         SEE_ALL_BOOKS_OF_USER,
         SHOW_ALL_USERS,
         FIND_USER,
+        SEE_ALL_LENT_OUT_BOOKS,
         QUIT,
         DEFAULT
 

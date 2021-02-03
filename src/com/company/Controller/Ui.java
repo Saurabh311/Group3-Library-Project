@@ -200,6 +200,8 @@ public class Ui {
                     program.library.findUser();
                     break;
 
+                case SEE_ALL_LENT_OUT_BOOKS:
+                    program.library.showAllLentBooks();
                 case QUIT:
                     break;
                 default:

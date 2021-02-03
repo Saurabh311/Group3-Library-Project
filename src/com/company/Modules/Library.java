@@ -47,7 +47,7 @@ public class Library {
     public void findUser() {
         System.out.println("Input username: ");
         for (User user : users) {
-            if (user.getUsername().equals(input.nextLine())) {
+            if (user.getUsername().toUpperCase().equals(input.nextLine().toUpperCase())) {
                 System.out.println(user.getUsername());
             } else {
                 System.out.println("Username not found.");

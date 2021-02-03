@@ -20,6 +20,7 @@ public class UiChoicesEnums {
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,
+        SEE_MY_BORROWED_BOOKS,
         QUIT,
         DEFAULT
 

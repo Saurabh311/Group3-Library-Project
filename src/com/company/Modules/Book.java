@@ -7,6 +7,8 @@ public class Book implements Serializable {
     String title;
     String description;
     String author;
+    String currentLender;
+    private static final long serialVersionUID =3998998041799324022L;
     int year;
 
     public Book(String title, String description, String author, int year) {
@@ -46,6 +48,14 @@ public class Book implements Serializable {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public String getCurrentLender() {
+        return currentLender;
+    }
+
+    public void setCurrentLender(String currentLender) {
+        this.currentLender = currentLender;
     }
 
     @Override

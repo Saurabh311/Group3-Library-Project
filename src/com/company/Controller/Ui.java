@@ -124,7 +124,8 @@ public class Ui {
                 case BORROW_THE_BOOK:
                     program.library.borrowBook(user);
                     break;
-
+                case SEE_MY_BORROWED_BOOKS:
+                    user.printBorrowedBooks();
                 case QUIT:
                     break;
                 default:

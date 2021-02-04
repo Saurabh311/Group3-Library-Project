@@ -1,5 +1,7 @@
 package com.company.Modules;
 
+import com.company.Factory.Factory;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,7 @@ public class Library {
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
+    Factory factory = new Factory();
 
     public Library() {
 
@@ -147,7 +150,7 @@ public class Library {
             try {
                 int year = Integer.parseInt(userInputYear);
                 intInput = false;
-                bookList.add(new Book(title, description, author, year));
+                bookList.add(factory.buildBook().title(title).description(description).author(author).year(year));////using factory for book
                 System.out.println("New Book added");
             } catch (NumberFormatException e) {
                 System.out.println("Please insert year of book in numbers");

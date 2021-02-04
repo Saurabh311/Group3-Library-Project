@@ -1,16 +1,14 @@
 package com.company.Controller.LoginAndRegister;
 
-import com.company.Modules.Librarian;
-import com.company.Modules.Library;
-import com.company.Modules.Person;
-import com.company.Modules.User;
+import com.company.Factory.Factory;
+import com.company.Modules.*;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class LoginOrRegister {
     Scanner input = new Scanner(System.in);
-
+    Factory factory = new Factory();
 
     Library library;
 
@@ -69,13 +67,15 @@ public class LoginOrRegister {
                     }
 
                     if (choiceToInt ==1){
-                        User user = new User(newUsername,newPassWord);
-                        library.addPerson(user);
+
+
+                        library.addPerson(factory.buildPerson("user").username(newUsername).password(newPassWord));
                         sentinel = true;
                     }
                      if (choiceToInt ==2){
-                         Librarian librarian = new Librarian(newUsername,newPassWord);
-                         library.addPerson(librarian);
+
+                         //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
+                         library.addPerson(factory.buildPerson("librarian").username(newUsername).password(newPassWord));
                          sentinel = true;
 
 

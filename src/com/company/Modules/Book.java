@@ -11,11 +11,24 @@ public class Book implements Serializable {
     private static final long serialVersionUID =3998998041799324022L;
     int year;
 
-    public Book(String title, String description, String author, int year) {
-        this.title = title;
+    public Book() {
+
+    }
+    public Book title(String title){
+         this.title = title;
+         return this;
+    }
+    public Book description(String description){
         this.description = description;
+        return this;
+    }
+    public Book author (String author){
         this.author = author;
+        return this;
+    }
+    public Book year(int year){
         this.year = year;
+        return this;
     }
 
     public String getTitle() {

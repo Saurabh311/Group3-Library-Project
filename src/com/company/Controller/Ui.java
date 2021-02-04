@@ -11,6 +11,7 @@ public class Ui {
     Program program;
 
     public Ui(Program program) {
+
         this.program = program;
     }
 
@@ -124,8 +125,18 @@ public class Ui {
                 case BORROW_THE_BOOK:
                     program.library.borrowBook(user);
                     break;
+
                 case SEE_MY_BORROWED_BOOKS:
                     user.printBorrowedBooks();
+
+                case SORT_BY_TITLE:
+                    program.library.sortByTitle();
+                    break;
+
+                case SORT_BY_AUTHOR:
+                    program.library.sortByAuthor();
+                    break;
+
                 case QUIT:
                     break;
                 default:

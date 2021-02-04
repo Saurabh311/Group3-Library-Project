@@ -178,23 +178,27 @@ public class Library {
     public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         Collections.sort(bookList, compareByTitle);
-        System.out.println(bookList);
+        for (Book book : bookList) {
+            System.out.println(book.toString());
+        }
     }
 
     public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
         Collections.sort(bookList, compareByAuthor);
-        System.out.println(bookList);
-    }
-
-    public void showAllBook(){
-        for (Book book: bookList) {
+        for (Book book : bookList) {
             System.out.println(book.toString());
         }
     }
 
-    public void removeBookByTitle(String title){
+    public void showAllBook(){
+        if (!(bookList ==null)) {
+            bookList.stream()
+                    .forEach(book -> System.out.println(book.toString()));
+        }
+    }
 
+    public void removeBookByTitle(String title){
         for (Book book : bookList) {
             if(book.title.toUpperCase().equals(title.toUpperCase())){
                 bookList.remove(book);

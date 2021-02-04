@@ -196,6 +196,9 @@ public class Library {
             bookList.stream()
                     .forEach(book -> System.out.println(book.toString()));
         }
+        else{
+            System.out.println("There is no books in the library");
+        }
     }
 
     public void removeBookByTitle(String title){

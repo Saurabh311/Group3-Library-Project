@@ -71,6 +71,7 @@ public class Book implements Serializable {
         this.currentLender = currentLender;
     }
 
+
     @Override
     public String toString() {
         return "Book{" +

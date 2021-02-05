@@ -26,7 +26,5 @@ public class Factory {
     public Book buildBook(){
         return new Book();
     }
-    public Library buildLibrary(){
-        return  new Library();
-    }
+    public Library buildLibrary(){ return  new Library(); }
 }

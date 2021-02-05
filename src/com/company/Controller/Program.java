@@ -8,18 +8,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Program {
-    Library library = new Library();
-    LoginOrRegister loginOrRegister = new LoginOrRegister(library);
+    Library library;
+    LoginOrRegister loginOrRegister ;
     Factory factory;
 
     public Program() {
     }
 
-    public void run() {
-
+    public void buildProgram() {
+        factory = new Factory();
+        library = factory.buildLibrary();
+        loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
         library.setAvailibleBooks();
-        factory = new Factory();
+
 
     }
 

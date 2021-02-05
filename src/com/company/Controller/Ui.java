@@ -54,7 +54,6 @@ public class Ui {
                     break;
 
                 case REGISTER:
-
                     program.loginOrRegister.register();
                     break;
 
@@ -161,18 +160,13 @@ public class Ui {
                 }
 
             }
-
             choiceInput = input.nextLine();
             try{
-
                 choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
             }catch (Exception e){
 
 
             }
-
-
-
 
             switch (choice) {
                 case SHOW_ALL_BOOKS:

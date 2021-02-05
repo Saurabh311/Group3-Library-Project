@@ -202,7 +202,21 @@ public class Library {
     }
 
     public void removeBookByTitle(String title){
-        for (Book book : bookList) {
+        List <Book> removeBook = bookList.stream()
+                .filter(book -> book.title.toUpperCase().equals(title.toUpperCase()))
+                .collect(Collectors.toList());
+        if (!(removeBook == null)) {
+            bookList.remove(removeBook.get(0));
+            System.out.println("Book removed from library database");
+        }
+        else{
+            System.out.println("Book is not in library");
+        }
+    }
+
+
+
+        /*for (Book book : bookList) {
             if(book.title.toUpperCase().equals(title.toUpperCase())){
                 bookList.remove(book);
                 System.out.println("Book is removed from the library database ");
@@ -211,7 +225,7 @@ public class Library {
         }
         System.out.println("Book is not exist in library");
         return;
-    }
+    }*/
     public void showAllLentBooks(){
         if (borrowedBooks.size()>0){
 

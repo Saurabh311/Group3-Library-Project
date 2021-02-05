@@ -1,25 +1,27 @@
 package com.company.Controller;
 
 import com.company.Controller.LoginAndRegister.LoginOrRegister;
-import com.company.Modules.Book;
-import com.company.Modules.Librarian;
-import com.company.Modules.Library;
-import com.company.Modules.User;
+import com.company.Factory.Factory;
+import com.company.Modules.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Program {
-    Library library = new Library();
-    LoginOrRegister loginOrRegister = new LoginOrRegister(library);
+    Library library;
+    LoginOrRegister loginOrRegister ;
+    Factory factory;
 
     public Program() {
     }
 
-    public void run() {
-
+    public void buildProgram() {
+        factory = new Factory();
+        library = factory.buildLibrary();
+        loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
         library.setAvailibleBooks();
+
 
     }
 

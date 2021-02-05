@@ -11,15 +11,20 @@ public class Person implements Serializable {
     private static final long serialVersionUID = -3065225084601467319L;//ställ fråga här
 
 
-    public Person( String username, String password) {
+    public Person( ) {
 
-        this.username =username;
-        this.password = password;
+
 
 
     }
 
-    public Person() {
+   public Person username(String username){
+        this.username = username;
+        return this;
+   }
+    public Person password(String password){
+        this.password = password;
+        return this;
     }
 
 

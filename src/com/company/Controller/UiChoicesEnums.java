@@ -18,6 +18,7 @@ public class UiChoicesEnums {
     }
     public static enum userSwitchChoices {
         SHOW_ALL_BOOKS,
+        SHOW_AVAILIBLE_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,

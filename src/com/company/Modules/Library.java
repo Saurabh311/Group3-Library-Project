@@ -33,6 +33,9 @@ public class Library {
     public List<User> getUsers() {
         return users;
     }
+    public List<Book> getAvailibleBooks() {
+        return availibleBooks;
+    }
 
 
     public void setUsers(List<User> users) {

@@ -25,10 +25,10 @@ public class Program {
 
     private void getDataOnLoad() {
         System.out.println("data loaded");
-      library.setUsers((List<User>) HandleData.readObject("Users.ser"));
-      library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
-      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
-      library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
+     library.setUsers((List<User>) HandleData.readObject("Users.ser"));
+     library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
+     library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
+     library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
     }
     public void saveData(){
 

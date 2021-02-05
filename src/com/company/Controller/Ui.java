@@ -74,6 +74,8 @@ public class Ui {
     }
 
     public void userUi(User user) {
+        program.library.sendReminder(user);
+
         String choiceInput;
 
         UiChoicesEnums.userSwitchChoices choice = UiChoicesEnums.userSwitchChoices.DEFAULT;

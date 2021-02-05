@@ -2,6 +2,7 @@ package com.company.Modules;
 
 import com.company.Factory.Factory;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ public class Library {
     public Library() {
 
     }
+
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
@@ -33,6 +35,7 @@ public class Library {
     public List<User> getUsers() {
         return users;
     }
+
     public List<Book> getAvailibleBooks() {
         return availibleBooks;
     }
@@ -60,6 +63,7 @@ public class Library {
             }
         }
     }
+
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
 
@@ -73,44 +77,53 @@ public class Library {
         return librarians;
     }
 
-    public void setAvailibleBooks (){
-        if(borrowedBooks.size()>0){
+    public void setAvailibleBooks() {
+        if (borrowedBooks.size() > 0) {
             availibleBooks = bookList
                     .stream()
                     .filter(book -> {
                         boolean check = true;
-                        for (int i = 0;i < borrowedBooks.size();i++){
-                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())){
+                        for (int i = 0; i < borrowedBooks.size(); i++) {
+                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())) {
                                 check = false;
                                 i = borrowedBooks.size();
 
-                            } }return check;
+                            }
+                        }
+                        return check;
                     })
                     .collect(Collectors.toList());
-        }else availibleBooks = new ArrayList<>(bookList);
+        } else availibleBooks = new ArrayList<>(bookList);
     }
-    public void borrowBook(User user){
+
+    public void borrowBook(User user) {
         System.out.println("please write the title of the book you want to borrow");
         String title = input.nextLine();
         List<Book> bookToBorrow = availibleBooks
                 .stream()
                 .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
                 .collect(Collectors.toList());
-        if ( bookToBorrow.size() > 0){
+        if (bookToBorrow.size() > 0) {
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));
             bookToBorrow.get(0).setCurrentLender(user.getUsername());
             user.addToBorrowedBooks(bookToBorrow.get(0));
-        }else {
+
+            bookToBorrow.get(0).setBorrowDate(LocalDate.now());
+            System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
+            System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
+        } else {
             System.out.println("book is not availible");
         }
     }
-    public void changeFromAvailibleToBorrowed(Book book){
-        int index=0;
-        for (int i =0;i< availibleBooks.size();i++){
-            if (availibleBooks.get(i).getTitle().equals(book.getTitle())){
+
+    public void changeFromAvailibleToBorrowed(Book book) {
+        int index = 0;
+        for (int i = 0; i < availibleBooks.size(); i++) {
+            if (availibleBooks.get(i).getTitle().equals(book.getTitle())) {
                 index = i;
             }
-        }availibleBooks.remove(index);
+        }
+        availibleBooks.remove(index);
         borrowedBooks.add(book);
     }
 
@@ -147,13 +160,15 @@ public class Library {
 
         System.out.println("Insert the year of book release");
         boolean intInput = true;
-        while(intInput) {
+        while (intInput) {
             String userInputYear = input.nextLine();
 
             try {
                 int year = Integer.parseInt(userInputYear);
                 intInput = false;
-                bookList.add(Factory.buildBook().title(title).description(description).author(author).year(year));////using factory for book
+                Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
+                bookList.add(book);////using factory for book
+                availibleBooks.add(book);
                 System.out.println("New Book added");
             } catch (NumberFormatException e) {
                 System.out.println("Please insert year of book in numbers");
@@ -193,16 +208,16 @@ public class Library {
         System.out.println(bookList);
     }
 
-    public void showAllBook(){
-        for (Book book: bookList) {
+    public void showAllBook() {
+        for (Book book : bookList) {
             System.out.println(book.toString());
         }
     }
 
-    public void removeBookByTitle(String title){
+    public void removeBookByTitle(String title) {
 
         for (Book book : bookList) {
-            if(book.title.toUpperCase().equals(title.toUpperCase())){
+            if (book.title.toUpperCase().equals(title.toUpperCase())) {
                 bookList.remove(book);
                 System.out.println("Book is removed from the library database ");
                 return;
@@ -210,17 +225,26 @@ public class Library {
         }
         System.out.println("Book is not exist in library");
     }
-    public void showAllLentBooks(){
-        if (borrowedBooks.size()>0){
+
+    public void showAllLentBooks() {
+        if (borrowedBooks.size() > 0) {
 
             borrowedBooks
-                        .forEach(book -> System.out.printf("%s is borrowed by user:%s%n",book.getTitle(),book.getCurrentLender()));
-            }else {
-                System.out.println("No books are lent out");
+                    .forEach(book -> System.out.printf("%s is borrowed by user:%s Return date:%s%n", book.getTitle(), book.getCurrentLender(), book.getReturnDate()));
+        } else {
+            System.out.println("No books are lent out");
 
-            }
         }
     }
+
+    public void sendReminder(User user) {
+
+        user.getMyBorrowedBooks().stream().
+                filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
+                forEach(book -> System.out.println("Return overdue: " + book.getTitle()));
+
+    }
+}
 
 
 

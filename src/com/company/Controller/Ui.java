@@ -101,7 +101,9 @@ public class Ui {
                     program.library.showAllBook();
                     break;
                 case SHOW_AVAILIBLE_BOOKS:
+
                     program.library.getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
+
                     break;
 
                 case SEARCH_BY_TITLE:

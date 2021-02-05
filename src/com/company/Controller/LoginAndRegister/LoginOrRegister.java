@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LoginOrRegister {
     Scanner input = new Scanner(System.in);
-    Factory factory = new Factory();
+
 
     Library library;
 
@@ -69,13 +69,13 @@ public class LoginOrRegister {
                     if (choiceToInt ==1){
 
 
-                        library.addPerson(factory.buildPerson("user").username(newUsername).password(newPassWord));
+                        library.addPerson(Factory.buildPerson("user").username(newUsername).password(newPassWord));
                         sentinel = true;
                     }
                      if (choiceToInt ==2){
 
                          //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
-                         library.addPerson(factory.buildPerson("librarian").username(newUsername).password(newPassWord));
+                         library.addPerson(Factory.buildPerson("librarian").username(newUsername).password(newPassWord));
                          sentinel = true;
 
 

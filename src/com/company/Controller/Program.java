@@ -10,14 +10,12 @@ import java.util.stream.Collectors;
 public class Program {
     Library library;
     LoginOrRegister loginOrRegister ;
-    Factory factory;
 
     public Program() {
     }
 
     public void buildProgram() {
-        factory = new Factory();
-        library = factory.buildLibrary();
+        library = Factory.buildLibrary();
         loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
         library.setAvailibleBooks();

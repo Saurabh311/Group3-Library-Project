@@ -13,7 +13,7 @@ public class Library {
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
-    Factory factory = new Factory();
+
 
     public Library() {
 
@@ -153,7 +153,7 @@ public class Library {
             try {
                 int year = Integer.parseInt(userInputYear);
                 intInput = false;
-                bookList.add(factory.buildBook().title(title).description(description).author(author).year(year));////using factory for book
+                bookList.add(Factory.buildBook().title(title).description(description).author(author).year(year));////using factory for book
                 System.out.println("New Book added");
             } catch (NumberFormatException e) {
                 System.out.println("Please insert year of book in numbers");
@@ -209,13 +209,11 @@ public class Library {
             }
         }
         System.out.println("Book is not exist in library");
-        return;
     }
     public void showAllLentBooks(){
         if (borrowedBooks.size()>0){
 
             borrowedBooks
-                        .stream()
                         .forEach(book -> System.out.printf("%s is borrowed by user:%s%n",book.getTitle(),book.getCurrentLender()));
             }else {
                 System.out.println("No books are lent out");

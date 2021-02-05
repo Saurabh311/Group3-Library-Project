@@ -29,16 +29,12 @@ public class Ui {
                     System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
                 }
 
-
             }
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.loginOrRegister.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
+                choice = UiChoicesEnums.loginOrRegister.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
 
 
@@ -53,10 +49,8 @@ public class Ui {
                     break;
 
                 case REGISTER:
-
                     program.loginOrRegister.register();
                     break;
-
 
                 case TERMINATE_PROGRAM:
                     program.saveData();
@@ -79,7 +73,6 @@ public class Ui {
 
     }
 
-
     public void userUi(User user) {
         String choiceInput;
 
@@ -99,11 +92,8 @@ public class Ui {
 
             try{
 
-                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
+                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
 
             switch (choice) {
@@ -111,7 +101,8 @@ public class Ui {
                     program.library.showAllBook();
                     break;
                 case SHOW_AVAILIBLE_BOOKS:
-                    program.library.getAvailibleBooks().stream().forEach(book -> System.out.println(book.getTitle()));
+                    program.library.getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
+                    break;
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
@@ -126,10 +117,14 @@ public class Ui {
                 case BORROW_THE_BOOK:
                     program.library.borrowBook(user);
                     break;
+
                 case SEE_MY_BORROWED_BOOKS:
                     user.printBorrowedBooks();
+                    break;
+
                 case QUIT:
                     break;
+
                 default:
                     System.out.println("Wrong input");
             }
@@ -156,14 +151,8 @@ public class Ui {
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
-
-
-
+                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
             switch (choice) {
                 case SHOW_ALL_BOOKS:
@@ -204,8 +193,11 @@ public class Ui {
 
                 case SEE_ALL_LENT_OUT_BOOKS:
                     program.library.showAllLentBooks();
+                    break;
+
                 case QUIT:
                     break;
+
                 default:
                     System.out.println("Wrong input");
             }

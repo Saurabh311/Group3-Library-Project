@@ -2,6 +2,13 @@ package com.company.Modules;
 
 import com.company.Factory.Factory;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -243,6 +250,40 @@ public class Library {
                 filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
                 forEach(book -> System.out.println("Return overdue: " + book.getTitle()));
 
+    }
+    public void saveListOfBooks(){
+        List<String> BooksSplit;
+
+
+        try {
+            int ammountOfBooksAdded = 0;
+            BooksSplit = Files.readAllLines(Paths.get("C:\\Users\\klosa\\Desktop\\java\\Group 3 Project\\BooksToAdd.txt"));
+
+            for (String bookLine: BooksSplit){
+
+
+                String[] splitRow = bookLine.split("#");
+                Book bookToAdd = new Book().title(splitRow[0]).author(splitRow[1])
+                        .description(splitRow[2]).year(Integer.parseInt(splitRow[3]) );
+
+                List<Book> temparray = bookList
+                        .stream()
+                        .filter(book -> book.getTitle().equals(bookToAdd.getTitle()))
+                        .collect(Collectors.toList());
+                if (temparray.size()<=0){
+                    bookList.add(bookToAdd);
+                    availibleBooks.add(bookToAdd);
+                    ammountOfBooksAdded++;
+
+                }
+
+
+            }
+            System.out.printf("(%d) books added%n",ammountOfBooksAdded);
+
+        }catch (Exception e){
+            System.out.println("file not found");
+        }
     }
 }
 

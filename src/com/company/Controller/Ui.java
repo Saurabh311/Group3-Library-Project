@@ -176,6 +176,9 @@ public class Ui {
                 case ADD_BOOK:
                     program.library.addBook();
                     break;
+                case ADD_LIST_OF_BOOKS:
+                    program.library.saveListOfBooks();
+                    break;
 
                 case REMOVE_BOOK:
                     System.out.println("Please insert the title of Book");

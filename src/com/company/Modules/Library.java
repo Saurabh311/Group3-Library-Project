@@ -86,20 +86,16 @@ public class Library {
 
     public void setAvailibleBooks() {
         if (borrowedBooks.size() > 0) {
-            availibleBooks = bookList
-                    .stream()
-                    .filter(book -> {
-                        boolean check = true;
-                        for (int i = 0; i < borrowedBooks.size(); i++) {
-                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())) {
-                                check = false;
-                                i = borrowedBooks.size();
+            for (Book book:bookList){
+               List<Book> tempArray1 =borrowedBooks
+                       .stream()
+                       .filter(borrowedBook -> book.getTitle().equals(borrowedBook.getTitle()) )
+                       .collect(Collectors.toList());
+               if(tempArray1.size()<=0){//if no borrowed book was equal to a book in booklist
+                   availibleBooks.add(book);
+               }
+            }
 
-                            }
-                        }
-                        return check;
-                    })
-                    .collect(Collectors.toList());
         } else availibleBooks = new ArrayList<>(bookList);
     }
 

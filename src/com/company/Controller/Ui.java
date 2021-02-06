@@ -29,8 +29,6 @@ public class Ui {
                 if (!choices.toString().equals("DEFAULT")){
                     System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
                 }
-
-
             }
             choiceInput = input.nextLine();
             try{
@@ -127,6 +125,11 @@ public class Ui {
 
                 case SEE_MY_BORROWED_BOOKS:
                     user.printBorrowedBooks();
+                    break;
+
+                case RETURN_THE_BORROWED_BOOK:
+                    program.library.returnBook(user);
+                    break;
 
                 case SORT_BY_TITLE:
                     program.library.sortByTitle();

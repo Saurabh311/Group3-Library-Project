@@ -24,6 +24,12 @@ public class User extends Person implements Serializable {
         myBorrowedBooks.add(book);
         System.out.println(myBorrowedBooks);
     }
+
+    public void removeFromBorrowedBooks(Book book){
+        myBorrowedBooks.remove(book);
+        System.out.println("Book returned");
+    }
+
     public void printBorrowedBooks(){
         if (myBorrowedBooks.size()>0){
             myBorrowedBooks

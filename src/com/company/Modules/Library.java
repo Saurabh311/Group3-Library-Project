@@ -101,6 +101,32 @@ public class Library {
             System.out.println("book is not availible");
         }
     }
+
+    public void returnBook(User user){
+        System.out.println("please write the title of the book you want to return");
+        String title = input.nextLine();
+        List<Book> returnToBook = borrowedBooks.stream()
+                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
+                .collect(Collectors.toList());
+        if (returnToBook.size() > 0){
+            changeFromBorrowedToAvailible(returnToBook.get(0));
+            returnToBook.get(0).setCurrentLender(null);
+            user.removeFromBorrowedBooks(returnToBook.get(0));
+        }
+        else{
+            System.out.println("Book is not available");
+        }
+
+    }
+    public void changeFromBorrowedToAvailible(Book book){
+        for (int i =0; borrowedBooks.size()>i; i++) {
+            if (book.getTitle().equals(borrowedBooks.get(i).getTitle())) {
+                borrowedBooks.remove(i);
+                availibleBooks.add(book);
+
+            }
+        }
+    }
     public void changeFromAvailibleToBorrowed(Book book){
         int index=0;
         for (int i =0;i< availibleBooks.size();i++){
@@ -235,12 +261,13 @@ public class Library {
             borrowedBooks
                         .stream()
                         .forEach(book -> System.out.printf("%s is borrowed by user:%s%n",book.getTitle(),book.getCurrentLender()));
-            }else {
+            }else
+                {
                 System.out.println("No books are lent out");
-
             }
-        }
     }
+
+}
 
 
 

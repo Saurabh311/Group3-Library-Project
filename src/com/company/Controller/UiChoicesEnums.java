@@ -36,6 +36,9 @@ public class UiChoicesEnums {
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,
+        RETURN_THE_BORROWED_BOOK,
+        SORT_BY_TITLE,
+        SORT_BY_AUTHOR,
         GO_BACK,
         DEFAULT
     }

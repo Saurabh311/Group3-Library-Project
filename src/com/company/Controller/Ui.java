@@ -11,6 +11,7 @@ public class Ui {
     Program program;
 
     public Ui(Program program) {
+
         this.program = program;
     }
 
@@ -144,7 +145,6 @@ public class Ui {
 
 
             switch (choice) {
-
                 case SHOW_ALL_BOOKS:
                     program.library.showAllBook();
                     break;
@@ -167,15 +167,28 @@ public class Ui {
                 case BORROW_THE_BOOK:
                     program.library.borrowBook(user);
                     break;
-                case GO_BACK:
+
+
+
+
+                case RETURN_THE_BORROWED_BOOK:
+                    program.library.returnBook(user);
                     break;
+
+                case SORT_BY_TITLE:
+                    program.library.sortByTitle();
+                    break;
+
+                case SORT_BY_AUTHOR:
+                    program.library.sortByAuthor();
+                    break;
+                case GO_BACK:
+
 
                 default:
                     System.out.println("Wrong input");
-
             }
         }
-
     }
 
 
@@ -218,7 +231,6 @@ public class Ui {
                 case EDIT_LIBRARY_BOOKS:
                     librarianEditLibraryBooks();
                     break;
-
 
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");

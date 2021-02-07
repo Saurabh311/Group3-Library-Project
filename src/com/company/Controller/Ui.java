@@ -11,6 +11,7 @@ public class Ui {
     Program program;
 
     public Ui(Program program) {
+
         this.program = program;
     }
 
@@ -49,6 +50,7 @@ public class Ui {
                     break;
 
                 case REGISTER:
+
                     program.loginOrRegister.register();
                     break;
 
@@ -72,6 +74,7 @@ public class Ui {
         }
 
     }
+
 
     public void userUi(User user) {
         program.library.sendReminder(user);
@@ -126,9 +129,21 @@ public class Ui {
                     user.printBorrowedBooks();
                     break;
 
-                case QUIT:
+
+                case RETURN_THE_BORROWED_BOOK:
+                    program.library.returnBook(user);
                     break;
 
+                case SORT_BY_TITLE:
+                    program.library.sortByTitle();
+                    break;
+
+                case SORT_BY_AUTHOR:
+                    program.library.sortByAuthor();
+                    break;
+
+                case QUIT:
+                    break;
                 default:
                     System.out.println("Wrong input");
             }

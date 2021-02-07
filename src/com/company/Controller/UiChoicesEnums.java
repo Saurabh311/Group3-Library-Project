@@ -23,6 +23,9 @@ public class UiChoicesEnums {
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,
         SEE_MY_BORROWED_BOOKS,
+        RETURN_THE_BORROWED_BOOK,
+        SORT_BY_TITLE,
+        SORT_BY_AUTHOR,
         QUIT,
         DEFAULT
 
@@ -33,4 +36,5 @@ public class UiChoicesEnums {
         TERMINATE_PROGRAM,
         DEFAULT
     }
+
 }

@@ -19,8 +19,6 @@ public class Program {
         loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
         library.setAvailibleBooks();
-
-
     }
 
     private void getDataOnLoad() {
@@ -30,6 +28,7 @@ public class Program {
      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
      library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
     }
+
     public void saveData(){
 
         HandleData.writeObject(library.getUsers(),"Users.ser");
@@ -38,8 +37,6 @@ public class Program {
         HandleData.writeObject(library.getBorrowedBooks(),"BorrowedBooks.ser");
 
     }
-
-
 
     public void pAllBooksOfUser(String username){
 

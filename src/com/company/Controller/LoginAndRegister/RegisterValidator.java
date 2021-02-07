@@ -40,14 +40,10 @@ public class RegisterValidator {
      public boolean passwordValidation(String password){
         boolean passwordValidated = true;
 
-
         String validatePassForm = "";
         //if (!password.matches(validatePassForm)){
           //  passwordValidated = false;
        // }
         return passwordValidated;
     }
-
-
-
 }

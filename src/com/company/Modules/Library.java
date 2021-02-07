@@ -19,7 +19,6 @@ public class Library {
     public Library() {
 
     }
-
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
@@ -56,14 +55,13 @@ public class Library {
     public void findUser() {
         System.out.println("Input username: ");
         for (User user : users) {
-            if (user.getUsername().equals(input.nextLine())) {
+            if (user.getUsername().toUpperCase().equals(input.nextLine().toUpperCase())) {
                 System.out.println(user.getUsername());
             } else {
                 System.out.println("Username not found.");
             }
         }
     }
-
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
 
@@ -77,33 +75,30 @@ public class Library {
         return librarians;
     }
 
-    public void setAvailibleBooks() {
-        if (borrowedBooks.size() > 0) {
+    public void setAvailibleBooks (){
+        if(borrowedBooks.size()>0){
             availibleBooks = bookList
                     .stream()
                     .filter(book -> {
                         boolean check = true;
-                        for (int i = 0; i < borrowedBooks.size(); i++) {
-                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())) {
+                        for (int i = 0;i < borrowedBooks.size();i++){
+                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())){
                                 check = false;
                                 i = borrowedBooks.size();
 
-                            }
-                        }
-                        return check;
+                            } }return check;
                     })
                     .collect(Collectors.toList());
-        } else availibleBooks = new ArrayList<>(bookList);
+        }else availibleBooks = new ArrayList<>(bookList);
     }
-
-    public void borrowBook(User user) {
+    public void borrowBook(User user){
         System.out.println("please write the title of the book you want to borrow");
         String title = input.nextLine();
         List<Book> bookToBorrow = availibleBooks
                 .stream()
                 .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
                 .collect(Collectors.toList());
-        if (bookToBorrow.size() > 0) {
+        if ( bookToBorrow.size() > 0){
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));
             bookToBorrow.get(0).setCurrentLender(user.getUsername());
             user.addToBorrowedBooks(bookToBorrow.get(0));
@@ -116,14 +111,38 @@ public class Library {
         }
     }
 
-    public void changeFromAvailibleToBorrowed(Book book) {
-        int index = 0;
-        for (int i = 0; i < availibleBooks.size(); i++) {
-            if (availibleBooks.get(i).getTitle().equals(book.getTitle())) {
-                index = i;
+    public void returnBook(User user){
+        System.out.println("please write the title of the book you want to return");
+        String title = input.nextLine();
+        List<Book> returnToBook = borrowedBooks.stream()
+                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
+                .collect(Collectors.toList());
+        if (returnToBook.size() > 0){
+            changeFromBorrowedToAvailible(returnToBook.get(0));
+            returnToBook.get(0).setCurrentLender(null);
+            user.removeFromBorrowedBooks(returnToBook.get(0));
+        }
+        else{
+            System.out.println("Book is not available");
+        }
+
+    }
+    public void changeFromBorrowedToAvailible(Book book){
+        for (int i =0; borrowedBooks.size()>i; i++) {
+            if (book.getTitle().equals(borrowedBooks.get(i).getTitle())) {
+                borrowedBooks.remove(i);
+                availibleBooks.add(book);
+
             }
         }
-        availibleBooks.remove(index);
+    }
+    public void changeFromAvailibleToBorrowed(Book book){
+        int index=0;
+        for (int i =0;i< availibleBooks.size();i++){
+            if (availibleBooks.get(i).getTitle().equals(book.getTitle())){
+                index = i;
+            }
+        }availibleBooks.remove(index);
         borrowedBooks.add(book);
     }
 
@@ -160,7 +179,7 @@ public class Library {
 
         System.out.println("Insert the year of book release");
         boolean intInput = true;
-        while (intInput) {
+        while(intInput) {
             String userInputYear = input.nextLine();
 
             try {
@@ -199,31 +218,43 @@ public class Library {
     public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         Collections.sort(bookList, compareByTitle);
-        System.out.println(bookList);
-    }
-
-    public void sortByAuthor() {
-        Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
-        Collections.sort(bookList, compareByAuthor);
-        System.out.println(bookList);
-    }
-
-    public void showAllBook() {
         for (Book book : bookList) {
             System.out.println(book.toString());
         }
     }
 
-    public void removeBookByTitle(String title) {
-
+    public void sortByAuthor() {
+        Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
+        Collections.sort(bookList, compareByAuthor);
         for (Book book : bookList) {
-            if (book.title.toUpperCase().equals(title.toUpperCase())) {
-                bookList.remove(book);
-                System.out.println("Book is removed from the library database ");
-                return;
-            }
+            System.out.println(book.toString());
         }
-        System.out.println("Book is not exist in library");
+    }
+
+
+    public void showAllBook(){
+        if (!(bookList ==null)) {
+            bookList.stream()
+                    .forEach(book -> System.out.println(book.toString()));
+        }
+        else{
+            System.out.println("There is no books in the library");
+        }
+    }
+
+    public void removeBookByTitle(String title){
+        List <Book> removeBook = bookList.stream()
+                .filter(book -> book.title.toUpperCase().equals(title.toUpperCase()))
+                .collect(Collectors.toList());
+        if (!(removeBook == null)) {
+            bookList.remove(removeBook.get(0));
+            System.out.println("Book removed from library database");
+        }
+        else{
+            System.out.println("Book is not in library");
+        }
+
+
     }
 
     public void showAllLentBooks() {

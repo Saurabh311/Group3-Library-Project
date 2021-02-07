@@ -5,28 +5,28 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-    String name = null;
-    String username;
-    String password;
-    int age =0 ;
-    int id =0;
+
+    protected String username;
+    protected String password;
+    private static final long serialVersionUID = -3065225084601467319L;//ställ fråga här
 
 
-    public Person( String username, String password) {
+    public Person( ) {
 
-        this.username =username;
+
+
+
+    }
+
+   public Person username(String username){
+        this.username = username;
+        return this;
+   }
+    public Person password(String password){
         this.password = password;
-
-
+        return this;
     }
 
-    public Person() {
-    }
-
-
-    public String getName() {
-        return name;
-    }
 
     public String getUsername() {
         return username;
@@ -37,24 +37,8 @@ public class Person implements Serializable {
     }
 
 
-    public int getAge() {
-        return age;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
 }

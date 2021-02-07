@@ -29,16 +29,12 @@ public class Ui {
                     System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
                 }
 
-
             }
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.loginOrRegister.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
+                choice = UiChoicesEnums.loginOrRegister.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
 
 
@@ -53,10 +49,8 @@ public class Ui {
                     break;
 
                 case REGISTER:
-
                     program.loginOrRegister.register();
                     break;
-
 
                 case TERMINATE_PROGRAM:
                     program.saveData();
@@ -72,15 +66,16 @@ public class Ui {
     public void UiCheck(Object person) {
 
         if (person instanceof User) {
-            userUi();
+            userUi((User) person);
         } else {
             librarianUi();
         }
 
     }
 
+    public void userUi(User user) {
+        program.library.sendReminder(user);
 
-    public void userUi() {
         String choiceInput;
 
         UiChoicesEnums.userSwitchChoices choice = UiChoicesEnums.userSwitchChoices.DEFAULT;
@@ -99,16 +94,18 @@ public class Ui {
 
             try{
 
-                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
+                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
 
             switch (choice) {
                 case SHOW_ALL_BOOKS:
                     program.library.showAllBook();
+                    break;
+                case SHOW_AVAILIBLE_BOOKS:
+
+                    program.library.getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
+
                     break;
 
                 case SEARCH_BY_TITLE:
@@ -121,8 +118,17 @@ public class Ui {
                     program.library.searchByAuthor(input.nextLine());
                     break;
 
+                case BORROW_THE_BOOK:
+                    program.library.borrowBook(user);
+                    break;
+
+                case SEE_MY_BORROWED_BOOKS:
+                    user.printBorrowedBooks();
+                    break;
+
                 case QUIT:
                     break;
+
                 default:
                     System.out.println("Wrong input");
             }
@@ -149,14 +155,8 @@ public class Ui {
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.valueOf(choiceInput)];
-            }catch (Exception e){
-
-
-            }
-
-
-
+                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.parseInt(choiceInput)];
+            }catch (Exception ignored){ }
 
             switch (choice) {
                 case SHOW_ALL_BOOKS:
@@ -176,9 +176,13 @@ public class Ui {
                 case ADD_BOOK:
                     program.library.addBook();
                     break;
+                case ADD_LIST_OF_BOOKS:
+                    program.library.saveListOfBooks();
+                    break;
 
                 case REMOVE_BOOK:
-                    //program.library.addBook("test","a tester book","brown",1992);
+                    System.out.println("Please insert the title of Book");
+                    program.library.removeBookByTitle(input.nextLine());
                     break;
 
                 case SEE_ALL_BOOKS_OF_USER:
@@ -190,15 +194,22 @@ public class Ui {
                     program.library.printUsers();
                     break;
 
+                case FIND_USER:
+                    program.library.findUser();
+                    break;
+
+                case SEE_ALL_LENT_OUT_BOOKS:
+                    program.library.showAllLentBooks();
+                    break;
+
                 case QUIT:
                     break;
+
                 default:
                     System.out.println("Wrong input");
             }
         }
     }
-
-
 }
 
 

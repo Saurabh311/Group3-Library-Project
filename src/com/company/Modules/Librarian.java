@@ -1,19 +1,19 @@
 package com.company.Modules;
 
 public class Librarian extends Person {
+    private static final long serialVersionUID =196915972624694118L;
 
-    public Librarian( String username, String password) {
-        super( username, password);
+    public Librarian() {
+
     }
-
 
     @Override
     public String toString() {
         return "Librarian{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", id=" + id +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
-
 }
+
+

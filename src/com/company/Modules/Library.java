@@ -1,17 +1,38 @@
 package com.company.Modules;
 
+import com.company.Factory.Factory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
+    List<Book> availibleBooks = new ArrayList<>();
+    List<Book> borrowedBooks = new ArrayList<>();
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
+
     public Library() {
 
+    }
 
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setBorrowedBooks(List<Book> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
     }
 
     public List<Book> getBookList() {
@@ -22,15 +43,31 @@ public class Library {
         return users;
     }
 
+    public List<Book> getAvailibleBooks() {
+        return availibleBooks;
+    }
+
 
     public void setUsers(List<User> users) {
         this.users = users;
     }
 
-
+    // Prints all user objects
     public void printUsers() {
         for (User user : users) {
             System.out.println(user);
+        }
+    }
+
+    // search User by name
+    public void findUser() {
+        System.out.println("Input username: ");
+        for (User user : users) {
+            if (user.getUsername().equals(input.nextLine())) {
+                System.out.println(user.getUsername());
+            } else {
+                System.out.println("Username not found.");
+            }
         }
     }
 
@@ -47,13 +84,62 @@ public class Library {
         return librarians;
     }
 
+    public void setAvailibleBooks() {
+        if (borrowedBooks.size() > 0) {
+            availibleBooks = bookList
+                    .stream()
+                    .filter(book -> {
+                        boolean check = true;
+                        for (int i = 0; i < borrowedBooks.size(); i++) {
+                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())) {
+                                check = false;
+                                i = borrowedBooks.size();
+
+                            }
+                        }
+                        return check;
+                    })
+                    .collect(Collectors.toList());
+        } else availibleBooks = new ArrayList<>(bookList);
+    }
+
+    public void borrowBook(User user) {
+        System.out.println("please write the title of the book you want to borrow");
+        String title = input.nextLine();
+        List<Book> bookToBorrow = availibleBooks
+                .stream()
+                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
+                .collect(Collectors.toList());
+        if (bookToBorrow.size() > 0) {
+            changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+            bookToBorrow.get(0).setCurrentLender(user.getUsername());
+            user.addToBorrowedBooks(bookToBorrow.get(0));
+
+            bookToBorrow.get(0).setBorrowDate(LocalDate.now());
+            System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
+            System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
+        } else {
+            System.out.println("book is not availible");
+        }
+    }
+
+    public void changeFromAvailibleToBorrowed(Book book) {
+        int index = 0;
+        for (int i = 0; i < availibleBooks.size(); i++) {
+            if (availibleBooks.get(i).getTitle().equals(book.getTitle())) {
+                index = i;
+            }
+        }
+        availibleBooks.remove(index);
+        borrowedBooks.add(book);
+    }
+
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
-            if (book.title.equals(title)) {
+            if (book.title.toUpperCase().equals(title.toUpperCase())) {
                 System.out.println(book.toString());
                 return true;
             }
-
         }
         System.out.println("Book is not exist");
         return false;
@@ -61,13 +147,12 @@ public class Library {
 
     public void searchByAuthor(String author) {
         for (Book book : bookList) {
-            if (book.author.equals(author)) {
+            if (book.author.toUpperCase().equals(author.toUpperCase())) {
                 System.out.println(book.toString());
+                return;
             }
-
         }
         System.out.println("Book is not exist");
-
     }
 
     public void addBook() {
@@ -81,13 +166,23 @@ public class Library {
         String author = input.nextLine();
 
         System.out.println("Insert the year of book release");
-        int year = input.nextInt();
+        boolean intInput = true;
+        while (intInput) {
+            String userInputYear = input.nextLine();
 
-        bookList.add(new Book(title, description, author, year));
-        System.out.println("New Book added");
-
-
+            try {
+                int year = Integer.parseInt(userInputYear);
+                intInput = false;
+                Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
+                bookList.add(book);////using factory for book
+                availibleBooks.add(book);
+                System.out.println("New Book added");
+            } catch (NumberFormatException e) {
+                System.out.println("Please insert year of book in numbers");
+            }
+        }
     }
+
 
     public List<Person> getAllPersonsToList() {
         List<Person> persons = new ArrayList<>();
@@ -120,13 +215,78 @@ public class Library {
         System.out.println(bookList);
     }
 
-    public void showAllBook(){
-        for (Book book: bookList) {
+    public void showAllBook() {
+        for (Book book : bookList) {
             System.out.println(book.toString());
         }
     }
 
+    public void removeBookByTitle(String title) {
+
+        for (Book book : bookList) {
+            if (book.title.toUpperCase().equals(title.toUpperCase())) {
+                bookList.remove(book);
+                System.out.println("Book is removed from the library database ");
+                return;
+            }
+        }
+        System.out.println("Book is not exist in library");
+    }
+
+    public void showAllLentBooks() {
+        if (borrowedBooks.size() > 0) {
+
+            borrowedBooks
+                    .forEach(book -> System.out.printf("%s is borrowed by user:%s Return date:%s%n", book.getTitle(), book.getCurrentLender(), book.getReturnDate()));
+        } else {
+            System.out.println("No books are lent out");
+
+        }
+    }
+
+    public void sendReminder(User user) {
+
+        user.getMyBorrowedBooks().stream().
+                filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
+                forEach(book -> System.out.println("Return overdue: " + book.getTitle()));
+
+    }
+    public void saveListOfBooks(){
+        List<String> BooksSplit;
+
+
+        try {
+            int ammountOfBooksAdded = 0;
+            BooksSplit = Files.readAllLines(Paths.get("C:\\Users\\klosa\\Desktop\\java\\Group 3 Project\\BooksToAdd.txt"));
+
+            for (String bookLine: BooksSplit){
+
+
+                String[] splitRow = bookLine.split("#");
+                Book bookToAdd = new Book().title(splitRow[0]).author(splitRow[1])
+                        .description(splitRow[2]).year(Integer.parseInt(splitRow[3]) );
+
+                List<Book> temparray = bookList
+                        .stream()
+                        .filter(book -> book.getTitle().equals(bookToAdd.getTitle()))
+                        .collect(Collectors.toList());
+                if (temparray.size()<=0){
+                    bookList.add(bookToAdd);
+                    availibleBooks.add(bookToAdd);
+                    ammountOfBooksAdded++;
+
+                }
+
+
+            }
+            System.out.printf("(%d) books added%n",ammountOfBooksAdded);
+
+        }catch (Exception e){
+            System.out.println("file not found");
+        }
+    }
 }
+
 
 
 

@@ -1,38 +1,42 @@
 package com.company.Controller;
 
 import com.company.Controller.LoginAndRegister.LoginOrRegister;
-import com.company.Modules.Book;
-import com.company.Modules.Librarian;
-import com.company.Modules.Library;
-import com.company.Modules.User;
+import com.company.Factory.Factory;
+import com.company.Modules.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Program {
-    Library library = new Library();
-    LoginOrRegister loginOrRegister = new LoginOrRegister(library);
+    Library library;
+    LoginOrRegister loginOrRegister ;
 
     public Program() {
     }
 
-    public void run() {
-
+    public void buildProgram() {
+        library = Factory.buildLibrary();
+        loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
+        library.setAvailibleBooks();
+
+
 
     }
 
     private void getDataOnLoad() {
         System.out.println("data loaded");
-      library.setUsers((List<User>) HandleData.readObject("Users.ser"));
-      library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
-      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
+     library.setUsers((List<User>) HandleData.readObject("Users.ser"));
+     library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
+     library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
+     library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
     }
     public void saveData(){
 
         HandleData.writeObject(library.getUsers(),"Users.ser");
         HandleData.writeObject(library.getLibrarians(),"Librarians.ser");
         HandleData.writeObject(library.getBookList(),"Books.ser");
+        HandleData.writeObject(library.getBorrowedBooks(),"BorrowedBooks.ser");
 
     }
 

@@ -19,6 +19,12 @@ public class Program {
         loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
         library.setAvailibleBooks();
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> c711b5abdf21a7018391a37298279189a4d453ea
     }
 
     private void getDataOnLoad() {

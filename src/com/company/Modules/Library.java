@@ -2,6 +2,7 @@ package com.company.Modules;
 
 import com.company.Factory.Factory;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class Library {
     List<User> users = new ArrayList<>();
     List<Librarian> librarians = new ArrayList<>();
     Scanner input = new Scanner(System.in);
-    Factory factory = new Factory();
+
 
     public Library() {
 
@@ -32,6 +33,10 @@ public class Library {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public List<Book> getAvailibleBooks() {
+        return availibleBooks;
     }
 
 
@@ -97,7 +102,11 @@ public class Library {
             changeFromAvailibleToBorrowed(bookToBorrow.get(0));
             bookToBorrow.get(0).setCurrentLender(user.getUsername());
             user.addToBorrowedBooks(bookToBorrow.get(0));
-        }else {
+
+            bookToBorrow.get(0).setBorrowDate(LocalDate.now());
+            System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
+            System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
+        } else {
             System.out.println("book is not availible");
         }
     }
@@ -176,7 +185,9 @@ public class Library {
             try {
                 int year = Integer.parseInt(userInputYear);
                 intInput = false;
-                bookList.add(factory.buildBook().title(title).description(description).author(author).year(year));////using factory for book
+                Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
+                bookList.add(book);////using factory for book
+                availibleBooks.add(book);
                 System.out.println("New Book added");
             } catch (NumberFormatException e) {
                 System.out.println("Please insert year of book in numbers");
@@ -220,6 +231,7 @@ public class Library {
         }
     }
 
+
     public void showAllBook(){
         if (!(bookList ==null)) {
             bookList.stream()
@@ -241,32 +253,28 @@ public class Library {
         else{
             System.out.println("Book is not in library");
         }
+
+
     }
 
-
-
-        /*for (Book book : bookList) {
-            if(book.title.toUpperCase().equals(title.toUpperCase())){
-                bookList.remove(book);
-                System.out.println("Book is removed from the library database ");
-                return;
-            }
-        }
-        System.out.println("Book is not exist in library");
-        return;
-    }*/
-    public void showAllLentBooks(){
-        if (borrowedBooks.size()>0){
+    public void showAllLentBooks() {
+        if (borrowedBooks.size() > 0) {
 
             borrowedBooks
-                        .stream()
-                        .forEach(book -> System.out.printf("%s is borrowed by user:%s%n",book.getTitle(),book.getCurrentLender()));
-            }else
-                {
-                System.out.println("No books are lent out");
-            }
+                    .forEach(book -> System.out.printf("%s is borrowed by user:%s Return date:%s%n", book.getTitle(), book.getCurrentLender(), book.getReturnDate()));
+        } else {
+            System.out.println("No books are lent out");
+
+        }
     }
 
+    public void sendReminder(User user) {
+
+        user.getMyBorrowedBooks().stream().
+                filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
+                forEach(book -> System.out.println("Return overdue: " + book.getTitle()));
+
+    }
 }
 
 

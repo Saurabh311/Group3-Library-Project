@@ -1,6 +1,7 @@
 package com.company.Modules;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Book implements Serializable {
@@ -8,25 +9,31 @@ public class Book implements Serializable {
     String description;
     String author;
     String currentLender;
-    private static final long serialVersionUID =3998998041799324022L;
     int year;
+    LocalDate borrowDate;
+    LocalDate returnDate;
+    private static final long serialVersionUID = 3998998041799324022L;
 
     public Book() {
 
     }
-    public Book title(String title){
-         this.title = title;
-         return this;
+
+    public Book title(String title) {
+        this.title = title;
+        return this;
     }
-    public Book description(String description){
+
+    public Book description(String description) {
         this.description = description;
         return this;
     }
-    public Book author (String author){
+
+    public Book author(String author) {
         this.author = author;
         return this;
     }
-    public Book year(int year){
+
+    public Book year(int year) {
         this.year = year;
         return this;
     }
@@ -82,4 +89,20 @@ public class Book implements Serializable {
                 '}';
     }
 
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+        setReturnDate();
+    }
+
+    public void setReturnDate() {
+        this.returnDate = borrowDate.plusDays(14);
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
 }

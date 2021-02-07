@@ -22,7 +22,7 @@ public class User extends Person implements Serializable {
 
     public void addToBorrowedBooks(Book book){
         myBorrowedBooks.add(book);
-        System.out.println(myBorrowedBooks);
+        System.out.println(book);
     }
 
     public void removeFromBorrowedBooks(Book book){

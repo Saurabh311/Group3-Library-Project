@@ -2,13 +2,13 @@ package com.company.Factory;
 
 import com.company.Modules.*;
 
-public class Factory {
+public abstract class Factory {
 
     public Factory() {
 
     }
 
-    public Person buildPerson(String className){
+    public static Person buildPerson(String className){
         if(className == null){
             return null;
         }
@@ -23,8 +23,8 @@ public class Factory {
         }
         return null;
     }
-    public Book buildBook(){
+    public static Book buildBook(){
         return new Book();
     }
-    public Library buildLibrary(){ return  new Library(); }
+    public static Library buildLibrary(){ return  new Library(); }
 }

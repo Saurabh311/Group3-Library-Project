@@ -2,7 +2,7 @@ package com.company.Controller;
 
 import java.io.*;
 
-public class HandleData {
+public abstract class HandleData {
 
 
     public static void writeObject(Object object,String filename) {

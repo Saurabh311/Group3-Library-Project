@@ -59,6 +59,19 @@ public class EnterLibraryMenu {
                 case BORROW_THE_BOOK:
                     data.program.getLibrary().borrowBook((User) data.getAccount());
                     break;
+
+                case RETURN_THE_BORROWED_BOOK:
+                    data.program.getLibrary().returnBook((User) data.getAccount());
+                    break;
+
+                case SORT_BY_TITLE:
+                    data.program.getLibrary().sortByTitle();
+                    break;
+
+                case SORT_BY_AUTHOR:
+                    data.program.getLibrary().sortByAuthor();
+                    break;
+
                 case GO_BACK:
                     break;
 

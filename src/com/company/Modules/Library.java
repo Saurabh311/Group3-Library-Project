@@ -150,15 +150,16 @@ public class Library {
         borrowedBooks.add(book);
     }
 
-    public boolean searchByTitle(String title) {
-        for (Book book : bookList) {
-            if (book.title.equalsIgnoreCase(title)) {
-                System.out.println(book.toString());
-                return true;
-            }
+    public void searchByTitle(String title) {
+        List<Book> searchbytitle = bookList.stream()
+                .filter(book -> book.getTitle().toUpperCase().contains(title.toUpperCase()))
+                .collect(Collectors.toList());
+        if (searchbytitle.size() > 0){
+            searchbytitle.stream().forEach(book -> System.out.println(book.toString()));
         }
-        System.out.println("The book isn't in the library.\n");
-        return false;
+        else {
+            System.out.println("The book isn't in the library.n\"");
+        }
     }
 
     public void searchByAuthor(String author) {

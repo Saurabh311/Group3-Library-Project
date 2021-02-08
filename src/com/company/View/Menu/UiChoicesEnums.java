@@ -48,4 +48,11 @@ public class UiChoicesEnums {
         TERMINATE_PROGRAM,
         DEFAULT
     }
+
+    public static enum afterShowAllBook{
+        SORT_BY_TITLE,
+        SORT_BY_AUTHOR,
+        GO_BACK,
+        DEFAULT
+    }
 }

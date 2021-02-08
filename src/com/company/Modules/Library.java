@@ -2,11 +2,6 @@ package com.company.Modules;
 
 import com.company.Factory.Factory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -16,20 +11,26 @@ import java.util.stream.Collectors;
 public class Library {
 
     List<Book> bookList = new ArrayList<>();
-    List<Book> availibleBooks = new ArrayList<>();
+    List<Book> availableBooks = new ArrayList<>();
     List<Book> borrowedBooks = new ArrayList<>();
+
     List<User> users = new ArrayList<>();
+
     List<Librarian> librarians = new ArrayList<>();
+
     Scanner input = new Scanner(System.in);
 
+    //----PRINTS
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
-    public Library() {
+    public Library() { }
 
-    }
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
-
     public void setBorrowedBooks(List<Book> borrowedBooks) {
         this.borrowedBooks = borrowedBooks;
     }
@@ -37,74 +38,69 @@ public class Library {
     public List<Book> getBookList() {
         return bookList;
     }
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     public List<User> getUsers() {
         return users;
     }
-
-    public List<Book> getAvailibleBooks() {
-        return availibleBooks;
-    }
-
-
     public void setUsers(List<User> users) {
         this.users = users;
     }
 
-    // Prints all user objects
-    public void printUsers() {
-        for (User user : users) {
-            System.out.println(user);
-        }
-    }
-
-    // search User by name
-    public void findUser() {
-        System.out.println("Input username: ");
-        for (User user : users) {
-            if (user.getUsername().toUpperCase().equals(input.nextLine().toUpperCase())) {
-                System.out.println(user.getUsername());
-            } else {
-                System.out.println("Username not found.");
-            }
-        }
+    public List<Librarian> getLibrarians() {
+        return librarians;
     }
     public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
 
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public List<Book> getAvailableBooks() {
+        return availableBooks;
     }
 
-    public List<Librarian> getLibrarians() {
-        return librarians;
-    }
-
-    public void setAvailibleBooks() {
+    public void setAvailableBooks() {
         if (borrowedBooks.size() > 0) {
             for (Book book:bookList){
-               List<Book> tempArray1 =borrowedBooks
-                       .stream()
-                       .filter(borrowedBook -> book.getTitle().equals(borrowedBook.getTitle()) )
-                       .collect(Collectors.toList());
-               if(tempArray1.size()<=0){//if no borrowed book was equal to a book in booklist
-                   availibleBooks.add(book);
-               }
+                List<Book> tempArray1 =borrowedBooks
+                        .stream()
+                        .filter(borrowedBook -> book.getTitle().equals(borrowedBook.getTitle()) )
+                        .collect(Collectors.toList());
+                if(tempArray1.size()<=0){ //if no borrowed book was equal to a book in booklist
+                    availableBooks.add(book);
+                }
             }
-
-        } else availibleBooks = new ArrayList<>(bookList);
+        } else availableBooks = new ArrayList<>(bookList);
     }
+    // Prints all user objects
+    public void printUsers() {
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+    // search User by name
+    public void findUser() {
+        System.out.println("Input username: \n");
+        for (User user : users) {
+            if (user.getUsername().equalsIgnoreCase(input.nextLine())) {
+                System.out.println(user.getUsername());
+            } else {
+                System.out.println("Username not found.\n");
+            }
+        }
+    }
+
     public void borrowBook(User user){
-        System.out.println("please write the title of the book you want to borrow");
+        System.out.println("Which book would you like to borrow?\nInput the title.\n");
         String title = input.nextLine();
-        List<Book> bookToBorrow = availibleBooks
+        List<Book> bookToBorrow = availableBooks
                 .stream()
-                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
+                .filter(book -> title.equalsIgnoreCase(book.getTitle()))
                 .collect(Collectors.toList());
         if ( bookToBorrow.size() > 0){
-            changeFromAvailibleToBorrowed(bookToBorrow.get(0));
+            changeFromAvailableToBorrowed(bookToBorrow.get(0));
             bookToBorrow.get(0).setCurrentLender(user.getUsername());
             user.addToBorrowedBooks(bookToBorrow.get(0));
 
@@ -112,15 +108,15 @@ public class Library {
             System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
             System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
         } else {
-            System.out.println("book is not availible");
+            System.out.println("The book isn't available.\n");
         }
     }
 
     public void returnBook(User user){
-        System.out.println("please write the title of the book you want to return");
+        System.out.println("Which book would you like to return?\nInput the title.\n");
         String title = input.nextLine();
         List<Book> returnToBook = borrowedBooks.stream()
-                .filter(book -> title.toUpperCase().equals(book.getTitle().toUpperCase()))
+                .filter(book -> title.equalsIgnoreCase(book.getTitle()))
                 .collect(Collectors.toList());
         if (returnToBook.size() > 0){
             changeFromBorrowedToAvailible(returnToBook.get(0));
@@ -128,7 +124,7 @@ public class Library {
             user.removeFromBorrowedBooks(returnToBook.get(0));
         }
         else{
-            System.out.println("Book is not available");
+            System.out.println("The book isn't available.\n");
         }
 
     }
@@ -136,53 +132,56 @@ public class Library {
         for (int i =0; borrowedBooks.size()>i; i++) {
             if (book.getTitle().equals(borrowedBooks.get(i).getTitle())) {
                 borrowedBooks.remove(i);
-                availibleBooks.add(book);
+                availableBooks.add(book);
 
             }
         }
     }
-    public void changeFromAvailibleToBorrowed(Book book){
+
+
+    public void changeFromAvailableToBorrowed(Book book){
         int index=0;
-        for (int i =0;i< availibleBooks.size();i++){
-            if (availibleBooks.get(i).getTitle().equals(book.getTitle())){
+        for (int i = 0; i< availableBooks.size(); i++){
+            if (availableBooks.get(i).getTitle().equals(book.getTitle())){
                 index = i;
             }
-        }availibleBooks.remove(index);
+        }
+        availableBooks.remove(index);
         borrowedBooks.add(book);
     }
 
     public boolean searchByTitle(String title) {
         for (Book book : bookList) {
-            if (book.title.toUpperCase().equals(title.toUpperCase())) {
+            if (book.title.equalsIgnoreCase(title)) {
                 System.out.println(book.toString());
                 return true;
             }
         }
-        System.out.println("Book is not exist");
+        System.out.println("The book isn't in the library.\n");
         return false;
     }
 
     public void searchByAuthor(String author) {
         for (Book book : bookList) {
-            if (book.author.toUpperCase().equals(author.toUpperCase())) {
+            if (book.author.equalsIgnoreCase(author)) {
                 System.out.println(book.toString());
                 return;
             }
         }
-        System.out.println("Book is not exist");
+        System.out.println("The book isn't in the library.\n");
     }
 
     public void addBook() {
-        System.out.println("Insert the title of book");
+        System.out.println("Input book title:\n");
         String title = input.nextLine();
 
-        System.out.println("Insert the description of book");
+        System.out.println("Input book description:\n");
         String description = input.nextLine();
 
-        System.out.println("Insert the author of book");
+        System.out.println("Input book author:\n");
         String author = input.nextLine();
 
-        System.out.println("Insert the year of book release");
+        System.out.println("Input book release year:\n");
         boolean intInput = true;
         while (intInput) {
             String userInputYear = input.nextLine();
@@ -192,10 +191,10 @@ public class Library {
                 intInput = false;
                 Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
                 bookList.add(book);////using factory for book
-                availibleBooks.add(book);
-                System.out.println("New Book added");
+                availableBooks.add(book);
+                System.out.println("[ Book added ]\n");
             } catch (NumberFormatException e) {
-                System.out.println("Please insert year of book in numbers");
+                System.out.println("Input book release year using numbers.\n");
             }
         }
     }
@@ -212,10 +211,10 @@ public class Library {
     public void addPerson(Object person) {
         if (person instanceof User) {
             users.add((User) person);
-            System.out.println("added user");
+            System.out.println("[ Added user ]");
         } else {
             librarians.add((Librarian) person);
-            System.out.println("added librarian");
+            System.out.println("[ Added librarian ]");
         }
 
     }
@@ -243,32 +242,30 @@ public class Library {
                     .forEach(book -> System.out.println(book.toString()));
         }
         else{
-            System.out.println("There is no books in the library");
+            System.out.println("There are no books in the library.\n");
         }
     }
 
     public void removeBookByTitle(String title){
         List <Book> removeBook = bookList.stream()
-                .filter(book -> book.title.toUpperCase().equals(title.toUpperCase()))
+                .filter(book -> book.title.equalsIgnoreCase(title))
                 .collect(Collectors.toList());
         if (!(removeBook == null)) {
             bookList.remove(removeBook.get(0));
-            System.out.println("Book removed from library database");
+            System.out.println("[ Book removed ] \n");
         }
         else{
-            System.out.println("Book is not in library");
+            System.out.println("The book isn't in the library.\n");
         }
-
-
     }
 
     public void showAllLentBooks() {
         if (borrowedBooks.size() > 0) {
 
             borrowedBooks
-                    .forEach(book -> System.out.printf("%s is borrowed by user:%s Return date:%s%n", book.getTitle(), book.getCurrentLender(), book.getReturnDate()));
+                    .forEach(book -> System.out.printf("%s is borrowed by user:%s%n Return date:%s%n", book.getTitle(), book.getCurrentLender(), book.getReturnDate()));
         } else {
-            System.out.println("No books are lent out");
+            System.out.println("No books are lent out.\n");
 
         }
     }
@@ -277,7 +274,7 @@ public class Library {
 
         user.getMyBorrowedBooks().stream().
                 filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
-                forEach(book -> System.out.println("Return overdue: " + book.getTitle()));
+                forEach(book -> System.out.printf(RED + "Return overdue: %s\n", book.getTitle() + RESET));
 
     }
     public void saveListOfBooks(){
@@ -301,17 +298,17 @@ public class Library {
                         .collect(Collectors.toList());
                 if (temparray.size()<=0){
                     bookList.add(bookToAdd);
-                    availibleBooks.add(bookToAdd);
+                    availableBooks.add(bookToAdd);
                     ammountOfBooksAdded++;
 
                 }
 
 
             }
-            System.out.printf("(%d) books added%n",ammountOfBooksAdded);
+            System.out.printf("[ (%d) books added ]%n",ammountOfBooksAdded);
 
         }catch (Exception e){
-            System.out.println("file not found");
+            System.out.println("File not found.");
         }
     }
 }

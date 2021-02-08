@@ -22,7 +22,7 @@ public class Program {
         library = Factory.buildLibrary();
         loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
-        library.setAvailibleBooks();
+        library.setAvailableBooks();
 
     }
     public Library getLibrary() {

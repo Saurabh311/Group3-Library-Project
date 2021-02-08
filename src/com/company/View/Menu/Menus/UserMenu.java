@@ -26,7 +26,7 @@ public class UserMenu {
         for (UiChoicesEnums.userSwitchChoices choices : UiChoicesEnums.userSwitchChoices.values()) {
 
             if (!choices.toString().equals("DEFAULT")){
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal()+1, choices);
             }
 
         }

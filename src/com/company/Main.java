@@ -1,14 +1,15 @@
 package com.company;
 
-import com.company.Controller.Program;
-import com.company.Controller.Ui;
+import com.company.View.Menu.RunUi;
 
 public class Main {
 
     public static void main(String[] args) {
-        Program program = new Program();
-        program.buildProgram();
-        Ui ui = new Ui(program);
-        ui.loginOrRegisterUi();
+
+
+       RunUi runUi = new RunUi();
+       runUi.startUi();
+
+
     }
 }

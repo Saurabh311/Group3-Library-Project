@@ -5,13 +5,13 @@ import com.company.Modules.Person;
 
 import java.util.List;
 
-public class RegisterValidator {
+public class LoginOrRegisterValidator {
 
 
 
     Library library;
 
-    public RegisterValidator(Library library) {
+    public LoginOrRegisterValidator(Library library) {
         this.library = library;
     }
 
@@ -40,14 +40,10 @@ public class RegisterValidator {
      public boolean passwordValidation(String password){
         boolean passwordValidated = true;
 
-
         String validatePassForm = "";
         //if (!password.matches(validatePassForm)){
           //  passwordValidated = false;
        // }
         return passwordValidated;
     }
-
-
-
 }

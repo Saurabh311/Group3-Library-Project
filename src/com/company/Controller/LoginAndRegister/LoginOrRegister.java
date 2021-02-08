@@ -41,7 +41,7 @@ public class LoginOrRegister {
         return account;
     }
     public void register() {
-        RegisterValidator registerValidator = new RegisterValidator(library);
+        LoginOrRegisterValidator loginOrRegisterValidator = new LoginOrRegisterValidator(library);
         String newUsername;
         String newPassWord;
 
@@ -51,35 +51,39 @@ public class LoginOrRegister {
 
             System.out.print("Enter your new username:");
             newUsername = input.next();
-            if(registerValidator.usernameValidation(newUsername)==true){
+            if(loginOrRegisterValidator.usernameValidation(newUsername)==true){
                 System.out.print("Password:");
                 newPassWord = input.next();
-                if (registerValidator.passwordValidation(newPassWord)==true){
+                if (loginOrRegisterValidator.passwordValidation(newPassWord)==true){
                     String choice;
-                    int choiceToInt = 0;
+                    //int choiceToInt = 0;
 
                     System.out.println("if you are a user write[1] librarian[2]");
                     choice = input.next();
                     if (choice.matches("1|2")){
-                       choiceToInt = Integer.valueOf(choice);
+
+                        if (Integer.valueOf(choice) ==1){
+
+
+                            library.addPerson(Factory.buildPerson("user")
+                                    .username(newUsername).password(newPassWord));
+                            sentinel = true;
+                        }
+                        if (Integer.valueOf(choice) ==2){
+
+                            //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
+                            library.addPerson(Factory.buildPerson("librarian")
+                                    .username(newUsername).password(newPassWord));
+                            sentinel = true;
+
+
+
+                        }
                     }else {
                         System.out.println("Wrong input");
                     }
 
-                    if (choiceToInt ==1){
 
-
-                        library.addPerson(Factory.buildPerson("user").username(newUsername).password(newPassWord));
-                        sentinel = true;
-                    }
-                     if (choiceToInt ==2){
-
-                         //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
-                         library.addPerson(Factory.buildPerson("librarian").username(newUsername).password(newPassWord));
-                         sentinel = true;
-
-
-                     }
                 }else {
                     System.out.println("password format was wrong");
                 }

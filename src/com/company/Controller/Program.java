@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Program {
+
     Library library;
+
+
+
     LoginOrRegister loginOrRegister ;
 
     public Program() {
@@ -20,9 +24,14 @@ public class Program {
         getDataOnLoad();
         library.setAvailibleBooks();
 
-
-
     }
+    public Library getLibrary() {
+        return library;
+    }
+    public LoginOrRegister getLoginOrRegister() {
+        return loginOrRegister;
+    }
+
 
     private void getDataOnLoad() {
         System.out.println("data loaded");
@@ -31,16 +40,16 @@ public class Program {
      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
      library.setBorrowedBooks((List<Book>) HandleData.readObject("BorrowedBooks.ser"));
     }
+
     public void saveData(){
 
         HandleData.writeObject(library.getUsers(),"Users.ser");
         HandleData.writeObject(library.getLibrarians(),"Librarians.ser");
         HandleData.writeObject(library.getBookList(),"Books.ser");
         HandleData.writeObject(library.getBorrowedBooks(),"BorrowedBooks.ser");
+        System.out.println("data saved");
 
     }
-
-
 
     public void pAllBooksOfUser(String username){
 

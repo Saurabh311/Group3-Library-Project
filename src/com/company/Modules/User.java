@@ -24,11 +24,17 @@ public class User extends Person implements Serializable {
         myBorrowedBooks.add(book);
         System.out.println(book);
     }
+
+    public void removeFromBorrowedBooks(Book book){
+        myBorrowedBooks.remove(book);
+        System.out.println("Book returned");
+    }
+
     public void printBorrowedBooks(){
         if (myBorrowedBooks.size()>0){
             myBorrowedBooks
                     .stream()
-                    .forEach(book -> System.out.printf("%s%n",book.getTitle()));
+                    .forEach(book -> System.out.printf("%s Return date:%s%n",book.getTitle(),book.getBorrowDate()));
         }else {
             System.out.println("you haven't borrowed any books yet");
 

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class LibrarianMenu {
     Uidata data = Uidata.getInstance();
     EditLibraryBooksMenu editLibraryBooksMenu = new EditLibraryBooksMenu();
+    AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
 
     public LibrarianMenu(){
@@ -38,6 +39,7 @@ public class LibrarianMenu {
             switch (choice) {
                 case SHOW_ALL_BOOKS:
                     data.getProgram().getLibrary().showAllBook();
+                    afterShowAllBooks.afterShowAllBooks();
                     break;
 
                 case SEARCH_BY_TITLE:

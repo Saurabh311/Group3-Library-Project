@@ -240,7 +240,7 @@ public class Library {
 
 
     public void showAllBook(){
-        if (!(bookList ==null)) {
+        if (bookList.size() > 0) {
             bookList.stream()
                     .forEach(book -> System.out.println(book.toString()));
         }

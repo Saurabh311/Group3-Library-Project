@@ -6,6 +6,7 @@ import com.company.View.Menu.Uidata;
 import java.util.Scanner;
 public class EnterLibraryMenu {
     Uidata data = Uidata.getInstance();
+    AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
     public EnterLibraryMenu() {
 
@@ -41,7 +42,9 @@ public class EnterLibraryMenu {
 
                 case SHOW_ALL_BOOKS:
                     data.getProgram().getLibrary().showAllBook();
+                    afterShowAllBooks.afterShowAllBooks();
                     break;
+
                 case SHOW_AVAILIBLE_BOOKS:
                     data.getProgram().getLibrary().getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
                     break;
@@ -62,14 +65,6 @@ public class EnterLibraryMenu {
 
                 case RETURN_THE_BORROWED_BOOK:
                     data.getProgram().getLibrary().returnBook((User) data.getAccount());
-                    break;
-
-                case SORT_BY_TITLE:
-                    data.getProgram().getLibrary().sortByTitle();
-                    break;
-
-                case SORT_BY_AUTHOR:
-                    data.getProgram().getLibrary().sortByAuthor();
                     break;
 
                 case GO_BACK:

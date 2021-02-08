@@ -5,28 +5,22 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-
     protected String username;
     protected String password;
-    private static final long serialVersionUID = -3065225084601467319L;//ställ fråga här
+    private static final long serialVersionUID = -3065225084601467319L;
 
 
-    public Person( ) {
+    public Person() { }
 
-
-
-
-    }
-
-   public Person username(String username){
+    public Person username(String username) {
         this.username = username;
         return this;
-   }
-    public Person password(String password){
+    }
+
+    public Person password(String password) {
         this.password = password;
         return this;
     }
-
 
     public String getUsername() {
         return username;
@@ -35,10 +29,6 @@ public class Person implements Serializable {
     public String getPassword() {
         return password;
     }
-
-
-
-
 
 
 }

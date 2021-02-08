@@ -25,7 +25,7 @@ public class LibrarianMenu {
             for (UiChoicesEnums.librarianSwitchChoices choices : UiChoicesEnums.librarianSwitchChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal()+1, choices);
                 }
 
             }
@@ -43,12 +43,12 @@ public class LibrarianMenu {
                     break;
 
                 case SEARCH_BY_TITLE:
-                    System.out.println("Write title of book");
+                    System.out.println("Input book title: ");
                     data.getProgram().getLibrary().searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
-                    System.out.println("Write the name of author ");
+                    System.out.println("Input book author: ");
                     data.getProgram().getLibrary().searchByAuthor(input.nextLine());
                     break;
                 case EDIT_LIBRARY_BOOKS:
@@ -58,7 +58,7 @@ public class LibrarianMenu {
 
 
                 case SEE_ALL_BOOKS_OF_USER:
-                    System.out.println("Write username of user");
+                    System.out.println("Input username: ");
                     data.getProgram().pAllBooksOfUser(input.nextLine());
                     break;
 

@@ -19,7 +19,7 @@ public class EditLibraryBooksMenu {
             for (UiChoicesEnums.editLibraryBooksChoices choices : UiChoicesEnums.editLibraryBooksChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")) {
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal() + 1, choices);
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal() + 1, choices);
                 }
 
             }
@@ -42,7 +42,7 @@ public class EditLibraryBooksMenu {
                     break;
 
                 case REMOVE_BOOK:
-                    System.out.println("Please insert the title of Book");
+                    System.out.println("Input book title: ");
                     data.getProgram().getLibrary().removeBookByTitle(input.nextLine());
                     break;
 

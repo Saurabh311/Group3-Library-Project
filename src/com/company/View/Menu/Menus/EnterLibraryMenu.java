@@ -24,7 +24,7 @@ public class EnterLibraryMenu {
             for (UiChoicesEnums.userEnterLibraryChoices choices : UiChoicesEnums.userEnterLibraryChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")) {
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal() + 1, choices);
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal() + 1, choices);
                 }
 
             }
@@ -46,16 +46,16 @@ public class EnterLibraryMenu {
                     break;
 
                 case SHOW_AVAILIBLE_BOOKS:
-                    data.getProgram().getLibrary().getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
+                    data.getProgram().getLibrary().getAvailableBooks().forEach(book -> System.out.println(book.getTitle()));
                     break;
 
                 case SEARCH_BY_TITLE:
-                    System.out.println("Write title of book");
+                    System.out.println("Enter the title of the book: ");
                     data.getProgram().getLibrary().searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
-                    System.out.println("Write the name of author ");
+                    System.out.println("Enter the name of the author: ");
                     data.getProgram().getLibrary().searchByAuthor(input.nextLine());
                     break;
 

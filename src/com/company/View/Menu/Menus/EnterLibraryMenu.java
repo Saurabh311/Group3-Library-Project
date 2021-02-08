@@ -40,36 +40,36 @@ public class EnterLibraryMenu {
             switch (choice) {
 
                 case SHOW_ALL_BOOKS:
-                    data.program.getLibrary().showAllBook();
+                    data.getProgram().getLibrary().showAllBook();
                     break;
                 case SHOW_AVAILIBLE_BOOKS:
-                    data.program.getLibrary().getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
+                    data.getProgram().getLibrary().getAvailibleBooks().forEach(book -> System.out.println(book.getTitle()));
                     break;
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
-                    data.program.getLibrary().searchByTitle(input.nextLine());
+                    data.getProgram().getLibrary().searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
                     System.out.println("Write the name of author ");
-                    data.program.getLibrary().searchByAuthor(input.nextLine());
+                    data.getProgram().getLibrary().searchByAuthor(input.nextLine());
                     break;
 
                 case BORROW_THE_BOOK:
-                    data.program.getLibrary().borrowBook((User) data.getAccount());
+                    data.getProgram().getLibrary().borrowBook((User) data.getAccount());
                     break;
 
                 case RETURN_THE_BORROWED_BOOK:
-                    data.program.getLibrary().returnBook((User) data.getAccount());
+                    data.getProgram().getLibrary().returnBook((User) data.getAccount());
                     break;
 
                 case SORT_BY_TITLE:
-                    data.program.getLibrary().sortByTitle();
+                    data.getProgram().getLibrary().sortByTitle();
                     break;
 
                 case SORT_BY_AUTHOR:
-                    data.program.getLibrary().sortByAuthor();
+                    data.getProgram().getLibrary().sortByAuthor();
                     break;
 
                 case GO_BACK:

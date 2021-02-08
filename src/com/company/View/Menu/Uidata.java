@@ -6,10 +6,13 @@ import com.company.Modules.Person;
 public class Uidata {
     private static Uidata uidata = null;
     private Person account;
-    public Program program = new Program();
+    private Program program = new Program();
 
     private Uidata(){
 
+    }
+    public Program getProgram() {
+        return program;
     }
 
     public static Uidata getInstance(){
@@ -19,7 +22,7 @@ public class Uidata {
         }
         return uidata;
     }
-    public void buildProgramData(){
+    public void generateProgramAndLibraryData(){
         program.buildProgram();
     }
     public Person getAccount() {

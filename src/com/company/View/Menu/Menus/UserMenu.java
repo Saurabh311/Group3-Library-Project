@@ -15,6 +15,7 @@ public class UserMenu {
     }
 
     public void userMenu(){
+    data.getProgram().getLibrary().sendReminder((User) data.getAccount());
     String choiceInput;
     Scanner input = new Scanner(System.in);
     UiChoicesEnums.userSwitchChoices choice = UiChoicesEnums.userSwitchChoices.DEFAULT;

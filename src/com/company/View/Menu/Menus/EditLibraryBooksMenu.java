@@ -35,15 +35,15 @@ public class EditLibraryBooksMenu {
 
 
                 case ADD_BOOK:
-                    data.program.getLibrary().addBook();
+                    data.getProgram().getLibrary().addBook();
                     break;
                 case ADD_LIST_OF_BOOKS:
-                    data.program.getLibrary().saveListOfBooks();
+                    data.getProgram().getLibrary().saveListOfBooks();
                     break;
 
                 case REMOVE_BOOK:
                     System.out.println("Please insert the title of Book");
-                    data.program.getLibrary().removeBookByTitle(input.nextLine());
+                    data.getProgram().getLibrary().removeBookByTitle(input.nextLine());
                     break;
 
                 case GO_BACK:

@@ -40,7 +40,7 @@ public class LoginOrRegisterMenu {
 
                 case LOGIN:
 
-                    Person account =  data.program.getLoginOrRegister().login();
+                    Person account =  data.getProgram().getLoginOrRegister().login();
                     if (account != null) {
                         data.setAccount(account);
                         menuChoice(data.getAccount());
@@ -48,11 +48,11 @@ public class LoginOrRegisterMenu {
                     break;
 
                 case REGISTER:
-                    data.program.getLoginOrRegister().register();
+                    data.getProgram().getLoginOrRegister().register();
                     break;
 
                 case TERMINATE_PROGRAM:
-                    data.program.saveData();
+                    data.getProgram().saveData();
                     break;
 
                 default:

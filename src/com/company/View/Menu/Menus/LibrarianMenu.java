@@ -37,17 +37,17 @@ public class LibrarianMenu {
 
             switch (choice) {
                 case SHOW_ALL_BOOKS:
-                    data.program.getLibrary().showAllBook();
+                    data.getProgram().getLibrary().showAllBook();
                     break;
 
                 case SEARCH_BY_TITLE:
                     System.out.println("Write title of book");
-                    data.program.getLibrary().searchByTitle(input.nextLine());
+                    data.getProgram().getLibrary().searchByTitle(input.nextLine());
                     break;
 
                 case SEARCH_BY_AUTHOR:
                     System.out.println("Write the name of author ");
-                    data.program.getLibrary().searchByAuthor(input.nextLine());
+                    data.getProgram().getLibrary().searchByAuthor(input.nextLine());
                     break;
                 case EDIT_LIBRARY_BOOKS:
                     editLibraryBooksMenu.editLibraryBooks();
@@ -57,19 +57,19 @@ public class LibrarianMenu {
 
                 case SEE_ALL_BOOKS_OF_USER:
                     System.out.println("Write username of user");
-                    data.program.pAllBooksOfUser(input.nextLine());
+                    data.getProgram().pAllBooksOfUser(input.nextLine());
                     break;
 
                 case SHOW_ALL_USERS:
-                    data.program.getLibrary().printUsers();
+                    data.getProgram().getLibrary().printUsers();
                     break;
 
                 case FIND_USER:
-                    data.program.getLibrary().findUser();
+                    data.getProgram().getLibrary().findUser();
                     break;
 
                 case SEE_ALL_LENT_OUT_BOOKS:
-                    data.program.getLibrary().showAllLentBooks();
+                    data.getProgram().getLibrary().showAllLentBooks();
                     break;
 
                 case QUIT:

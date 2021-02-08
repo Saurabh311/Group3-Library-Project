@@ -151,11 +151,11 @@ public class Library {
     }
 
     public void searchByTitle(String title) {
-        List<Book> searchbytitle = bookList.stream()
+        List<Book> searchByTitle = bookList.stream()
                 .filter(book -> book.getTitle().toUpperCase().contains(title.toUpperCase()))
                 .collect(Collectors.toList());
-        if (searchbytitle.size() > 0){
-            searchbytitle.stream().forEach(book -> System.out.println(book.toString()));
+        if (searchByTitle.size() > 0){
+            searchByTitle.stream().forEach(book -> System.out.println(book.toString()));
         }
         else {
             System.out.println("The book isn't in the library.n\"");
@@ -163,13 +163,15 @@ public class Library {
     }
 
     public void searchByAuthor(String author) {
-        for (Book book : bookList) {
-            if (book.author.equalsIgnoreCase(author)) {
-                System.out.println(book.toString());
-                return;
-            }
+        List<Book> searchByAuthor = bookList.stream()
+                .filter(book -> book.getTitle().toUpperCase().contains(author.toUpperCase()))
+                .collect(Collectors.toList());
+        if (searchByAuthor.size() > 0){
+            searchByAuthor.stream().forEach(book -> System.out.println(book.toString()));
         }
-        System.out.println("The book isn't in the library.\n");
+        else {
+            System.out.println("The book isn't in the library.n\"");
+        }
     }
 
     public void addBook() {

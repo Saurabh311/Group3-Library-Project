@@ -164,7 +164,7 @@ public class Library {
 
     public void searchByAuthor(String author) {
         List<Book> searchByAuthor = bookList.stream()
-                .filter(book -> book.getTitle().toUpperCase().contains(author.toUpperCase()))
+                .filter(book -> book.getAuthor().toUpperCase().contains(author.toUpperCase()))
                 .collect(Collectors.toList());
         if (searchByAuthor.size() > 0){
             searchByAuthor.stream().forEach(book -> System.out.println(book.toString()));

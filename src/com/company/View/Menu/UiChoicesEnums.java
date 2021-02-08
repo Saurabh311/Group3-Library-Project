@@ -1,4 +1,4 @@
-package com.company.Controller;
+package com.company.View.Menu;
 
 public class UiChoicesEnums {
 

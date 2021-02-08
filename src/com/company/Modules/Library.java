@@ -286,7 +286,7 @@ public class Library {
 
         try {
             int ammountOfBooksAdded = 0;
-            BooksSplit = Files.readAllLines(Paths.get("C:\\Users\\klosa\\Desktop\\java\\Group 3 Project\\BooksToAdd.txt"));
+            BooksSplit = Files.readAllLines(Paths.get("BooksToAdd.txt"));
 
             for (String bookLine: BooksSplit){
 

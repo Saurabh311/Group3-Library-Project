@@ -82,21 +82,19 @@ public class Library {
         return librarians;
     }
 
-    public void setAvailibleBooks (){
-        if(borrowedBooks.size()>0){
-            availibleBooks = bookList
-                    .stream()
-                    .filter(book -> {
-                        boolean check = true;
-                        for (int i = 0;i < borrowedBooks.size();i++){
-                            if (borrowedBooks.get(i).getTitle().equals(book.getTitle())){
-                                check = false;
-                                i = borrowedBooks.size();
+    public void setAvailibleBooks() {
+        if (borrowedBooks.size() > 0) {
+            for (Book book:bookList){
+               List<Book> tempArray1 =borrowedBooks
+                       .stream()
+                       .filter(borrowedBook -> book.getTitle().equals(borrowedBook.getTitle()) )
+                       .collect(Collectors.toList());
+               if(tempArray1.size()<=0){//if no borrowed book was equal to a book in booklist
+                   availibleBooks.add(book);
+               }
+            }
 
-                            } }return check;
-                    })
-                    .collect(Collectors.toList());
-        }else availibleBooks = new ArrayList<>(bookList);
+        } else availibleBooks = new ArrayList<>(bookList);
     }
     public void borrowBook(User user){
         System.out.println("please write the title of the book you want to borrow");
@@ -186,7 +184,7 @@ public class Library {
 
         System.out.println("Insert the year of book release");
         boolean intInput = true;
-        while(intInput) {
+        while (intInput) {
             String userInputYear = input.nextLine();
 
             try {

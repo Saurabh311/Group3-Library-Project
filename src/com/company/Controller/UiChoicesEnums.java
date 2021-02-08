@@ -6,9 +6,7 @@ public class UiChoicesEnums {
         SHOW_ALL_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
-        ADD_BOOK,
-        ADD_LIST_OF_BOOKS,
-        REMOVE_BOOK,
+        EDIT_LIBRARY_BOOKS,
         SEE_ALL_BOOKS_OF_USER,
         SHOW_ALL_USERS,
         FIND_USER,
@@ -17,19 +15,32 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
+    public static enum editLibraryBooksChoices {
+        ADD_BOOK,
+        ADD_LIST_OF_BOOKS,
+        REMOVE_BOOK,
+        GO_BACK,
+        DEFAULT
+    }
     public static enum userSwitchChoices {
+
+        ENTER_LIBRARY,
+        SEE_MY_BORROWED_BOOKS,
+        QUIT,
+        DEFAULT
+
+    }
+    public static enum userEnterLibraryChoices{
         SHOW_ALL_BOOKS,
         SHOW_AVAILIBLE_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,
-        SEE_MY_BORROWED_BOOKS,
         RETURN_THE_BORROWED_BOOK,
         SORT_BY_TITLE,
         SORT_BY_AUTHOR,
-        QUIT,
+        GO_BACK,
         DEFAULT
-
     }
     public static enum loginOrRegister{
         LOGIN,
@@ -37,5 +48,4 @@ public class UiChoicesEnums {
         TERMINATE_PROGRAM,
         DEFAULT
     }
-
 }

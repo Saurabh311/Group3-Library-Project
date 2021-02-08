@@ -27,14 +27,14 @@ public class Ui {
 
             for (UiChoicesEnums.loginOrRegister choices : UiChoicesEnums.loginOrRegister.values()) {
                 if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
                 }
 
             }
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.loginOrRegister.values()[Integer.parseInt(choiceInput)];
+                choice = UiChoicesEnums.loginOrRegister.values()[(Integer.parseInt(choiceInput) -1)];
             }catch (Exception ignored){ }
 
 
@@ -50,7 +50,6 @@ public class Ui {
                     break;
 
                 case REGISTER:
-
                     program.loginOrRegister.register();
                     break;
 
@@ -75,7 +74,6 @@ public class Ui {
 
     }
 
-
     public void userUi(User user) {
         program.library.sendReminder(user);
 
@@ -89,7 +87,7 @@ public class Ui {
             for (UiChoicesEnums.userSwitchChoices choices : UiChoicesEnums.userSwitchChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
                 }
 
             }
@@ -97,7 +95,52 @@ public class Ui {
 
             try{
 
-                choice = UiChoicesEnums.userSwitchChoices.values()[Integer.parseInt(choiceInput)];
+                choice = UiChoicesEnums.userSwitchChoices.values()[(Integer.parseInt(choiceInput) -1)];
+
+            }catch (Exception ignored){ }
+
+
+            switch (choice) {
+                case ENTER_LIBRARY:
+                    userEnterLibraryUi(user);
+                    break;
+
+
+                case SEE_MY_BORROWED_BOOKS:
+                    user.printBorrowedBooks();
+                    break;
+
+                case QUIT:
+                    break;
+
+                default:
+                    System.out.println("Wrong input");
+            }
+        }
+    }
+    public void userEnterLibraryUi(User user) {
+
+
+        String choiceInput;
+
+        UiChoicesEnums.userEnterLibraryChoices choice = UiChoicesEnums.userEnterLibraryChoices.DEFAULT;
+
+        while (!choice.toString().equals("GO_BACK")) {
+
+
+            for (UiChoicesEnums.userEnterLibraryChoices choices : UiChoicesEnums.userEnterLibraryChoices.values()) {
+
+                if (!choices.toString().equals("DEFAULT")){
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                }
+
+            }
+            choiceInput = input.nextLine();
+
+            try{
+
+                choice = UiChoicesEnums.userEnterLibraryChoices.values()[(Integer.parseInt(choiceInput) -1)];
+
             }catch (Exception ignored){ }
 
 
@@ -125,9 +168,7 @@ public class Ui {
                     program.library.borrowBook(user);
                     break;
 
-                case SEE_MY_BORROWED_BOOKS:
-                    user.printBorrowedBooks();
-                    break;
+
 
 
                 case RETURN_THE_BORROWED_BOOK:
@@ -141,9 +182,9 @@ public class Ui {
                 case SORT_BY_AUTHOR:
                     program.library.sortByAuthor();
                     break;
+                case GO_BACK:
 
-                case QUIT:
-                    break;
+
                 default:
                     System.out.println("Wrong input");
             }
@@ -162,7 +203,7 @@ public class Ui {
             for (UiChoicesEnums.librarianSwitchChoices choices : UiChoicesEnums.librarianSwitchChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal(), choices);
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
                 }
 
             }
@@ -170,7 +211,7 @@ public class Ui {
             choiceInput = input.nextLine();
             try{
 
-                choice = UiChoicesEnums.librarianSwitchChoices.values()[Integer.parseInt(choiceInput)];
+                choice = UiChoicesEnums.librarianSwitchChoices.values()[(Integer.parseInt(choiceInput) -1)];
             }catch (Exception ignored){ }
 
             switch (choice) {
@@ -187,17 +228,8 @@ public class Ui {
                     System.out.println("Write the name of author ");
                     program.library.searchByAuthor(input.nextLine());
                     break;
-
-                case ADD_BOOK:
-                    program.library.addBook();
-                    break;
-                case ADD_LIST_OF_BOOKS:
-                    program.library.saveListOfBooks();
-                    break;
-
-                case REMOVE_BOOK:
-                    System.out.println("Please insert the title of Book");
-                    program.library.removeBookByTitle(input.nextLine());
+                case EDIT_LIBRARY_BOOKS:
+                    librarianEditLibraryBooks();
                     break;
 
                 case SEE_ALL_BOOKS_OF_USER:
@@ -218,6 +250,50 @@ public class Ui {
                     break;
 
                 case QUIT:
+                    break;
+
+                default:
+                    System.out.println("Wrong input");
+            }
+        }
+    }
+    public void librarianEditLibraryBooks(){
+        String choiceInput;
+        UiChoicesEnums.editLibraryBooksChoices choice = UiChoicesEnums.editLibraryBooksChoices.DEFAULT;
+
+        while (!choice.toString().equals("GO_BACK")) {
+
+
+            for (UiChoicesEnums.editLibraryBooksChoices choices : UiChoicesEnums.editLibraryBooksChoices.values()) {
+
+                if (!choices.toString().equals("DEFAULT")){
+                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                }
+
+            }
+
+            choiceInput = input.nextLine();
+            try{
+
+                choice = UiChoicesEnums.editLibraryBooksChoices.values()[(Integer.parseInt(choiceInput) -1)];
+            }catch (Exception ignored){ }
+
+            switch (choice) {
+
+
+                case ADD_BOOK:
+                    program.library.addBook();
+                    break;
+                case ADD_LIST_OF_BOOKS:
+                    program.library.saveListOfBooks();
+                    break;
+
+                case REMOVE_BOOK:
+                    System.out.println("Please insert the title of Book");
+                    program.library.removeBookByTitle(input.nextLine());
+                    break;
+
+                case GO_BACK:
                     break;
 
                 default:

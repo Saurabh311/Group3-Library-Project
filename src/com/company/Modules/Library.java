@@ -158,7 +158,7 @@ public class Library {
             searchByTitle.stream().forEach(book -> System.out.println(book.toString()));
         }
         else {
-            System.out.println("The book isn't in the library.n\"");
+            System.out.println("The book isn't in the library.\n");
         }
     }
 
@@ -170,7 +170,7 @@ public class Library {
             searchByAuthor.stream().forEach(book -> System.out.println(book.toString()));
         }
         else {
-            System.out.println("The book isn't in the library.n\"");
+            System.out.println("The book isn't in the library.\n");
         }
     }
 
@@ -214,10 +214,10 @@ public class Library {
     public void addPerson(Object person) {
         if (person instanceof User) {
             users.add((User) person);
-            System.out.println("[ Added user ]");
+            System.out.println(GREEN + "\n [ Added user ] \n" + RESET);
         } else {
             librarians.add((Librarian) person);
-            System.out.println("[ Added librarian ]");
+            System.out.println(GREEN + "\n [ Added librarian ] \n" + RESET);
         }
 
     }
@@ -255,7 +255,7 @@ public class Library {
                 .collect(Collectors.toList());
         if (!(removeBook == null)) {
             bookList.remove(removeBook.get(0));
-            System.out.println("[ Book removed ] \n");
+            System.out.println(GREEN +"\n [ Book removed ] \n" + RESET);
         }
         else{
             System.out.println("The book isn't in the library.\n");
@@ -277,7 +277,7 @@ public class Library {
 
         user.getMyBorrowedBooks().stream().
                 filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
-                forEach(book -> System.out.printf(RED + "Return overdue: %s\n", book.getTitle() + RESET));
+                forEach(book -> System.out.printf(RED + "\n Return overdue: %s \n", book.getTitle() + RESET));
 
     }
     public void saveListOfBooks(){
@@ -308,7 +308,7 @@ public class Library {
 
 
             }
-            System.out.printf("[ (%d) books added ]%n",ammountOfBooksAdded);
+            System.out.printf(GREEN + "%n [ (%d) books added ] %n" + RESET ,ammountOfBooksAdded);
 
         }catch (Exception e){
             System.out.println("File not found.");

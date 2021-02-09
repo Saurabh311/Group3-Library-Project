@@ -3,21 +3,21 @@ package com.company.View.Menu;
 import com.company.Controller.Program;
 import com.company.Modules.Person;
 
-public class Uidata {
-    private static Uidata uidata = null;
+public class UIdata {
+    private static UIdata uidata = null;
     private Person account;
-    private Program program = new Program();
+    private final Program program = new Program();
 
-    private Uidata(){
+    private UIdata(){
 
     }
     public Program getProgram() {
         return program;
     }
 
-    public static Uidata getInstance(){
+    public static UIdata getInstance(){
         if (uidata == null){
-            uidata = new Uidata();
+            uidata = new UIdata();
 
         }
         return uidata;

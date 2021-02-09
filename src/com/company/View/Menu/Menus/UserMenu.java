@@ -2,12 +2,12 @@ package com.company.View.Menu.Menus;
 
 import com.company.Modules.User;
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
 
 public class UserMenu {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
     EnterLibraryMenu enterLibraryMenu = new EnterLibraryMenu();
 
     public UserMenu() {
@@ -39,21 +39,13 @@ public class UserMenu {
 
 
         switch (choice) {
-            case ENTER_LIBRARY:
-                enterLibraryMenu.enterLibrary();
-                break;
+            case ENTER_LIBRARY -> enterLibraryMenu.enterLibrary();
 
+            case SEE_MY_BORROWED_BOOKS -> ((User) data.getAccount()).printBorrowedBooks();
 
-            case SEE_MY_BORROWED_BOOKS:
+            case QUIT -> {}
 
-                ((User) data.getAccount()).printBorrowedBooks();
-                break;
-
-            case QUIT:
-                break;
-
-            default:
-                System.out.println("Wrong input");
+            default -> System.out.println("Wrong input");
         }
     }
     }

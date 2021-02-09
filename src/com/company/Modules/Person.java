@@ -1,5 +1,6 @@
 package com.company.Modules;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Person implements Serializable {
@@ -7,6 +8,7 @@ public class Person implements Serializable {
 
     protected String username;
     protected String password;
+    @Serial
     private static final long serialVersionUID = -3065225084601467319L;
 
 

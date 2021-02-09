@@ -23,7 +23,7 @@ public class LoginOrRegister {
     public Person login() {
         String username;
         String password;
-        Person account = null;
+        Person account;
 
 
         System.out.print("Username:");
@@ -35,7 +35,7 @@ public class LoginOrRegister {
         account = loginValidator(username, password);
 
         if (account != null) {
-            System.out.println(GREEN + "\n[ Login succesful ]\n" + RESET);
+            System.out.println(GREEN + "\n[ Login successful ]\n" + RESET);
 
         } else {
             System.out.println(RED + "\n[ Login failed ]\n" + RESET);
@@ -55,25 +55,25 @@ public class LoginOrRegister {
 
             System.out.print("Choose your username:");
             newUsername = input.next();
-            if(loginOrRegisterValidator.usernameValidation(newUsername)==true){
+            if(loginOrRegisterValidator.usernameValidation(newUsername)){
                 System.out.print("Choose your password:");
                 newPassWord = input.next();
-                if (loginOrRegisterValidator.passwordValidation(newPassWord)==true){
+                if (loginOrRegisterValidator.passwordValidation(newPassWord)){
                     String choice;
                     //int choiceToInt = 0;
 
                     System.out.println("[1] Register as a user\n[2] Register as a librarian");
                     choice = input.next();
-                    if (choice.matches("1|2")){
+                    if (choice.matches("[12]")){
 
-                        if (Integer.valueOf(choice) ==1){
+                        if (Integer.parseInt(choice) ==1){
 
 
                             library.addPerson(Factory.buildPerson("user")
                                     .username(newUsername).password(newPassWord));
                             sentinel = true;
                         }
-                        if (Integer.valueOf(choice) ==2){
+                        if (Integer.parseInt(choice) ==2){
 
                             //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
                             library.addPerson(Factory.buildPerson("librarian")

@@ -1,8 +1,8 @@
 package com.company.Modules;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 public class Book implements Serializable {
     String title;
@@ -12,8 +12,12 @@ public class Book implements Serializable {
     int year;
     LocalDate borrowDate;
     LocalDate returnDate;
+    @Serial
     private static final long serialVersionUID = 3998998041799324022L;
-
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RESET = "\u001B[0m";
+    //----
     public Book() {
 
     }
@@ -42,10 +46,6 @@ public class Book implements Serializable {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -54,20 +54,8 @@ public class Book implements Serializable {
         return year;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public String getDescription() {
+        return description;
     }
 
     public String getCurrentLender() {
@@ -81,12 +69,9 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", year=" + year +
-                '}';
+        return  YELLOW + "Title: '" + RESET + title + '\'' +
+                YELLOW + ", Author: '" + RESET + author + '\'' +
+                YELLOW + ", Year: '" + RESET + year;
     }
 
     public void setBorrowDate(LocalDate borrowDate) {

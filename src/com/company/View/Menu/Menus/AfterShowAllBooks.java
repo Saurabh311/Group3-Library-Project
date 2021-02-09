@@ -1,11 +1,12 @@
 package com.company.View.Menu.Menus;
-import com.company.Modules.User;
+
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
+
 public class AfterShowAllBooks {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
 
     public AfterShowAllBooks() {
 
@@ -39,19 +40,13 @@ public class AfterShowAllBooks {
 
             switch (choice) {
 
-                case SORT_BY_TITLE:
-                    data.getProgram().getLibrary().sortByTitle();
-                    break;
+                case SORT_BY_TITLE -> data.getProgram().getLibrary().sortByTitle();
 
-                case SORT_BY_AUTHOR:
-                    data.getProgram().getLibrary().sortByAuthor();
-                    break;
+                case SORT_BY_AUTHOR -> data.getProgram().getLibrary().sortByAuthor();
 
-                case GO_BACK:
-                    break;
+                case GO_BACK -> {}
 
-                default:
-                    System.out.println("Wrong input");
+                default -> System.out.println("Wrong input");
 
             }
         }

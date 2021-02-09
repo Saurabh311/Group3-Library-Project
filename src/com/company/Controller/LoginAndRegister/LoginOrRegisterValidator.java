@@ -22,12 +22,13 @@ public class LoginOrRegisterValidator {
         List<Person> persons = library.getAllPersonsToList();
 
         for (Person user : persons) {
-            if(username.equals(user.getUsername())){
+            if (username.equals(user.getUsername())) {
 
                 usernameValidated = false;
+                break;
             }
         }
-        if(usernameValidated == true){
+        if(usernameValidated){
             String validateUsernameForm = "[a-zA-Z0-9]{5,20}";
             if (!username.matches(validateUsernameForm)){
                 usernameValidated = false;

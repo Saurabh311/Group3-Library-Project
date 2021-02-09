@@ -21,7 +21,7 @@ public abstract class HandleData {
         try (InputStream input = new FileInputStream(filename);
 
              ObjectInputStream objectInputStream = new ObjectInputStream(input)) {
-            object = (Object) objectInputStream.readObject();
+            object = objectInputStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

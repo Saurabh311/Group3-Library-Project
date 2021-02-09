@@ -1,10 +1,10 @@
 package com.company.View.Menu.Menus;
 
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 import java.util.Scanner;
 public class EditLibraryBooksMenu {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
 
     public EditLibraryBooksMenu() {
     }
@@ -34,23 +34,17 @@ public class EditLibraryBooksMenu {
             switch (choice) {
 
 
-                case ADD_BOOK:
-                    data.getProgram().getLibrary().addBook();
-                    break;
-                case ADD_LIST_OF_BOOKS:
-                    data.getProgram().getLibrary().saveListOfBooks();
-                    break;
+                case ADD_BOOK -> data.getProgram().getLibrary().addBook();
 
-                case REMOVE_BOOK:
-                    System.out.println("Input book title: ");
-                    data.getProgram().getLibrary().removeBookByTitle(input.nextLine());
-                    break;
+                case ADD_LIST_OF_BOOKS -> data.getProgram().getLibrary().saveListOfBooks();
 
-                case GO_BACK:
-                    break;
+                case REMOVE_BOOK ->
+                        { System.out.println("Input book title: ");
+                        data.getProgram().getLibrary().removeBookByTitle(input.nextLine()); }
 
-                default:
-                    System.out.println("Wrong input");
+                case GO_BACK -> {}
+
+                default -> System.out.println("Wrong input");
             }
         }
 

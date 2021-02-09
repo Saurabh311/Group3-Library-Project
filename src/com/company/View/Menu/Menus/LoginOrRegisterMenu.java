@@ -3,14 +3,14 @@ package com.company.View.Menu.Menus;
 import com.company.Modules.Person;
 import com.company.Modules.User;
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
 
 public class LoginOrRegisterMenu {
     UserMenu userMenu = new UserMenu();
     LibrarianMenu librarianMenu = new LibrarianMenu();
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
     Scanner input  = new Scanner(System.in);
 
     public void loginOrRegisterUi() { // had problem with an infinite loop in our try catch when inputing a character
@@ -35,28 +35,17 @@ public class LoginOrRegisterMenu {
             }catch (Exception ignored){ }
 
 
-
             switch (choice) {
-
-                case LOGIN:
-
-                    Person account =  data.getProgram().getLoginOrRegister().login();
+                case LOGIN -> {
+                    Person account = data.getProgram().getLoginOrRegister().login();
                     if (account != null) {
                         data.setAccount(account);
                         menuChoice(data.getAccount());
                     }
-                    break;
-
-                case REGISTER:
-                    data.getProgram().getLoginOrRegister().register();
-                    break;
-
-                case TERMINATE_PROGRAM:
-                    data.getProgram().saveData();
-                    break;
-
-                default:
-                    System.out.println("Wrong input");
+                }
+                case REGISTER -> data.getProgram().getLoginOrRegister().register();
+                case TERMINATE_PROGRAM -> data.getProgram().saveData();
+                default -> System.out.println("Wrong input");
             }
         }
 

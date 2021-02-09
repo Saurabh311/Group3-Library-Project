@@ -1,11 +1,11 @@
 package com.company.View.Menu.Menus;
 import com.company.Modules.User;
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
 public class EnterLibraryMenu {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
     AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
     public EnterLibraryMenu() {
@@ -40,38 +40,29 @@ public class EnterLibraryMenu {
 
             switch (choice) {
 
-                case SHOW_ALL_BOOKS:
-                    data.getProgram().getLibrary().showAllBook();
-                    afterShowAllBooks.afterShowAllBooks();
-                    break;
+                case SHOW_ALL_BOOKS ->
+                        { data.getProgram().getLibrary().showAllBook();
+                        afterShowAllBooks.afterShowAllBooks(); }
 
-                case SHOW_AVAILIBLE_BOOKS:
-                    data.getProgram().getLibrary().getAvailableBooks().forEach(book -> System.out.println(book.getTitle()));
-                    break;
+                case SHOW_AVAILABLE_BOOKS ->
+                        {data.getProgram().getLibrary().getAvailableBooks().forEach(book -> System.out.println(book.toString()));
+                            System.out.println(" ");}
 
-                case SEARCH_BY_TITLE:
-                    System.out.println("Enter the title of the book: ");
-                    data.getProgram().getLibrary().searchByTitle(input.nextLine());
-                    break;
+                case SEARCH_BY_TITLE ->
+                        {System.out.println("Enter the title of the book: ");
+                        data.getProgram().getLibrary().searchByTitle(input.nextLine()); }
 
-                case SEARCH_BY_AUTHOR:
-                    System.out.println("Enter the name of the author: ");
-                    data.getProgram().getLibrary().searchByAuthor(input.nextLine());
-                    break;
+                case SEARCH_BY_AUTHOR ->
+                        { System.out.println("Enter the name of the author: ");
+                        data.getProgram().getLibrary().searchByAuthor(input.nextLine()); }
 
-                case BORROW_THE_BOOK:
-                    data.getProgram().getLibrary().borrowBook((User) data.getAccount());
-                    break;
+                case BORROW_THE_BOOK -> data.getProgram().getLibrary().borrowBook((User) data.getAccount());
 
-                case RETURN_THE_BORROWED_BOOK:
-                    data.getProgram().getLibrary().returnBook((User) data.getAccount());
-                    break;
+                case RETURN_THE_BORROWED_BOOK -> data.getProgram().getLibrary().returnBook((User) data.getAccount());
 
-                case GO_BACK:
-                    break;
+                case GO_BACK -> {}
 
-                default:
-                    System.out.println("Wrong input");
+                default -> System.out.println("Wrong input");
 
             }
         }

@@ -119,7 +119,7 @@ public class Library {
                 .filter(book -> title.equalsIgnoreCase(book.getTitle()))
                 .collect(Collectors.toList());
         if (returnToBook.size() > 0){
-            changeFromBorrowedToAvailible(returnToBook.get(0));
+            changeFromBorrowedToAvailable(returnToBook.get(0));
             returnToBook.get(0).setCurrentLender(null);
             user.removeFromBorrowedBooks(returnToBook.get(0));
         }
@@ -128,7 +128,7 @@ public class Library {
         }
 
     }
-    public void changeFromBorrowedToAvailible(Book book){
+    public void changeFromBorrowedToAvailable(Book book){
         for (int i =0; borrowedBooks.size()>i; i++) {
             if (book.getTitle().equals(borrowedBooks.get(i).getTitle())) {
                 borrowedBooks.remove(i);
@@ -155,8 +155,9 @@ public class Library {
                 .filter(book -> book.getTitle().toUpperCase().contains(title.toUpperCase()))
                 .collect(Collectors.toList());
         if (searchByTitle.size() > 0){
-            searchByTitle.stream().forEach(book -> System.out.println(book.toString()));
-        }
+            searchByTitle.forEach(book -> System.out.printf(
+                    "Title: %s Author: %s Description: %s Year: %d%n",book.getTitle(), book.getAuthor(),book.getDescription(), book.getYear()));
+            System.out.println("-----------------------------------------");}
         else {
             System.out.println("The book isn't in the library.\n");
         }
@@ -167,8 +168,9 @@ public class Library {
                 .filter(book -> book.getAuthor().toUpperCase().contains(author.toUpperCase()))
                 .collect(Collectors.toList());
         if (searchByAuthor.size() > 0){
-            searchByAuthor.stream().forEach(book -> System.out.println(book.toString()));
-        }
+            searchByAuthor.forEach(book -> System.out.printf(
+                    "Title: %s Author: %s Description: %s Year: %d%n",book.getTitle(), book.getAuthor(),book.getDescription(), book.getYear()));
+            System.out.println("-----------------------------------------");}
         else {
             System.out.println("The book isn't in the library.\n");
         }
@@ -224,7 +226,7 @@ public class Library {
 
     public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
-        Collections.sort(bookList, compareByTitle);
+        bookList.sort(compareByTitle);
         for (Book book : bookList) {
             System.out.println(book.toString());
         }
@@ -232,7 +234,7 @@ public class Library {
 
     public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
-        Collections.sort(bookList, compareByAuthor);
+        bookList.sort(compareByAuthor);
         for (Book book : bookList) {
             System.out.println(book.toString());
         }
@@ -241,8 +243,8 @@ public class Library {
 
     public void showAllBook(){
         if (bookList.size() > 0) {
-            bookList.stream()
-                    .forEach(book -> System.out.println(book.toString()));
+            bookList.forEach(book -> System.out.println(book.toString()));
+            System.out.println(" ");
         }
         else{
             System.out.println("There are no books in the library.\n");
@@ -253,7 +255,7 @@ public class Library {
         List <Book> removeBook = bookList.stream()
                 .filter(book -> book.title.equalsIgnoreCase(title))
                 .collect(Collectors.toList());
-        if (!(removeBook == null)) {
+        if (removeBook.size() > 0) {
             bookList.remove(removeBook.get(0));
             System.out.println(GREEN +"\n [ Book removed ] \n" + RESET);
         }
@@ -277,7 +279,8 @@ public class Library {
 
         user.getMyBorrowedBooks().stream().
                 filter(book -> book.getReturnDate().isBefore(LocalDate.now())).
-                forEach(book -> System.out.printf(RED + "\n Return overdue: %s \n", book.getTitle() + RESET));
+                forEach(book -> System.out.printf(RED + "Return overdue: %s%n", book.getTitle() + RESET));
+                System.out.println(" ");
 
     }
     public void saveListOfBooks(){
@@ -285,7 +288,7 @@ public class Library {
 
 
         try {
-            int ammountOfBooksAdded = 0;
+            int amountOfBooksAdded = 0;
             BooksSplit = Files.readAllLines(Paths.get("BooksToAdd.txt"));
 
             for (String bookLine: BooksSplit){
@@ -302,13 +305,13 @@ public class Library {
                 if (temparray.size()<=0){
                     bookList.add(bookToAdd);
                     availableBooks.add(bookToAdd);
-                    ammountOfBooksAdded++;
+                    amountOfBooksAdded++;
 
                 }
 
 
             }
-            System.out.printf(GREEN + "%n [ (%d) books added ] %n" + RESET ,ammountOfBooksAdded);
+            System.out.printf(GREEN + "%n [ (%d) books added ] %n" + RESET ,amountOfBooksAdded);
 
         }catch (Exception e){
             System.out.println("File not found.");

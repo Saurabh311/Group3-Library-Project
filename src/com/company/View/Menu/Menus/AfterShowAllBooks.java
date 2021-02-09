@@ -24,7 +24,7 @@ public class AfterShowAllBooks {
             for (UiChoicesEnums.afterShowAllBook choices : UiChoicesEnums.afterShowAllBook.values()) {
 
                 if (!choices.toString().equals("DEFAULT")) {
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal() + 1, choices);
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal() + 1, choices);
                 }
 
             }

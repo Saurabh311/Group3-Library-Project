@@ -30,7 +30,7 @@ public class User extends Person implements Serializable {
 
     public void printBorrowedBooks(){
         if (myBorrowedBooks.size()>0){
-            myBorrowedBooks.forEach(book -> System.out.printf("%s Return date:%s%n",book.getTitle(),book.getBorrowDate()));
+            myBorrowedBooks.forEach(book -> System.out.printf("%s Return date:%s   Pending days to return: %s%n",book.getTitle(),book.getReturnDate(), book.pendingReturndays(book)));
         }else {
             System.out.println("You haven't borrowed any books yet.");
 

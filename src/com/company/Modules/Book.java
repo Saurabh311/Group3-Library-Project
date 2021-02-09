@@ -4,6 +4,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class Book implements Serializable {
     String title;
     String description;
@@ -89,5 +91,12 @@ public class Book implements Serializable {
 
     public LocalDate getReturnDate() {
         return returnDate;
+    }
+
+    public long pendingReturndays(Book book){
+        LocalDate date = LocalDate .now ();
+        long pendingDays = DAYS.between(date, book.getReturnDate());
+        return pendingDays;
+
     }
 }

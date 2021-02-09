@@ -150,25 +150,28 @@ public class Library {
         borrowedBooks.add(book);
     }
 
-    public boolean searchByTitle(String title) {
-        for (Book book : bookList) {
-            if (book.title.equalsIgnoreCase(title)) {
-                System.out.println(book.toString());
-                return true;
-            }
+    public void searchByTitle(String title) {
+        List<Book> searchByTitle = bookList.stream()
+                .filter(book -> book.getTitle().toUpperCase().contains(title.toUpperCase()))
+                .collect(Collectors.toList());
+        if (searchByTitle.size() > 0){
+            searchByTitle.stream().forEach(book -> System.out.println(book.toString()));
         }
-        System.out.println("The book isn't in the library.\n");
-        return false;
+        else {
+            System.out.println("The book isn't in the library.n\"");
+        }
     }
 
     public void searchByAuthor(String author) {
-        for (Book book : bookList) {
-            if (book.author.equalsIgnoreCase(author)) {
-                System.out.println(book.toString());
-                return;
-            }
+        List<Book> searchByAuthor = bookList.stream()
+                .filter(book -> book.getAuthor().toUpperCase().contains(author.toUpperCase()))
+                .collect(Collectors.toList());
+        if (searchByAuthor.size() > 0){
+            searchByAuthor.stream().forEach(book -> System.out.println(book.toString()));
         }
-        System.out.println("The book isn't in the library.\n");
+        else {
+            System.out.println("The book isn't in the library.n\"");
+        }
     }
 
     public void addBook() {
@@ -237,7 +240,7 @@ public class Library {
 
 
     public void showAllBook(){
-        if (!(bookList ==null)) {
+        if (bookList.size() > 0) {
             bookList.stream()
                     .forEach(book -> System.out.println(book.toString()));
         }

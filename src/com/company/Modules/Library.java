@@ -229,6 +229,7 @@ public class Library {
         bookList.sort(compareByTitle);
         for (Book book : bookList) {
             System.out.println(book.toString());
+            System.out.println(" ");
         }
     }
 
@@ -237,6 +238,7 @@ public class Library {
         bookList.sort(compareByAuthor);
         for (Book book : bookList) {
             System.out.println(book.toString());
+            System.out.println(" ");
         }
     }
 

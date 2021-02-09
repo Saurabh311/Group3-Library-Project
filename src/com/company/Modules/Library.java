@@ -21,6 +21,7 @@ public class Library {
     Scanner input = new Scanner(System.in);
 
     //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
     public static final String RESET = "\u001B[0m";
@@ -156,8 +157,10 @@ public class Library {
                 .collect(Collectors.toList());
         if (searchByTitle.size() > 0){
             searchByTitle.forEach(book -> System.out.printf(
-                    "Title: %s Author: %s Description: %s Year: %d%n",book.getTitle(), book.getAuthor(),book.getDescription(), book.getYear()));
-            System.out.println("-----------------------------------------");}
+                    YELLOW+"Title: "+RESET + "%s " + YELLOW+"Author: "+RESET + "%s " +
+                            YELLOW+"Year: "+RESET + "%d " + YELLOW+"Description: "+RESET + "%s%n",
+                    book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription()));
+            System.out.println(" ");}
         else {
             System.out.println("The book isn't in the library.\n");
         }
@@ -169,8 +172,10 @@ public class Library {
                 .collect(Collectors.toList());
         if (searchByAuthor.size() > 0){
             searchByAuthor.forEach(book -> System.out.printf(
-                    "Title: %s Author: %s Description: %s Year: %d%n",book.getTitle(), book.getAuthor(),book.getDescription(), book.getYear()));
-            System.out.println("-----------------------------------------");}
+                    YELLOW+"Title: "+RESET + "%s " + YELLOW+"Author: "+RESET + "%s " +
+                            YELLOW+"Year: "+RESET + "%d " + YELLOW+"Description: "+RESET + "%s%n",
+                    book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription()));
+            System.out.println(" ");}
         else {
             System.out.println("The book isn't in the library.\n");
         }

@@ -183,31 +183,43 @@ public class Library {
     }
 
     public void addBook() {
+
         System.out.println("Input book title:\n");
         String title = input.nextLine();
 
-        System.out.println("Input book description:\n");
-        String description = input.nextLine();
 
-        System.out.println("Input book author:\n");
-        String author = input.nextLine();
+        List<Book> checkExisting = bookList
+                .stream()
+                .filter(existingBook -> existingBook.getTitle().equals(title) )
+                .collect(Collectors.toList());
+        if (checkExisting.size() <=0){
+            System.out.println("Input book description:\n");
+            String description = input.nextLine();
 
-        System.out.println("Input book release year:\n");
-        boolean intInput = true;
-        while (intInput) {
-            String userInputYear = input.nextLine();
+            System.out.println("Input book author:\n");
+            String author = input.nextLine();
 
-            try {
-                int year = Integer.parseInt(userInputYear);
-                intInput = false;
-                Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
-                bookList.add(book);////using factory for book
-                availableBooks.add(book);
-                System.out.println("[ Book added ]\n");
-            } catch (NumberFormatException e) {
-                System.out.println("Input book release year using numbers.\n");
+            System.out.println("Input book release year:\n");
+            boolean intInput = true;
+            while (intInput) {
+                String userInputYear = input.nextLine();
+
+                try {
+                    int year = Integer.parseInt(userInputYear);
+                    intInput = false;
+                    Book book = Factory.buildBook().title(title).description(description).author(author).year(year);
+                    bookList.add(book);////using factory for book
+                    availableBooks.add(book);
+                    System.out.println("[ Book added ]\n");
+                } catch (NumberFormatException e) {
+                    System.out.println("Input book release year using numbers.\n");
+                }
             }
+        }else {
+            System.out.println("book already exists");
         }
+
+
     }
 
 

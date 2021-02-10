@@ -6,7 +6,7 @@ import com.company.Modules.Person;
 public class UIdata {
     private static UIdata uidata = null;
     private Person account;
-    private final Program program = new Program();
+    private Program program = new Program();
 
     private UIdata(){
 
@@ -22,9 +22,11 @@ public class UIdata {
         }
         return uidata;
     }
-    public void generateProgramAndLibraryData(){
-        program.buildProgram();
+    public UIdata setProgram (Program program){
+        this.program = program;
+        return this;
     }
+
     public Person getAccount() {
         return account;
     }

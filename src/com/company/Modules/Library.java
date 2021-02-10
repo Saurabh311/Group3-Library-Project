@@ -106,6 +106,7 @@ public class Library {
             user.addToBorrowedBooks(bookToBorrow.get(0));
 
             bookToBorrow.get(0).setBorrowDate(LocalDate.now());
+            bookToBorrow.get(0).setReturnDate();
             System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
             System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
         } else {

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.company.Modules.Library.RESET;
+
 public class User extends Person implements Serializable {
     //  List<Object> borrowedBooks = ArrayList;
 
@@ -13,6 +15,9 @@ public class User extends Person implements Serializable {
     List<Book> myBorrowedBooks = new ArrayList();
 
     public User() { }
+
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
 
     public List<Book> getMyBorrowedBooks() {
         return myBorrowedBooks;
@@ -30,7 +35,8 @@ public class User extends Person implements Serializable {
 
     public void printBorrowedBooks(){
         if (myBorrowedBooks.size()>0){
-            myBorrowedBooks.forEach(book -> System.out.printf("%s Return date:%s%n",book.getTitle(),book.getBorrowDate()));
+            myBorrowedBooks.forEach(book -> System.out.printf(YELLOW+"Title: "+RESET +"%s  " + YELLOW+ "Return date: "+ RESET+ "%s  " + YELLOW+ "Pending days to return: "
+                    +RESET +"%s%n",book.getTitle(),book.getReturnDate(), book.pendingReturndays(book)));
         }else {
             System.out.println("You haven't borrowed any books yet.");
 

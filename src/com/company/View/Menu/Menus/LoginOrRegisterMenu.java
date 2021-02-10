@@ -13,6 +13,13 @@ public class LoginOrRegisterMenu {
     UIdata data = UIdata.getInstance();
     Scanner input  = new Scanner(System.in);
 
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
+
     public void loginOrRegisterUi() { // had problem with an infinite loop in our try catch when inputing a character
         String choiceInput;
 
@@ -44,8 +51,10 @@ public class LoginOrRegisterMenu {
                     }
                 }
                 case REGISTER -> data.getProgram().getLoginOrRegister().register();
+
                 case TERMINATE_PROGRAM -> data.getProgram().saveData();
-                default -> System.out.println("Wrong input");
+
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
             }
         }
 

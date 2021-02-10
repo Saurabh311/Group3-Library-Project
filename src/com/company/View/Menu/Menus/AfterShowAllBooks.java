@@ -8,9 +8,14 @@ import java.util.Scanner;
 public class AfterShowAllBooks {
     UIdata data = UIdata.getInstance();
 
-    public AfterShowAllBooks() {
+    public AfterShowAllBooks() { }
 
-    }
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
     public void afterShowAllBooks() {
         Scanner input = new Scanner(System.in);
@@ -46,7 +51,7 @@ public class AfterShowAllBooks {
 
                 case GO_BACK -> {}
 
-                default -> System.out.println("Wrong input");
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
 
             }
         }

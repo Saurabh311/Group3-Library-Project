@@ -18,6 +18,10 @@ public class User extends Person implements Serializable {
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
     public List<Book> getMyBorrowedBooks() {
         return myBorrowedBooks;
@@ -38,11 +42,11 @@ public class User extends Person implements Serializable {
        if(index != -1){
 
            myBorrowedBooks.remove(index);
-           System.out.println("[ Book returned ]");
+           System.out.println(GREEN + "[ Book returned ]" + RESET);
            System.out.println(" ");
        }else {
-           System.out.println("book not found");
-
+           System.out.println(RED + "[ Book not found ]" + RESET);
+           System.out.println(" ");
        }
 
     }
@@ -51,9 +55,9 @@ public class User extends Person implements Serializable {
         if (myBorrowedBooks.size()>0){
             myBorrowedBooks.forEach(book -> System.out.printf(YELLOW+"Title: "+RESET +"%s  " + YELLOW+ "Return date: "+ RESET+ "%s  " + YELLOW+ "Pending days to return: "
                     +RESET +"%s%n",book.getTitle(),book.getReturnDate(), book.pendingReturndays(book)));
+            System.out.println(" ");
         }else {
             System.out.println("You haven't borrowed any books yet.");
-
         }
     }
 

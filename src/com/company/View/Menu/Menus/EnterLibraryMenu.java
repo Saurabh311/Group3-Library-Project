@@ -8,9 +8,14 @@ public class EnterLibraryMenu {
     UIdata data = UIdata.getInstance();
     AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
-    public EnterLibraryMenu() {
+    public EnterLibraryMenu() { }
 
-    }
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
     public void enterLibrary() {
         Scanner input = new Scanner(System.in);
@@ -62,7 +67,7 @@ public class EnterLibraryMenu {
 
                 case GO_BACK -> {}
 
-                default -> System.out.println("Wrong input");
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
 
             }
         }

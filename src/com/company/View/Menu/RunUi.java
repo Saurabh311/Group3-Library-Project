@@ -10,7 +10,7 @@ public class RunUi {
     }
 
     public void startUi(){
-        UIdata.getInstance().generateProgramAndLibraryData();
+
         loginOrRegisterMenu.loginOrRegisterUi();
     }
 }

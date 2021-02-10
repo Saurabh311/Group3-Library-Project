@@ -10,10 +10,15 @@ public class LibrarianMenu {
     EditLibraryBooksMenu editLibraryBooksMenu = new EditLibraryBooksMenu();
     AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
-    public LibrarianMenu(){
+    public LibrarianMenu(){ }
 
-    }
     public void librarianMenu(){
         Scanner input = new Scanner(System.in);
         String choiceInput;
@@ -63,7 +68,7 @@ public class LibrarianMenu {
 
                 case QUIT -> {}
 
-                default -> System.out.println("Wrong input");
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
             }
         }
 

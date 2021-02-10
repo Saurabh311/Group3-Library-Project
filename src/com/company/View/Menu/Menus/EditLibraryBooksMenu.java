@@ -6,8 +6,14 @@ import java.util.Scanner;
 public class EditLibraryBooksMenu {
     UIdata data = UIdata.getInstance();
 
-    public EditLibraryBooksMenu() {
-    }
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
+
+    public EditLibraryBooksMenu() { }
     public void editLibraryBooks() {
         Scanner input = new Scanner(System.in);
         String choiceInput;
@@ -44,7 +50,7 @@ public class EditLibraryBooksMenu {
 
                 case GO_BACK -> {}
 
-                default -> System.out.println("Wrong input");
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
             }
         }
 

@@ -260,12 +260,14 @@ public class Library {
     }
 
     public void removeBookByTitle(String title){
-        List <Book> removeBook = bookList.stream()
+        List <Book> removeBook = availableBooks.stream()
                 .filter(book -> book.title.equalsIgnoreCase(title))
                 .collect(Collectors.toList());
         if (removeBook.size() > 0) {
+            availableBooks.remove(removeBook.get(0));
             bookList.remove(removeBook.get(0));
             System.out.println(GREEN +"\n [ Book removed ] \n" + RESET);
+            System.out.println(" ");
         }
         else{
             System.out.println("The book isn't in the library.\n");

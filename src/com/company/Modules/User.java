@@ -29,8 +29,22 @@ public class User extends Person implements Serializable {
     }
 
     public void removeFromBorrowedBooks(Book book){
-        myBorrowedBooks.remove(book);
-        System.out.println("[ Book returned ]");
+        int index = -1;
+       for (Book borrowedBook:myBorrowedBooks){
+           if(book.getTitle().equals(borrowedBook.getTitle())){
+               index = myBorrowedBooks.indexOf(borrowedBook);
+           }
+       }
+       if(index != -1){
+
+           myBorrowedBooks.remove(index);
+           System.out.println("[ Book returned ]");
+           System.out.println(" ");
+       }else {
+           System.out.println("book not found");
+
+       }
+
     }
 
     public void printBorrowedBooks(){

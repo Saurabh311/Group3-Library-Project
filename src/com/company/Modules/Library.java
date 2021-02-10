@@ -106,6 +106,7 @@ public class Library {
             user.addToBorrowedBooks(bookToBorrow.get(0));
 
             bookToBorrow.get(0).setBorrowDate(LocalDate.now());
+            bookToBorrow.get(0).setReturnDate();
             System.out.println("Date borrowed: " + bookToBorrow.get(0).borrowDate);
             System.out.println("Return Date: " + bookToBorrow.get(0).returnDate);
         } else {
@@ -259,12 +260,14 @@ public class Library {
     }
 
     public void removeBookByTitle(String title){
-        List <Book> removeBook = bookList.stream()
+        List <Book> removeBook = availableBooks.stream()
                 .filter(book -> book.title.equalsIgnoreCase(title))
                 .collect(Collectors.toList());
         if (removeBook.size() > 0) {
+            availableBooks.remove(removeBook.get(0));
             bookList.remove(removeBook.get(0));
             System.out.println(GREEN +"\n [ Book removed ] \n" + RESET);
+            System.out.println(" ");
         }
         else{
             System.out.println("The book isn't in the library.\n");

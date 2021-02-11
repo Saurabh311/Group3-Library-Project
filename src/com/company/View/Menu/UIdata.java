@@ -8,21 +8,23 @@ public class UIdata {
     private Person account;
     private Program program = new Program();
 
-    private UIdata(){
+    private UIdata() {
 
     }
+
     public Program getProgram() {
         return program;
     }
 
-    public static UIdata getInstance(){
-        if (uidata == null){
+    public static UIdata getInstance() {
+        if (uidata == null) {
             uidata = new UIdata();
 
         }
         return uidata;
     }
-    public UIdata setProgram (Program program){
+
+    public UIdata setProgram(Program program) {
         this.program = program;
         return this;
     }

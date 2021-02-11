@@ -1,5 +1,6 @@
 package com.company.View.Menu.Menus;
 
+import com.company.Modules.Library.Library;
 import com.company.View.Menu.UiChoicesEnums;
 import com.company.View.Menu.UIdata;
 
@@ -7,8 +8,10 @@ import java.util.Scanner;
 
 public class AfterShowAllBooks {
     UIdata data = UIdata.getInstance();
+    Library library = data.getProgram().getLibrary();
 
-    public AfterShowAllBooks() { }
+    public AfterShowAllBooks() {
+    }
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
@@ -45,11 +48,12 @@ public class AfterShowAllBooks {
 
             switch (choice) {
 
-                case SORT_BY_TITLE -> data.getProgram().getLibrary().sortByTitle();
+                case SORT_BY_TITLE -> library.getPrints().sortByTitle();
 
-                case SORT_BY_AUTHOR -> data.getProgram().getLibrary().sortByAuthor();
+                case SORT_BY_AUTHOR -> library.getPrints().sortByAuthor();
 
-                case GO_BACK -> {}
+                case GO_BACK -> {
+                }
 
                 default -> System.out.println(RED + "[ Wrong input ]" + RESET);
 

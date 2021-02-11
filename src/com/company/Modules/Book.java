@@ -19,6 +19,7 @@ public class Book implements Serializable {
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
     public static final String RESET = "\u001B[0m";
+
     //----
     public Book() {
 
@@ -71,7 +72,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return  YELLOW + "Title: '" + RESET + title + '\'' +
+        return YELLOW + "Title: '" + RESET + title + '\'' +
                 YELLOW + ", Author: '" + RESET + author + '\'' +
                 YELLOW + ", Year: '" + RESET + year;
     }
@@ -93,8 +94,8 @@ public class Book implements Serializable {
         return returnDate;
     }
 
-    public long pendingReturndays(Book book){
-        LocalDate date = LocalDate .now ();
+    public long pendingReturndays(Book book) {
+        LocalDate date = LocalDate.now();
         long pendingDays = DAYS.between(date, book.getReturnDate());
         return pendingDays;
 

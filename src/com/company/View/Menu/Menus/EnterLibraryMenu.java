@@ -1,14 +1,20 @@
 package com.company.View.Menu.Menus;
+
+import com.company.Modules.Library.Library;
+import com.company.Modules.Library.UserMethods;
 import com.company.Modules.User;
 import com.company.View.Menu.UiChoicesEnums;
 import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
+
 public class EnterLibraryMenu {
     UIdata data = UIdata.getInstance();
     AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
+    Library library = data.getProgram().getLibrary();
 
-    public EnterLibraryMenu() { }
+    public EnterLibraryMenu() {
+    }
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
@@ -45,27 +51,32 @@ public class EnterLibraryMenu {
 
             switch (choice) {
 
-                case SHOW_ALL_BOOKS ->
-                        { data.getProgram().getLibrary().showAllBook();
-                        afterShowAllBooks.afterShowAllBooks(); }
+                case SHOW_ALL_BOOKS -> {
+                    library.getPrints().showAllBook();
+                    afterShowAllBooks.afterShowAllBooks();
+                }
 
-                case SHOW_AVAILABLE_BOOKS ->
-                        {data.getProgram().getLibrary().getAvailableBooks().forEach(book -> System.out.println(book.toString()));
-                            System.out.println(" ");}
+                case SHOW_AVAILABLE_BOOKS -> {
+                    data.getProgram().getLibrary().getAvailableBooks().forEach(book -> System.out.println(book.toString()));
+                    System.out.println(" ");
+                }
 
-                case SEARCH_BY_TITLE ->
-                        {System.out.println("Enter the title of the book: ");
-                        data.getProgram().getLibrary().searchByTitle(input.nextLine()); }
+                case SEARCH_BY_TITLE -> {
+                    System.out.println("Enter the title of the book: ");
+                    library.getPrints().searchByTitle(input.nextLine());
+                }
 
-                case SEARCH_BY_AUTHOR ->
-                        { System.out.println("Enter the name of the author: ");
-                        data.getProgram().getLibrary().searchByAuthor(input.nextLine()); }
+                case SEARCH_BY_AUTHOR -> {
+                    System.out.println("Enter the name of the author: ");
+                    library.getPrints().searchByAuthor(input.nextLine());
+                }
 
-                case BORROW_THE_BOOK -> data.getProgram().getLibrary().borrowBook((User) data.getAccount());
+                case BORROW_THE_BOOK -> library.getUserMethods().borrowBook((User) data.getAccount());
 
-                case RETURN_THE_BORROWED_BOOK -> data.getProgram().getLibrary().returnBook((User) data.getAccount());
+                case RETURN_THE_BORROWED_BOOK -> library.getUserMethods().returnBook((User) data.getAccount());
 
-                case GO_BACK -> {}
+                case GO_BACK -> {
+                }
 
                 default -> System.out.println(RED + "[ Wrong input ]" + RESET);
 

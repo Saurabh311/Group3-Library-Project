@@ -2,6 +2,7 @@ package com.company.Controller.LoginAndRegister;
 
 import com.company.Factory.Factory;
 import com.company.Modules.*;
+import com.company.Modules.Library.Library;
 
 import java.util.List;
 import java.util.Scanner;

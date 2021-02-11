@@ -15,6 +15,7 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
+
     public enum editLibraryBooksChoices {
         ADD_BOOK,
         ADD_LIST_OF_BOOKS,
@@ -22,6 +23,7 @@ public class UiChoicesEnums {
         GO_BACK,
         DEFAULT
     }
+
     public enum userSwitchChoices {
 
         ENTER_LIBRARY,
@@ -30,7 +32,8 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
-    public enum userEnterLibraryChoices{
+
+    public enum userEnterLibraryChoices {
         SHOW_ALL_BOOKS,
         SHOW_AVAILABLE_BOOKS,
         SEARCH_BY_TITLE,
@@ -40,14 +43,15 @@ public class UiChoicesEnums {
         GO_BACK,
         DEFAULT
     }
-    public enum loginOrRegister{
+
+    public enum loginOrRegister {
         LOGIN,
         REGISTER,
         TERMINATE_PROGRAM,
         DEFAULT
     }
 
-    public enum afterShowAllBook{
+    public enum afterShowAllBook {
         SORT_BY_TITLE,
         SORT_BY_AUTHOR,
         GO_BACK,

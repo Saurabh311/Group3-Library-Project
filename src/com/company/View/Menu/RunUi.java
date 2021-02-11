@@ -9,7 +9,7 @@ public class RunUi {
     public RunUi() {
     }
 
-    public void startUi(){
+    public void startUi() {
 
         loginOrRegisterMenu.loginOrRegisterUi();
     }

@@ -1,10 +1,14 @@
 package com.company.View.Menu.Menus;
 
+import com.company.Modules.Library.Library;
 import com.company.View.Menu.UiChoicesEnums;
 import com.company.View.Menu.UIdata;
+
 import java.util.Scanner;
+
 public class EditLibraryBooksMenu {
     UIdata data = UIdata.getInstance();
+    Library library = data.getProgram().getLibrary();
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
@@ -13,7 +17,9 @@ public class EditLibraryBooksMenu {
     public static final String RESET = "\u001B[0m";
     //----
 
-    public EditLibraryBooksMenu() { }
+    public EditLibraryBooksMenu() {
+    }
+
     public void editLibraryBooks() {
         Scanner input = new Scanner(System.in);
         String choiceInput;
@@ -40,15 +46,17 @@ public class EditLibraryBooksMenu {
             switch (choice) {
 
 
-                case ADD_BOOK -> data.getProgram().getLibrary().addBook();
+                case ADD_BOOK -> library.getLibrarianMethods().addBook();
 
-                case ADD_LIST_OF_BOOKS -> data.getProgram().getLibrary().saveListOfBooks();
+                case ADD_LIST_OF_BOOKS -> library.getLibrarianMethods().saveListOfBooks();
 
-                case REMOVE_BOOK ->
-                        { System.out.println("Input book title: ");
-                        data.getProgram().getLibrary().removeBookByTitle(input.nextLine()); }
+                case REMOVE_BOOK -> {
+                    System.out.println("Input book title: ");
+                    library.getLibrarianMethods().removeBookByTitle(input.nextLine());
+                }
 
-                case GO_BACK -> {}
+                case GO_BACK -> {
+                }
 
                 default -> System.out.println(RED + "[ Wrong input ]" + RESET);
             }

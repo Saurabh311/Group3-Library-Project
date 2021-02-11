@@ -12,7 +12,8 @@ public class Person implements Serializable {
     private static final long serialVersionUID = -3065225084601467319L;
 
 
-    public Person() { }
+    public Person() {
+    }
 
     public Person username(String username) {
         this.username = username;

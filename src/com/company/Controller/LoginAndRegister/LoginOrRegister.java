@@ -8,9 +8,13 @@ import java.util.Scanner;
 
 public class LoginOrRegister {
     Scanner input = new Scanner(System.in);
-
-
     Library library;
+
+    //----PRINTS
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
     public LoginOrRegister(Library library) {
         this.library = library;
@@ -19,7 +23,7 @@ public class LoginOrRegister {
     public Person login() {
         String username;
         String password;
-        Person account = null;
+        Person account;
 
 
         System.out.print("Username:");
@@ -31,10 +35,10 @@ public class LoginOrRegister {
         account = loginValidator(username, password);
 
         if (account != null) {
-            System.out.println("login succesful");
+            System.out.println(GREEN + "\n[ Login successful ]\n" + RESET);
 
         } else {
-            System.out.println("login failed");
+            System.out.println(RED + "\n[ Login failed ]\n" + RESET);
         }
 
 
@@ -49,27 +53,27 @@ public class LoginOrRegister {
 
         while (!sentinel){
 
-            System.out.print("Enter your new username:");
+            System.out.print("Choose your username:");
             newUsername = input.next();
-            if(loginOrRegisterValidator.usernameValidation(newUsername)==true){
-                System.out.print("Password:");
+            if(loginOrRegisterValidator.usernameValidation(newUsername)){
+                System.out.print("Choose your password:");
                 newPassWord = input.next();
-                if (loginOrRegisterValidator.passwordValidation(newPassWord)==true){
+                if (loginOrRegisterValidator.passwordValidation(newPassWord)){
                     String choice;
                     //int choiceToInt = 0;
 
-                    System.out.println("if you are a user write[1] librarian[2]");
+                    System.out.println("[1] Register as a user\n[2] Register as a librarian");
                     choice = input.next();
-                    if (choice.matches("1|2")){
+                    if (choice.matches("[12]")){
 
-                        if (Integer.valueOf(choice) ==1){
+                        if (Integer.parseInt(choice) ==1){
 
 
                             library.addPerson(Factory.buildPerson("user")
                                     .username(newUsername).password(newPassWord));
                             sentinel = true;
                         }
-                        if (Integer.valueOf(choice) ==2){
+                        if (Integer.parseInt(choice) ==2){
 
                             //  old way:  Librarian librarian = new Librarian(newUsername,newPassWord);
                             library.addPerson(Factory.buildPerson("librarian")
@@ -80,15 +84,16 @@ public class LoginOrRegister {
 
                         }
                     }else {
-                        System.out.println("Wrong input");
+                        System.out.println("Wrong input.\nPress 1 for user and 2 for librarian.\n");
                     }
 
 
                 }else {
-                    System.out.println("password format was wrong");
+                    System.out.println("Your password doesn't meet the requirements.\nPlease try again.");
                 }
             }else {
-                System.out.println("username is wrong or allredy exists try again");
+                System.out.println("Your username is already in use or it doesn't meet the requirements.\n" +
+                        "Please use any letter or number while keeping it between 5 and 20 characters in total.");
             }
 
         }

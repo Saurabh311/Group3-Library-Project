@@ -1,18 +1,24 @@
 package com.company.View.Menu.Menus;
 
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
 
 public class LibrarianMenu {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
     EditLibraryBooksMenu editLibraryBooksMenu = new EditLibraryBooksMenu();
+    AfterShowAllBooks afterShowAllBooks = new AfterShowAllBooks();
 
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
-    public LibrarianMenu(){
+    public LibrarianMenu(){ }
 
-    }
     public void librarianMenu(){
         Scanner input = new Scanner(System.in);
         String choiceInput;
@@ -24,7 +30,7 @@ public class LibrarianMenu {
             for (UiChoicesEnums.librarianSwitchChoices choices : UiChoicesEnums.librarianSwitchChoices.values()) {
 
                 if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal()+1, choices);
                 }
 
             }
@@ -36,47 +42,33 @@ public class LibrarianMenu {
             }catch (Exception ignored){ }
 
             switch (choice) {
-                case SHOW_ALL_BOOKS:
-                    data.getProgram().getLibrary().showAllBook();
-                    break;
+                case SHOW_ALL_BOOKS ->
+                        { data.getProgram().getLibrary().showAllBook();
+                        afterShowAllBooks.afterShowAllBooks(); }
 
-                case SEARCH_BY_TITLE:
-                    System.out.println("Write title of book");
-                    data.getProgram().getLibrary().searchByTitle(input.nextLine());
-                    break;
+                case SEARCH_BY_TITLE ->
+                        { System.out.println("Input book title: ");
+                        data.getProgram().getLibrary().searchByTitle(input.nextLine()); }
 
-                case SEARCH_BY_AUTHOR:
-                    System.out.println("Write the name of author ");
-                    data.getProgram().getLibrary().searchByAuthor(input.nextLine());
-                    break;
-                case EDIT_LIBRARY_BOOKS:
-                    editLibraryBooksMenu.editLibraryBooks();
+                case SEARCH_BY_AUTHOR ->
+                        { System.out.println("Input book author: ");
+                        data.getProgram().getLibrary().searchByAuthor(input.nextLine()); }
 
-                    break;
+                case EDIT_LIBRARY_BOOKS -> editLibraryBooksMenu.editLibraryBooks();
 
+                case SEE_ALL_BOOKS_OF_USER ->
+                        { System.out.println("Input username: ");
+                        data.getProgram().pAllBooksOfUser(input.nextLine()); }
 
-                case SEE_ALL_BOOKS_OF_USER:
-                    System.out.println("Write username of user");
-                    data.getProgram().pAllBooksOfUser(input.nextLine());
-                    break;
+                case SHOW_ALL_USERS -> data.getProgram().getLibrary().printUsers();
 
-                case SHOW_ALL_USERS:
-                    data.getProgram().getLibrary().printUsers();
-                    break;
+                case FIND_USER -> data.getProgram().getLibrary().findUser();
 
-                case FIND_USER:
-                    data.getProgram().getLibrary().findUser();
-                    break;
+                case SEE_ALL_LENT_OUT_BOOKS -> data.getProgram().getLibrary().showAllLentBooks();
 
-                case SEE_ALL_LENT_OUT_BOOKS:
-                    data.getProgram().getLibrary().showAllLentBooks();
-                    break;
+                case QUIT -> {}
 
-                case QUIT:
-                    break;
-
-                default:
-                    System.out.println("Wrong input");
+                default -> System.out.println(RED + "[ Wrong input ]" + RESET);
             }
         }
 

@@ -2,7 +2,7 @@ package com.company.View.Menu;
 
 public class UiChoicesEnums {
 
-    public static enum librarianSwitchChoices {
+    public enum librarianSwitchChoices {
         SHOW_ALL_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
@@ -15,14 +15,14 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
-    public static enum editLibraryBooksChoices {
+    public enum editLibraryBooksChoices {
         ADD_BOOK,
         ADD_LIST_OF_BOOKS,
         REMOVE_BOOK,
         GO_BACK,
         DEFAULT
     }
-    public static enum userSwitchChoices {
+    public enum userSwitchChoices {
 
         ENTER_LIBRARY,
         SEE_MY_BORROWED_BOOKS,
@@ -30,22 +30,27 @@ public class UiChoicesEnums {
         DEFAULT
 
     }
-    public static enum userEnterLibraryChoices{
+    public enum userEnterLibraryChoices{
         SHOW_ALL_BOOKS,
-        SHOW_AVAILIBLE_BOOKS,
+        SHOW_AVAILABLE_BOOKS,
         SEARCH_BY_TITLE,
         SEARCH_BY_AUTHOR,
         BORROW_THE_BOOK,
         RETURN_THE_BORROWED_BOOK,
-        SORT_BY_TITLE,
-        SORT_BY_AUTHOR,
         GO_BACK,
         DEFAULT
     }
-    public static enum loginOrRegister{
+    public enum loginOrRegister{
         LOGIN,
         REGISTER,
         TERMINATE_PROGRAM,
+        DEFAULT
+    }
+
+    public enum afterShowAllBook{
+        SORT_BY_TITLE,
+        SORT_BY_AUTHOR,
+        GO_BACK,
         DEFAULT
     }
 }

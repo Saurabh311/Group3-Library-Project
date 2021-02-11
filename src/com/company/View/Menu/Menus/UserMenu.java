@@ -2,17 +2,22 @@ package com.company.View.Menu.Menus;
 
 import com.company.Modules.User;
 import com.company.View.Menu.UiChoicesEnums;
-import com.company.View.Menu.Uidata;
+import com.company.View.Menu.UIdata;
 
 import java.util.Scanner;
 
 public class UserMenu {
-    Uidata data = Uidata.getInstance();
+    UIdata data = UIdata.getInstance();
     EnterLibraryMenu enterLibraryMenu = new EnterLibraryMenu();
 
-    public UserMenu() {
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
-    }
+    public UserMenu() { }
 
     public void userMenu(){
     data.getProgram().getLibrary().sendReminder((User) data.getAccount());
@@ -26,7 +31,7 @@ public class UserMenu {
         for (UiChoicesEnums.userSwitchChoices choices : UiChoicesEnums.userSwitchChoices.values()) {
 
             if (!choices.toString().equals("DEFAULT")){
-                System.out.printf("Write:%d to:%s%n%n", choices.ordinal()+1, choices);
+                System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal()+1, choices);
             }
 
         }
@@ -39,21 +44,13 @@ public class UserMenu {
 
 
         switch (choice) {
-            case ENTER_LIBRARY:
-                enterLibraryMenu.enterLibrary();
-                break;
+            case ENTER_LIBRARY -> enterLibraryMenu.enterLibrary();
 
+            case SEE_MY_BORROWED_BOOKS -> ((User) data.getAccount()).printBorrowedBooks();
 
-            case SEE_MY_BORROWED_BOOKS:
+            case QUIT -> {}
 
-                ((User) data.getAccount()).printBorrowedBooks();
-                break;
-
-            case QUIT:
-                break;
-
-            default:
-                System.out.println("Wrong input");
+            default -> System.out.println(RED + "[ Wrong input ]" +RESET);
         }
     }
     }

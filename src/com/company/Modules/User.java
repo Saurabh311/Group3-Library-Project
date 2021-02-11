@@ -1,24 +1,31 @@
 package com.company.Modules;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.company.Modules.Library.RESET;
+
 public class User extends Person implements Serializable {
     //  List<Object> borrowedBooks = ArrayList;
 
-    private static final long serialVersionUID = 6897230677316227865L;//ställ fråga här
+    @Serial
+    private static final long serialVersionUID = 6897230677316227865L;
     List<Book> myBorrowedBooks = new ArrayList();
 
-    public User() {
+    public User() { }
 
-    }
-
+    //----PRINTS
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
     public List<Book> getMyBorrowedBooks() {
         return myBorrowedBooks;
     }
-
 
     public void addToBorrowedBooks(Book book){
         myBorrowedBooks.add(book);
@@ -26,18 +33,31 @@ public class User extends Person implements Serializable {
     }
 
     public void removeFromBorrowedBooks(Book book){
-        myBorrowedBooks.remove(book);
-        System.out.println("Book returned");
+        int index = -1;
+       for (Book borrowedBook:myBorrowedBooks){
+           if(book.getTitle().equals(borrowedBook.getTitle())){
+               index = myBorrowedBooks.indexOf(borrowedBook);
+           }
+       }
+       if(index != -1){
+
+           myBorrowedBooks.remove(index);
+           System.out.println(GREEN + "[ Book returned ]" + RESET);
+           System.out.println(" ");
+       }else {
+           System.out.println(RED + "[ Book not found ]" + RESET);
+           System.out.println(" ");
+       }
+
     }
 
     public void printBorrowedBooks(){
         if (myBorrowedBooks.size()>0){
-            myBorrowedBooks
-                    .stream()
-                    .forEach(book -> System.out.printf("%s Return date:%s%n",book.getTitle(),book.getBorrowDate()));
+            myBorrowedBooks.forEach(book -> System.out.printf(YELLOW+"Title: "+RESET +"%s  " + YELLOW+ "Return date: "+ RESET+ "%s  " + YELLOW+ "Pending days to return: "
+                    +RESET +"%s%n",book.getTitle(),book.getReturnDate(), book.pendingReturndays(book)));
+            System.out.println(" ");
         }else {
-            System.out.println("you haven't borrowed any books yet");
-
+            System.out.println("You haven't borrowed any books yet.");
         }
     }
 

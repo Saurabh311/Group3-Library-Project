@@ -2,9 +2,13 @@ package com.company.View.Menu.Menus;
 
 import com.company.View.Menu.UiChoicesEnums;
 import com.company.View.Menu.UIdata;
+
 import java.util.Scanner;
-public class EditLibraryBooksMenu {
+
+public class AfterShowAllBooks {
     UIdata data = UIdata.getInstance();
+
+    public AfterShowAllBooks() { }
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
@@ -13,47 +17,43 @@ public class EditLibraryBooksMenu {
     public static final String RESET = "\u001B[0m";
     //----
 
-    public EditLibraryBooksMenu() { }
-    public void editLibraryBooks() {
+    public void afterShowAllBooks() {
         Scanner input = new Scanner(System.in);
         String choiceInput;
-        UiChoicesEnums.editLibraryBooksChoices choice = UiChoicesEnums.editLibraryBooksChoices.DEFAULT;
+
+        UiChoicesEnums.afterShowAllBook choice = UiChoicesEnums.afterShowAllBook.DEFAULT;
 
         while (!choice.toString().equals("GO_BACK")) {
 
 
-            for (UiChoicesEnums.editLibraryBooksChoices choices : UiChoicesEnums.editLibraryBooksChoices.values()) {
+            for (UiChoicesEnums.afterShowAllBook choices : UiChoicesEnums.afterShowAllBook.values()) {
 
                 if (!choices.toString().equals("DEFAULT")) {
                     System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal() + 1, choices);
                 }
 
             }
-
             choiceInput = input.nextLine();
+
             try {
 
-                choice = UiChoicesEnums.editLibraryBooksChoices.values()[(Integer.parseInt(choiceInput) - 1)];
+                choice = UiChoicesEnums.afterShowAllBook.values()[(Integer.parseInt(choiceInput) - 1)];
+
             } catch (Exception ignored) {
             }
 
+
             switch (choice) {
 
+                case SORT_BY_TITLE -> data.getProgram().getLibrary().sortByTitle();
 
-                case ADD_BOOK -> data.getProgram().getLibrary().addBook();
-
-                case ADD_LIST_OF_BOOKS -> data.getProgram().getLibrary().saveListOfBooks();
-
-                case REMOVE_BOOK ->
-                        { System.out.println("Input book title: ");
-                        data.getProgram().getLibrary().removeBookByTitle(input.nextLine()); }
+                case SORT_BY_AUTHOR -> data.getProgram().getLibrary().sortByAuthor();
 
                 case GO_BACK -> {}
 
                 default -> System.out.println(RED + "[ Wrong input ]" + RESET);
+
             }
         }
-
     }
-
 }

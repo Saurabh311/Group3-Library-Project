@@ -11,18 +11,20 @@ public class Program {
 
     Library library;
 
+    LoginOrRegister loginOrRegister;
 
+    //----PRINTS
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    //----
 
-    LoginOrRegister loginOrRegister ;
-
-    public Program() {
-    }
+    public Program() { }
 
     public void buildProgram() {
         library = Factory.buildLibrary();
         loginOrRegister = new LoginOrRegister(library);
         getDataOnLoad();
-        library.setAvailibleBooks();
+        library.setAvailableBooks();
 
     }
     public Library getLibrary() {
@@ -34,7 +36,7 @@ public class Program {
 
 
     private void getDataOnLoad() {
-        System.out.println("data loaded");
+        System.out.println(GREEN + "\n[ Data loaded ]\n" + RESET);
      library.setUsers((List<User>) HandleData.readObject("Users.ser"));
      library.setLibrarians((List<Librarian>) HandleData.readObject("Librarians.ser"));
      library.setBookList((List<Book>) HandleData.readObject("Books.ser"));
@@ -47,22 +49,22 @@ public class Program {
         HandleData.writeObject(library.getLibrarians(),"Librarians.ser");
         HandleData.writeObject(library.getBookList(),"Books.ser");
         HandleData.writeObject(library.getBorrowedBooks(),"BorrowedBooks.ser");
-        System.out.println("data saved");
+        System.out.println(GREEN + "\n[ Data saved ]\n" + RESET);
 
     }
 
     public void pAllBooksOfUser(String username){
 
-        List<User> userChek;
-           userChek = library.getUsers()
+        List<User> userCheck;
+           userCheck = library.getUsers()
                     .stream()
                     .filter(user -> username.equals(user.getUsername()))
                     .collect(Collectors.toList());
-        if ( userChek.size() > 0){
-            System.out.println(userChek.get(0).getMyBorrowedBooks());
+        if ( userCheck.size() > 0){
+            System.out.println(userCheck.get(0).getMyBorrowedBooks());
         }
         else {
-            System.out.println("User dose not exist");
+            System.out.println("Username does not exist.");
         }
 
     }

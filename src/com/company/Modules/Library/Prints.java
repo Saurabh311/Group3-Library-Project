@@ -23,57 +23,106 @@ public class Prints {
         List<Book> searchByTitle = libraryData.getBookList().stream()
                 .filter(book -> book.getTitle().toUpperCase().contains(title.toUpperCase()))
                 .collect(Collectors.toList());
+        String isfound = "Not Available";
         if (searchByTitle.size() > 0) {
-            searchByTitle.forEach(book -> System.out.printf(
-                    YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
-                            YELLOW + "Year: " + RESET + "%d " + YELLOW + "Description: " + RESET + "%s%n",
-                    book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription()));
-            System.out.println(" ");
-        } else {
-            System.out.println("The book isn't in the library.\n");
+            for (Book book : searchByTitle) {
+                String found = "Not Availble";
+                for (Book tempBook : libraryData.getAvailableBooks()) {
+                    if (tempBook.getTitle().equals(book.getTitle())) {
+                        found = "Available";
+                    }
+                }
+                System.out.printf(YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
+                                YELLOW + "Year: " + RESET + "%d " + YELLOW + "Description: " + RESET + "%s " + YELLOW + "Book Status: " + RESET +"%s%n",
+                        book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription(), found);
+                System.out.println(" ");
+            }
+            System.out.println("I---------------------------------------------------------------I");
+            return;
         }
+        System.out.println(RED +"Book with this name is not exist in library " + RESET);
+        System.out.println("I---------------------------------------------------------------I");
     }
 
     public void searchByAuthor(String author) {
         List<Book> searchByAuthor = libraryData.getBookList().stream()
                 .filter(book -> book.getAuthor().toUpperCase().contains(author.toUpperCase()))
                 .collect(Collectors.toList());
+        String isfound = "Not Available";
         if (searchByAuthor.size() > 0) {
-            searchByAuthor.forEach(book -> System.out.printf(
-                    YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
-                            YELLOW + "Year: " + RESET + "%d " + YELLOW + "Description: " + RESET + "%s%n",
-                    book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription()));
-            System.out.println(" ");
-        } else {
-            System.out.println("The book isn't in the library.\n");
+            for (Book book : searchByAuthor) {
+                String found = "Not Availble";
+                for (Book tempBook : libraryData.getAvailableBooks()) {
+                    if (tempBook.getTitle().equals(book.getTitle())) {
+                        found = "Available";
+                    }
+                }
+                System.out.printf(YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
+                                YELLOW + "Year: " + RESET + "%d " + YELLOW + "Description: " + RESET + "%s " + YELLOW + "Book Status: " + RESET +"%s%n",
+                        book.getTitle(), book.getAuthor(), book.getYear(), book.getDescription(), found);
+                System.out.println(" ");
+                return;
+            }
+            System.out.println("I---------------------------------------------------------------I");
+            return;
         }
+        System.out.println(RED +"Book with this author name is not exist in library " + RESET);
+        System.out.println("I---------------------------------------------------------------I");
     }
 
     public void sortByTitle() {
         Comparator<Book> compareByTitle = Comparator.comparing(Book::getTitle);
         libraryData.getBookList().sort(compareByTitle);
         for (Book book : libraryData.getBookList()) {
-            System.out.println(book.toString());
-            System.out.println(" ");
+            String found = "Not Availble";
+            for (Book tempBook : libraryData.getAvailableBooks()) {
+                if(tempBook.getTitle().equals(book.getTitle())){
+                    found = "Available";
+                }
+            }
+            System.out.printf(YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
+                            YELLOW + "Year: " + RESET + "%d " +  YELLOW + "Book Status: " + RESET +"%s%n",
+                    book.getTitle(), book.getAuthor(), book.getYear(), found);
         }
+        System.out.println("I------------------------------------------------------------------I");
     }
 
     public void sortByAuthor() {
         Comparator<Book> compareByAuthor = Comparator.comparing(Book::getAuthor);
         libraryData.getBookList().sort(compareByAuthor);
         for (Book book : libraryData.getBookList()) {
-            System.out.println(book.toString());
-            System.out.println(" ");
+            String found = "Not Availble";
+            for (Book tempBook : libraryData.getAvailableBooks()) {
+                if(tempBook.getTitle().equals(book.getTitle())){
+                    found = "Available";
+                }
+            }
+            System.out.printf(YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
+                            YELLOW + "Year: " + RESET + "%d " +  YELLOW + "Book Status: " + RESET +"%s%n",
+                    book.getTitle(), book.getAuthor(), book.getYear(), found);
         }
+        System.out.println("I------------------------------------------------------------------I");
     }
 
     public void showAllBook() {
         if (libraryData.getBookList().size() > 0) {
-            libraryData.getBookList().forEach(book -> System.out.println(book.toString()));
-            System.out.println(" ");
-        } else {
-            System.out.println("There are no books in the library.\n");
+            for (Book book : libraryData.getBookList()) {
+                String found = "Not Availble";
+                for (Book tempBook : libraryData.getAvailableBooks()) {
+                    if(tempBook.getTitle().equals(book.getTitle())){
+                        found = "Available";
+                    }
+                }
+                System.out.printf(YELLOW + "Title: " + RESET + "%s " + YELLOW + "Author: " + RESET + "%s " +
+                                YELLOW + "Year: " + RESET + "%d " +  YELLOW + "Book Status: " + RESET +"%s%n",
+                        book.getTitle(), book.getAuthor(), book.getYear(), found);
+
+            }
+            System.out.println("I------------------------------------------------------------------I");
+            return;
         }
+        System.out.println(RED +"There is no book exist in library database" + RESET);
+        System.out.println("I------------------------------------------------------------------I");
     }
 
     public void pAllBooksOfUser(String username) {

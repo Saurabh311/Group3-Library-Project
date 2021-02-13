@@ -1,6 +1,6 @@
 package com.company.Controller.LoginAndRegister;
 
-import com.company.Modules.Library;
+import com.company.Modules.Library.Library;
 import com.company.Modules.Person;
 
 import java.util.List;

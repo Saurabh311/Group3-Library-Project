@@ -11,7 +11,7 @@ public class LoginOrRegisterMenu {
     UserMenu userMenu = new UserMenu();
     LibrarianMenu librarianMenu = new LibrarianMenu();
     UIdata data = UIdata.getInstance();
-    Scanner input  = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
     //----PRINTS
     public static final String YELLOW = "\u001B[33m";
@@ -20,7 +20,7 @@ public class LoginOrRegisterMenu {
     public static final String RESET = "\u001B[0m";
     //----
 
-    public void loginOrRegisterUi() { // had problem with an infinite loop in our try catch when inputing a character
+    public void loginOrRegisterUi() {
         String choiceInput;
 
         UiChoicesEnums.loginOrRegister choice = UiChoicesEnums.loginOrRegister.DEFAULT;
@@ -29,17 +29,18 @@ public class LoginOrRegisterMenu {
 
 
             for (UiChoicesEnums.loginOrRegister choices : UiChoicesEnums.loginOrRegister.values()) {
-                if (!choices.toString().equals("DEFAULT")){
-                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal()+1, choices);
+                if (!choices.toString().equals("DEFAULT")) {
+                    System.out.printf("Write: [%d] to: %s%n%n", choices.ordinal() + 1, choices);
                 }
 
             }
 
             choiceInput = input.nextLine();
-            try{
+            try {
 
-                choice = UiChoicesEnums.loginOrRegister.values()[(Integer.parseInt(choiceInput) -1)];
-            }catch (Exception ignored){ }
+                choice = UiChoicesEnums.loginOrRegister.values()[(Integer.parseInt(choiceInput) - 1)];
+            } catch (Exception ignored) {
+            }
 
 
             switch (choice) {
@@ -60,7 +61,8 @@ public class LoginOrRegisterMenu {
 
 
     }
-    public  void menuChoice(Object person) {
+
+    public void menuChoice(Object person) {
 
         if (person instanceof User) {
             userMenu.userMenu();
